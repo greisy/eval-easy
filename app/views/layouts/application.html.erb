@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="evalEasy">
 <head>
   <title>EvalEasy</title>
 
@@ -7,9 +7,10 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body ng-app="evalEasy" ng-controller="MainCtrl">
+<body >
+  <h1>EvalEasy</h1>
   <div>
-    {{test}}
+    <div ui-view></div>
   </div>
 <%#= yield %>
 
