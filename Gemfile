@@ -21,6 +21,10 @@ gem 'mysql2'
 #It uses to improve ripl(irb)'s default inspect output
 gem 'hirb'
 
+#Sprockets Rails
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+
+
 group :development, :test do
   gem 'rspec-rails'
   gem "factory_girl_rails", "~> 4.0"
