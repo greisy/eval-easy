@@ -28,6 +28,8 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'haml'
 #Haml-rails provides Haml generators for Rails 4. 
 gem "haml-rails", "~> 0.9"
+#jQuery 
+gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 
 group :development, :test do
   gem 'rspec-rails'
