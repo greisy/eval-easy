@@ -24,6 +24,10 @@ gem 'hirb'
 #Sprockets Rails
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
+#Haml is a markup language that’s used to cleanly and simply describe the HTML of any web document without the use of inline code
+gem 'haml'
+#Haml-rails provides Haml generators for Rails 4. 
+gem "haml-rails", "~> 0.9"
 
 group :development, :test do
   gem 'rspec-rails'
