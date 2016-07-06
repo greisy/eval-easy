@@ -21,6 +21,16 @@ gem 'mysql2'
 #It uses to improve ripl(irb)'s default inspect output
 gem 'hirb'
 
+#Sprockets Rails
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+
+#Haml is a markup language that’s used to cleanly and simply describe the HTML of any web document without the use of inline code
+gem 'haml'
+#Haml-rails provides Haml generators for Rails 4. 
+gem "haml-rails", "~> 0.9"
+#jQuery 
+gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
+
 group :development, :test do
   gem 'rspec-rails'
   gem "factory_girl_rails", "~> 4.0"
