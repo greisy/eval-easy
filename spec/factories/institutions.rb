@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :institution do
-    name "MyString"
-    address "MyText"
-    phone "MyString"
+  factory :institution do |f|
+    f.name { Faker::University.name }
+    f.address { Faker::Address.city }
+    f.phone { Faker::PhoneNumber.phone_number }
   end
 end

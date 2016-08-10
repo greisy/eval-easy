@@ -1,15 +1,13 @@
 angular.module('evalEasy', [
-  'ui.router'
-
-  // custom modules
-
+  'ui.router',
+  'templates'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     //$urlRouterProvider.otherwise("/");
     $stateProvider
       .state('institutions',{
         url: '/',
-        templateUrl: 'views/institutions/index.html',
+        templateUrl: 'views/institutions/_index.html',
         controller: 'InstitutionIndexCtrl'
       });
   });

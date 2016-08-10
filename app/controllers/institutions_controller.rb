@@ -6,4 +6,20 @@ class InstitutionsController < ApplicationController
       #end
     render json: institutions, status: 200
   end
+  def new
+    
+  end
+  def create
+
+  end
 end
+
+
+
+#-----
+=begin 
+method  show
+        create
+        update
+=end
+

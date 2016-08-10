@@ -31,6 +31,8 @@ gem "haml-rails", "~> 0.9"
 #jQuery 
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 
+gem 'angular-rails-templates'
+
 group :development, :test do
   gem 'rspec-rails'
   gem "factory_girl_rails", "~> 4.0"
@@ -38,6 +40,7 @@ group :development, :test do
   gem 'capybara', '~> 2.7', '>= 2.7.1'
   gem 'selenium-webdriver'
   gem 'byebug'
+  gem 'hirb'
 end
 
 
