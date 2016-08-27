@@ -18,6 +18,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #A simple, fast Mysql library for Ruby, binding to libmysql
 gem 'mysql2'
 
+## DEVISE
+gem 'devise'
+
 #It uses to improve ripl(irb)'s default inspect output
 gem 'hirb'
 
@@ -29,6 +32,8 @@ gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 
 gem 'angular-rails-templates'
 
+## support CSRF in the frontend (angular)
+gem 'angular_rails_csrf'
 group :development, :test do
   gem 'rspec-rails'
   gem "factory_girl_rails", "~> 4.0"
@@ -36,8 +41,8 @@ group :development, :test do
   gem 'capybara', '~> 2.7', '>= 2.7.1'
   gem 'selenium-webdriver'
   gem 'byebug'
-  gem 'hirb'
 end
+
 
 
 # Use ActiveModel has_secure_password

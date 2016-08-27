@@ -8,8 +8,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= render "partials/navigation" %>
-    <div class="margin-top" ui-view></div>
-    <%= render "partials/footer" %>
+    <div ng-include="'views/nav/_nav.html'"></div>
+    <div ui-view></div>
+    <%#= render "partials/footer" %>
   </body>
 </html>
