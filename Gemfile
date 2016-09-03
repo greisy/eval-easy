@@ -34,6 +34,7 @@ gem 'angular-rails-templates'
 
 ## support CSRF in the frontend (angular)
 gem 'angular_rails_csrf'
+
 group :development, :test do
   gem 'rspec-rails'
   gem "factory_girl_rails", "~> 4.0"

@@ -1,5 +1,6 @@
 angular
   .module("evalEasy")
-    .controller("NavCtrl",function(){
-
-    });
+    .controller("NavCtrl",['$scope', 'Auth',function($scope, Auth){
+      debugger
+      $scope.signedIn = Auth.isAuthenticated();
+    }]);

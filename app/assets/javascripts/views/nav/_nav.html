@@ -1,20 +1,38 @@
-<nav class="blue row around-xs" ng-controller="NavCtrl">
-  <div class="col-xs-2">
-    <div class="box text-center">
-      <div class="fa fa-university fa-3x white"></div>
-      <h5 class="white"><a ui-sref="institutions">PERIODO ACADEMICO </a></h5>
+<div ng-controller="NavCtrl" >
+  <nav class="blue row around-xs space-between" ng-show="signedIn">
+      <div class="col-xs-2">
+        <div class="box text-center">
+          <div class="fa fa-university fa-3x white"></div>
+          <h5><a ui-sref="institutions" class="white link">PERIODO ACADEMICO </a></h5>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <div class="box text-center">
+          <div class="fa fa-calendar fa-3x white"></div>
+          <h5><a href="#/" class="white link">PLANIFICACION</a></h5>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <div class="box text-center">
+          <div class="fa fa-book fa-3x white"></div>
+          <h5><a href="#/" class="white link">ASIGNATURAS</a></h5>
+        </div>
+      </div>
+  </nav>
+  <nav class="blue row between-xs bottom-line space-between" ng-hide="signedIn">
+    <div class="col-xs-2">
+      <div class="box">
+        Logo
+      </div>
     </div>
-  </div>
-  <div class="col-xs-2">
-    <div class="box text-center">
-      <div class="fa fa-calendar fa-3x white"></div>
-      <h5 class="white"><a href="#/">PLANIFICACION</a></h5>
+
+    <div class="col-xs-3">
+      <div class="box">
+        <ul>
+          <li class="fa fa-sign-in fa-1x white space-right"><a ui-sref="sign_in" class="white link raleway">&nbsp;Iniciar Sesión</a></li>
+          <li class="fa fa-hand-o-right fa-1x white"><a ui-sref="sign_up" class="white link raleway">&nbsp;Registrarme</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="col-xs-2">
-    <div class="box text-center">
-      <div class="fa fa-book fa-3x white"></div>
-      <h5 class="white"><a href="#/">ASIGNATURAS</a></h5>
-    </div>
-  </div>
-</nav>
+  </nav>
+</div>
