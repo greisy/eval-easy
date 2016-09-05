@@ -3,7 +3,11 @@ angular.module('evalEasy', [
   'templates',
   'Devise'
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, AuthProvider) {
+
+/*    AuthProvider.parse(function(response){
+      return response.data.user;
+    });*/
     //$urlRouterProvider.otherwise("/");
     $stateProvider
       .state('sign_in',{

@@ -4,8 +4,6 @@ angular
             $scope.institutions = [];
 
             InstitutionFactory.getAll().then(function(results){
-                console.log("-------------");
-                console.log(results);
                 $scope.institutions = results.data;
 
             }, function(error){

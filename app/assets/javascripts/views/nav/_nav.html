@@ -1,9 +1,10 @@
 <div ng-controller="NavCtrl" >
   <nav class="blue row around-xs space-between" ng-show="signedIn">
+    {{signedIn}}
       <div class="col-xs-2">
         <div class="box text-center">
           <div class="fa fa-university fa-3x white"></div>
-          <h5><a ui-sref="institutions" class="white link">PERIODO ACADEMICO </a></h5>
+          <h5><a ui-sref="institutions" class="white link">PERIODO ACADEMICO</a></h5>
         </div>
       </div>
       <div class="col-xs-2">
@@ -18,11 +19,24 @@
           <h5><a href="#/" class="white link">ASIGNATURAS</a></h5>
         </div>
       </div>
+      <div class="col-xs-2">
+        <div class="box text-center">
+          <div class="dropdown">
+            <button class="fa fa-user fa-3x dropdown-toggle" type="button" data-toggle="dropdown"></button>
+            <ul class="dropdown-menu">
+              <li>{{user.email}}</li>
+              <li><a ng-click="logout()">Cerrar Sesión</a> </li>
+            </ul>
+          </div>
+          <!--<div class="fa fa-user fa-3x white"></div>
+          <h5><a href="#/" class="white link">{{user.email}}</a></h5>-->
+        </div>
+      </div>
   </nav>
   <nav class="blue row between-xs bottom-line space-between" ng-hide="signedIn">
     <div class="col-xs-2">
       <div class="box">
-        Logo
+        Logo {{signedIn}}
       </div>
     </div>
 
@@ -31,6 +45,7 @@
         <ul>
           <li class="fa fa-sign-in fa-1x white space-right"><a ui-sref="sign_in" class="white link raleway">&nbsp;Iniciar Sesión</a></li>
           <li class="fa fa-hand-o-right fa-1x white"><a ui-sref="sign_up" class="white link raleway">&nbsp;Registrarme</a></li>
+           <li class="fa fa-sign-in fa-1x white space-right"><a ng-click="logout()" class="white link raleway">&nbsp;Cerrar Sesión</a></li>
         </ul>
       </div>
     </div>
