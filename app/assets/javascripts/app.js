@@ -1,10 +1,15 @@
 angular.module('evalEasy', [
   'ui.router',
   'templates',
-  'Devise'
+  'Devise', 
+  'validation.match'
   ])
   .config(function ($stateProvider, $urlRouterProvider, AuthProvider) {
-
+    var cancan = function(state, Auth) {
+        if (!Auth.isAuthenticated()){
+          state.go('sign_in');
+        }
+      };
 /*    AuthProvider.parse(function(response){
       return response.data.user;
     });*/
@@ -23,6 +28,9 @@ angular.module('evalEasy', [
       .state('institutions',{
         url: '/',
         templateUrl: 'views/institutions/_index.html',
-        controller: 'InstitutionIndexCtrl'
+        controller: 'InstitutionIndexCtrl',
+        onEnter: ['$state','Auth', function($state, Auth){
+          cancan($state, Auth);
+        }]
       });
   });

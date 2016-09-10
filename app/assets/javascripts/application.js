@@ -3,6 +3,7 @@
 //= require angular
 //= require AngularDevise
 //= require angular-rails-templates
+//= require angular-validation-match
 //= require bootstrap-sass/assets/javascripts/bootstrap-sprockets
 //= require angular-ui-router
 //= require_tree .

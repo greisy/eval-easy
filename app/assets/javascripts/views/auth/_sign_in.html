@@ -2,16 +2,17 @@
     <div class="col-xs-4">
         <div class="box">
             <div style="border:1px solid grey;padding:10px;">
+              <h2>Iniciar Sesion</h2>
                  <form ng-submit="login()">
                   <div class="form-group">
                     <label for="email">Correo Electrónico:</label>
-                    <input type="email" class="form-control" id="email" ng-model="user.email">
+                    <input type="email" name="email" class="form-control" id="email" ng-model="user.email" required>
                   </div>
                   <div class="form-group">
                     <label for="pwd">Contraseña:</label>
-                    <input type="password" class="form-control" id="pwd" ng-model="user.password">
+                    <input type="password" class="form-control" id="pwd" ng-model="user.password" pattern: ".{8,}" required>
                   </div>
-                  <button type="submit" class="btn btn-default">Iniciar Sesión
+                  <button type="submit" class="btn btn-primary" ng-disabled="!canSubmitSignUp()" ng-class="{'dark-grey': !canSubmitSignUp(), 'green' : canSubmitSignUp() } " >Iniciar Sesión
                   </button>
                 </form>
               <a ui-sref="sign_up">Registrarme</a>

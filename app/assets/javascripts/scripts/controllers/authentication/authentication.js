@@ -23,7 +23,9 @@ angular
             console.log(error);
           });
         };
-
+        $scope.canSubmitSignUp = function(){
+          return $scope.sign_up.$valid;
+        };
 
 
       }]);

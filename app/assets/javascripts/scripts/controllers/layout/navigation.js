@@ -1,6 +1,6 @@
 angular
   .module("evalEasy")
-    .controller("NavCtrl",['$scope', 'Auth',function($scope, Auth){
+    .controller("NavCtrl",['$state','$scope', 'Auth',function($state,$scope, Auth){
       var config = {
       	headers: {
       		'X-HTTP-Method-Override': 'DELETE'
@@ -23,6 +23,7 @@ angular
       $scope.$on('devise:logout', function (e, user){
       	$scope.user = {};
       	$scope.signedIn = Auth.isAuthenticated();
+        $state.go('sign_in');
       });
 
     }]);
