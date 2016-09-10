@@ -16,7 +16,6 @@ angular
           });
         };
         $scope.login = function(){
-          debugger
           Auth.login($scope.user, config).then(function(data){
             console.log(data);
             $state.go("institutions");

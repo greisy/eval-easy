@@ -10,6 +10,7 @@ angular
       $scope.logout= Auth.logout;
       Auth.currentUser().then(function (user){
       	$scope.user = user;
+        $scope.signedIn = Auth.isAuthenticated();
       });
 
     	$scope.$on('devise:new-registration', function (e, user){
@@ -20,7 +21,6 @@ angular
         $scope.signedIn = Auth.isAuthenticated();
       });
       $scope.$on('devise:logout', function (e, user){
-      	debugger
       	$scope.user = {};
       	$scope.signedIn = Auth.isAuthenticated();
       });
