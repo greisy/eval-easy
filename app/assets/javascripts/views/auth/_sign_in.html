@@ -3,12 +3,15 @@
         <div class="box">
             <div style="border:1px solid grey;padding:10px;">
               <h2>Iniciar Sesion</h2>
-                 <form ng-submit="login()">
+                <form ng-submit="login()">
+                  <div class="form-group" ng-class="{'has-error': error}">
+                    <label class="control-label" ng-show="error" >{{error}}</label>
+                  </div>
                   <div class="form-group">
                     <label for="email">Correo Electrónico:</label>
                     <input type="email" name="email" class="form-control" id="email" ng-model="user.email" required>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" >
                     <label for="pwd">Contraseña:</label>
                     <input type="password" class="form-control" id="pwd" ng-model="user.password" pattern: ".{8,}" required>
                   </div>

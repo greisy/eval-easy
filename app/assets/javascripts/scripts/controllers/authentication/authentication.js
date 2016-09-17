@@ -7,7 +7,7 @@ angular
           }
         };
         $scope.register = function(){
-
+          $scope.user.role_id = 1;
           Auth.register($scope.user, config).then(function(registeredUser){
             console.log("User registered"+registeredUser);
             $state.go("institutions");
@@ -20,7 +20,8 @@ angular
             console.log(data);
             $state.go("institutions");
           }, function(error){
-            console.log(error);
+            debugger
+            $scope.error = error.data.error;
           });
         };
         $scope.canSubmitSignUp = function(){

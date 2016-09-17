@@ -1,6 +1,6 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
-en:
+es:
   devise:
     activerecord:
       models:
@@ -8,7 +8,7 @@ en:
       attributes:
         user:
           email: "Correo"
-        password: "Contraseña"
+          password: "Contraseña"
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
@@ -16,13 +16,15 @@ en:
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Su cuenta no se encuentra activada aún."
-      invalid: "Invalido %{authentication_keys} o contraseña"
+      invalid: "%{authentication_keys}.capitalize o contraseña invalida "
       locked: "Tu cuenta se encuentra bloqueada."
       last_attempt: "You have one more attempt before your account is locked."
-      not_found_in_database: "Invalida %{authentication_keys} o contraseña."
+      not_found_in_database: "%{authentication_keys} o contraseña invalida."
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your email address before continuing."
+      user:
+        invalid: "%{authentication_keys} o contraseña invalida"
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"

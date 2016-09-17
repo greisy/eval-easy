@@ -13,7 +13,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+# Seedbank allows you to structure your Rails seed data instead of having it all dumped into one large file
+gem 'seedbank'
 #------------- EVALEASY PROJECT'S GEMS------------
 #A simple, fast Mysql library for Ruby, binding to libmysql
 gem 'mysql2'
