@@ -7,7 +7,8 @@ angular
           }
         };
         $scope.register = function(){
-          $scope.user.role_id = 1;
+          var admin_role = 1;
+          $scope.user.role_id = admin_role;
           Auth.register($scope.user, config).then(function(registeredUser){
             console.log("User registered"+registeredUser);
             $state.go("institutions");
