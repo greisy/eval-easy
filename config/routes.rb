@@ -1,8 +1,15 @@
+require 'uri'
 Rails.application.routes.draw do
-  devise_for :users
+  #devise_for :users
   root to: 'application#angular'
 
   resources :institutions
+
+  devise_for :users, controllers: {
+    confirmations: 'users/confirmations'
+  }
+
+  get "/iniciar_sesion", to: 'application#angular', as: :login
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -4,7 +4,8 @@ angular.module('evalEasy', [
   'Devise', 
   'validation.match'
   ])
-  .config(function ($stateProvider, $urlRouterProvider, AuthProvider) {
+  .config(["$locationProvider", "$stateProvider","$urlRouterProvider", "AuthProvider",function ($locationProvider, $stateProvider, $urlRouterProvider, AuthProvider) {
+    
     var cancan = function(state, Auth) {
         if (!Auth.isAuthenticated()){
           state.go('sign_in');
@@ -33,4 +34,9 @@ angular.module('evalEasy', [
           cancan($state, Auth);
         }]
       });
-  });
+      //$locationProvider.html5Mode(true);
+      $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+      });
+  }]);
