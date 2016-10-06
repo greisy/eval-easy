@@ -7,10 +7,10 @@ angular.module('evalEasy', [
   .config(["$locationProvider", "$stateProvider","$urlRouterProvider", "AuthProvider",function ($locationProvider, $stateProvider, $urlRouterProvider, AuthProvider) {
     
     var cancan = function(state, Auth) {
-        if (!Auth.isAuthenticated()){
-          state.go('sign_in');
-        }
-      };
+      if (!Auth.isAuthenticated()){
+        state.go('sign_in');
+      }
+    };
 /*    AuthProvider.parse(function(response){
       return response.data.user;
     });*/

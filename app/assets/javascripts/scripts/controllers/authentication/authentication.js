@@ -21,7 +21,6 @@ angular
             console.log(data);
             $state.go("institutions");
           }, function(error){
-            debugger
             $scope.error = error.data.error;
           });
         };
