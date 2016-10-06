@@ -1,11 +1,16 @@
 class User < ActiveRecord::Base
+
+  ## ASSOCIATIONS
+    belongs_to :role
+  ## VALIDATIONS
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  ## ASSOCIATIONS
-    belongs_to :role
-
+  validates :identity_card, uniqueness: true, presence: true
+  validates :name, presence: true
+  validates :last_name, presence: true
+  
   ## CALLBACKS
 
 
