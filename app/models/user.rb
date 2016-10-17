@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   ## ASSOCIATIONS
     belongs_to :role
+    belongs_to :institution
   ## VALIDATIONS
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,10 +14,8 @@ class User < ActiveRecord::Base
   
   ## CALLBACKS
 
-
   ##METHODS
   private
-  
 
 
 end

@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :institutions
 
   devise_for :users, controllers: {
-    confirmations: 'users/confirmations'
+    confirmations: 'users/confirmations',
+    registrations: 'users/registrations'
   }
 
   get "/iniciar_sesion", to: 'application#angular', as: :login

@@ -3,7 +3,7 @@
         <div class="box text-left">
             <div style="border:1px solid grey;padding:10px;">
               <h2>Iniciar Sesion</h2>
-                <form ng-submit="login()">
+                <form name="sign" ng-submit="login()">
                   <div class="form-group" ng-class="{'has-error': error}">
                     <label class="control-label" ng-show="error" >{{error}}</label>
                   </div>
@@ -15,7 +15,7 @@
                     <label for="pwd">Contraseña:</label>
                     <input type="password" class="form-control" id="pwd" ng-model="user.password" pattern: ".{8,}" required>
                   </div>
-                  <button type="submit" class="btn btn-primary" ng-disabled="!canSubmitSignUp()" ng-class="{'dark-grey': !canSubmitSignUp(), 'green' : canSubmitSignUp() } " >Iniciar Sesión
+                  <button type="submit" class="btn btn-primary" ng-disabled="!canSubmitSign()" ng-class="{'dark-grey': !canSubmitSignUp(), 'green' : canSubmitSignUp() } " >Iniciar Sesión
                   </button>
                 </form>
               <a ui-sref="sign_up">Registrarme</a>

@@ -8,9 +8,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+    debugger
+    institution = Institution.find params[:user][:institution_id]
+    params[:user][:institution_id] = institution.id
+    role = Role.find params[:user][:role_id]
+    params[:user][:role_id] = role.id
+    super
+   end
 
   # GET /resource/edit
   # def edit
