@@ -5,7 +5,8 @@
               <h2>Iniciar Sesion</h2>
                 <form name="sign" ng-submit="login()">
                   <div class="form-group" ng-class="{'has-error': error}">
-                    <label class="control-label" ng-show="error" >{{error}}</label>
+                  <!--ng-show= "error"-->
+                    <label class="control-label" ng-if="error" >{{error}}</label>
                   </div>
                   <div class="form-group">
                     <label for="email">Correo Electrónico:</label>
