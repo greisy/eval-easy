@@ -3,12 +3,33 @@
         <div class="box">
             <div style="border:1px solid grey;padding:10px;">
                 <h2>Registrarme</h2>
-                 <form name="sign_up" ng-submit="register()">
+                 <form name="sign" ng-submit="register()">
+                  <div class="form-group" >
+                    <label for="name">Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" ng-model="user.name" required>
+                  </div>
+                  <div class="form-group" >
+                    <label for="name">Apellido:</label>
+                    <input type="text" class="form-control" name="apellido" ng-model="user.last_name" required>
+                  </div>
+                  <div class="form-group" >
+                    <label for="cedula">Cedula:</label>
+                    <input type="text" class="form-control" name="cedula" ng-model="user.identity_card" required>
+                  </div>
+                  <div class="form-group" >
+                    <label for="telefono">Telefono:</label>
+                    <input type="text" class="form-control" name="telefono" ng-model="user.phone" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="institution">Institución</label>
+                    <input type="text" id="query" ng-model="query" class="form-control">
+                    <select class="form-control" ng-options="institution.id as institution.name for institution in (institutions | filter:query)" ng-model="user.institution_id" required>
+                    </select>
+                  </div>
                   <div class="form-group" >
                     <label for="email">Correo Electrónico:</label>
                     <input type="email" class="form-control" name="correo" ng-model="user.email" required>
                   </div>
-                  
                   <div class="form-group">
                     <label for="pwd">Contraseña:</label>
                     <input type="password" class="form-control " id="pwd" ng-model="user.password" name="password" pattern: ".{8,}" required>
@@ -20,7 +41,7 @@
                   </div>
                   
                   
-                  <button type="submit" class="btn btn-primary" ng-disabled="!canSubmitSignUp()" ng-class="{'dark-grey': !canSubmitSignUp(), 'green' : canSubmitSignUp() } ">Registrarme
+                  <button type="submit" class="btn btn-primary" ng-disabled="!canSubmitSign()" ng-class="{'dark-grey': !canSubmitSignUp(), 'green' : canSubmitSignUp() } ">Registrarme
                   </button>
                 </form>
               <a ui-sref="sign_in">Iniciar Sesión</a>
