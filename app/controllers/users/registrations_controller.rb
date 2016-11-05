@@ -9,7 +9,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
    def create
-    debugger
     institution = Institution.find params[:user][:institution_id]
     params[:user][:institution_id] = institution.id
     role = Role.find params[:user][:role_id]
