@@ -10,7 +10,34 @@
   </head>
   <body>
     <div ng-include="'views/nav/_nav.html'"></div>
-    <div ui-view></div>
+    <div class="row" ng-controller="NavCtrl">
+      <div class="col s3" ng-show="signedIn">
+        <ul id="slide-out" class="side-nav fixed">
+          <li><div class="userView">
+            <div class="background">
+              <%= image_tag("aula_magna")%>
+            </div>
+            <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+            <a href="#!name"><span class="white-text name">John Doe</span></a>
+            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            </div>
+          </li>
+          <li><a href="#!"><i class="material-icons">cloud</i>Carreras</a></li>
+          <li><div class="divider"></div></li>
+          <li><a href="#!"><i class="material-icons">cloud</i>Asignaturas</a></li>
+          <li><div class="divider"></div></li>
+          <li><a href="#!"><i class="material-icons">cloud</i>Profesores</a></li>
+          <li><div class="divider"></div></li>
+          <li><a href="#!"><i class="material-icons">cloud</i>Estudiantes</a></li>
+          <li><div class="divider"></div></li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+      </div>
+      <div class="col s9" ng-class="{'s12': !signedIn}">
+        <div ui-view></div>
+      </div>
+    </div>
+
     <%#= render "partials/footer" %>
   </body>
 </html>
