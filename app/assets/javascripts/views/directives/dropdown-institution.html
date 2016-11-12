@@ -1,6 +1,6 @@
-<input id="last_name" type="text" class="validate" ng-model="search">
-<label for="last_name">Ingrese el nombre de la institución</label>
-<h1>{{search}}</h1>
-<ul ng-repeat="institution in institutions">
-	<li>{{institution.name}}</li>
+<i class="material-icons prefix">account_balance</i>
+<input class="validate" type="text" name="institucion" id="institution" ng-model="query" ng-focus="showCollection()" required placeholder="Ingrese el nombre de la institución" >
+	<label for="institution" data-error="Verificar nombre de institución"></label>
+<ul class="collection" id ="collection">
+	<li class="collection-item" ng-click="setInstitution(institution)"  ng-repeat="institution in institutions | filter: query ">{{institution.name}}</li>
 </ul>
