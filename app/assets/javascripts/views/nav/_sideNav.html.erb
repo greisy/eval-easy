@@ -1,0 +1,22 @@
+<div  ng-show="signedIn" ng-controller="NavCtrl">
+  <ul id="slide-out" class="side-nav fixed">
+    <li><div class="userView">
+      <div class="background">
+        <%= image_tag("aula_magna")%>
+      </div>
+      <i class="material-icons large">account_balance</i>
+      <a href="#!name"><span class="white-text name">John Doe</span></a>
+      <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      </div>
+    </li>
+    <li><a href="#!"><i class="material-icons">cloud</i>Carreras</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>Asignaturas</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>Profesores</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>Estudiantes</a></li>
+    <li><div class="divider"></div></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+</div>

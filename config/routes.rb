@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   }
 
   get "/iniciar_sesion", to: 'application#angular', as: :login
+  get '*path', to: 'application#angular'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

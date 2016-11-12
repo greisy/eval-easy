@@ -7,14 +7,15 @@ angular.module('evalEasy', [
   .config(["$locationProvider", "$stateProvider","$urlRouterProvider", "AuthProvider",function ($locationProvider, $stateProvider, $urlRouterProvider, AuthProvider) {
     
     var cancan = function(state, Auth) {
-      if (!Auth.isAuthenticated()){
+      Auth.currentUser().then(function(user){
+      }, function(error){
         state.go('sign_in');
-      }
+      });
     };
 /*    AuthProvider.parse(function(response){
       return response.data.user;
     });*/
-    //$urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/");
     $stateProvider
       .state('sign_in',{
         url: '/iniciar_sesion',
@@ -24,7 +25,12 @@ angular.module('evalEasy', [
       .state('sign_up',{
         url: '/registrarse',
         templateUrl: 'views/auth/_sign_up.html',
-        controller: 'AuthCtrl'
+        controller: 'AuthCtrl',
+        onEnter: ['$state','Auth', function($state, Auth){
+          Auth.currentUser().then(function(){
+            $state.go('institutions');
+          })
+        }]
       })
       .state('institutions',{
         url: '/',
