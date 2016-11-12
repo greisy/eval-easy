@@ -1,0 +1,6 @@
+<input id="last_name" type="text" class="validate" ng-model="search">
+<label for="last_name">Ingrese el nombre de la institución</label>
+<h1>{{search}}</h1>
+<ul ng-repeat="institution in institutions">
+	<li>{{institution.name}}</li>
+</ul>
