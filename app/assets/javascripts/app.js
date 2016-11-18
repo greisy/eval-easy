@@ -1,5 +1,6 @@
 angular.module('evalEasy', [
   'ui.router',
+  'ngResource',
   'templates',
   'Devise', 
   'validation.match'
@@ -28,14 +29,14 @@ angular.module('evalEasy', [
         controller: 'AuthCtrl',
         onEnter: ['$state','Auth', function($state, Auth){
           Auth.currentUser().then(function(){
-            $state.go('institutions');
+            $state.go('degrees');
           })
         }]
       })
-      .state('institutions',{
-        url: '/',
-        templateUrl: 'views/institutions/_index.html',
-        controller: 'InstitutionIndexCtrl',
+      .state('degrees',{
+        url: '/degrees',
+        templateUrl: 'views/degrees/_index.html',
+        controller: 'DegreeIndexCtrl', //Se colocaran en un solo controlador los metodos CRUD
         onEnter: ['$state','Auth', function($state, Auth){
           cancan($state, Auth);
         }]
