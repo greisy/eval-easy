@@ -4,7 +4,7 @@
   });
 </script>
 
-<div class="contenedor">
+<div class="contenedor ">
   <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
     <div class="row center-align">
       <div class="col s12 center-align">
@@ -20,12 +20,10 @@
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>
           <input class="validate" type="text" name="nombre" id="name" ng-model="user.name" required>
           <label for="name" data-error="Verificar nombre">Nombre:</label>
         </div>
         <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>
           <input class="validate" type="text" name="apellido" id="lastname" ng-model="user.last_name" required>
           <label for="lastname" data-error="Verificar apellido">Apellido:</label>
         </div>
@@ -45,6 +43,13 @@
       <div class="row">
         <div class="input-field col s12">
           <dropdown-institution institutions="institutions" model="user.institution" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input class="validate" type="email" name="correo" id="email" ng-model="user.email" required>
+          <label for="email" data-error="Verificar correo">Correo Electrónico:</label>
         </div>
       </div>
     </form>

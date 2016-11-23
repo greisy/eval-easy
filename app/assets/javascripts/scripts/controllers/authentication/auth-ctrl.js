@@ -1,12 +1,13 @@
 angular
   .module('evalEasy')
-      .controller('AuthCtrl',['$scope', '$state','Auth', function($scope, $state, Auth){
+      .controller('AuthCtrl',['$scope', '$state','Auth','InstitutionFactory', function($scope, $state, Auth, Institution){
         var config = {
           headers: {
             'X-HTTP-Method-Override': 'POST'
           }
         };
-
+        $scope.institutions = Institution.query();
+        
         $scope.register = function(){
           var admin_role = 1;
           $scope.user.role_id = admin_role;

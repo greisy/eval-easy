@@ -8,21 +8,20 @@ angular.module('evalEasy')
 				model: "="
 			},
 			link: function(scope, element, attrs){
-				element[0].querySelector("ul.collection").style.display ="none";
+				angular.element(document).find("ul.collection").css("display", "none");
 				//console.log(element[0].querySelector("ul.collection").id);
 				//element.css("display", "none");
 				scope.setInstitution = function(institution){
 
 					scope.query =  institution.name;
 					scope.model = institution.id;
-					element[0].querySelector("ul.collection").style.display ="none";
-					debugger
+					angular.element(document).find("ul.collection").css("display", "none");
 				};
 				scope.showCollection = function(){
-					element[0].querySelector("ul.collection").style.display ="block";
+					angular.element(document).find("ul.collection").css("display", "block");
 				};
 				scope.hideCollection = function(){
-					element[0].querySelector("ul.collection").style.display ="none";
+					angular.element(document).find("ul.collection").css("display", "none");
 				};
 			}
 		}

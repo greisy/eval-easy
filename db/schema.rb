@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827170258) do
+ActiveRecord::Schema.define(version: 20161118223851) do
+
+  create_table "degrees", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.text     "description",    limit: 65535
+    t.integer  "institution_id", limit: 4
+    t.integer  "total_credit",   limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "degrees", ["institution_id"], name: "index_degrees_on_institution_id", using: :btree
 
   create_table "institutions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -58,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160827170258) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
+  add_foreign_key "degrees", "institutions"
   add_foreign_key "users", "institutions"
   add_foreign_key "users", "roles"
 end
