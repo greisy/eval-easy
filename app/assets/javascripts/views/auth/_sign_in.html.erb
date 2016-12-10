@@ -1,14 +1,14 @@
 <div class="contenedor">
-  <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+  <div class="z-depth-1 grey lighten-4 row auth-box">
     <div class="row">
       <div class="col s12 center-align">
         <%= image_tag("logo", class: "logo") %>
-        <h5>Iniciar sesión en EvalEasy</h5>
+        <h5 class="condensed" style="min-width:300px;">Iniciar sesión en EvalEasy</h5>
       </div>
     </div>
     <form class="col s12" name="sign" ng-submit="login()">
       <div class="row">
-        <div class="input-field col s12" ng-class="{'card-panel red accent-2': error}" ng-if="error">
+        <div class="input-field col s12" ng-class="{'card-panel red darken-4': error}" ng-if="error">
           <span class="white-text">{{error}}</span>
         </div>
       </div>

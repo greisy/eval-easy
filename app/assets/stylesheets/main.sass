@@ -2,8 +2,10 @@
 *
   margin: 0px
   padding: 0px
-  color: $primary-text
-
+  color: $gray-text
+  font-family: 'Oxygen', sans-serif
+body
+  background-color: #F3F3F3
 .margin_top
   padding-top: 10px
 .margin_left
@@ -24,5 +26,27 @@
   main
     flex: 1 0 auto
 
-.back-auth
-  background-image: image-url("university-background.jpg")
+.bg-auth
+  background-image: image-url("video-mask.png")
+  background-image: image-url("classroom.jpg")
+  background-color: rgba(0,0,0,0.9)
+  background-blend-mode: overlay
+
+.content
+  margin-bottom: 0px
+.main-content
+  height: 99.9vh
+nav
+  .brand-logo
+    &.gray-text
+      color: $gray-text
+  ul
+    li
+      a
+        color: $gray-text    
+.auth-box
+  display: inline-block
+  padding: 32px 48px 0px 48px
+  border: 1px solid #EEE
+  border-radius: 12px
+

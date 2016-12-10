@@ -6,19 +6,20 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
-    <link href="https://fonts.googleapis.com/css?family=Lato|Raleway|Roboto" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Oxygen" rel="stylesheet"> 
   </head>
   <body>
     <div ng-include="'views/nav/_nav.html'"></div>
-    <div class="row" ng-controller="NavCtrl">
-      <div class="col s3" ng-include="'views/nav/_sideNav.html'">
+    <div class="row content" ng-controller="NavCtrl">
+      <!--<div class="col s3" ng-include="'views/nav/_sideNav.html'">
         
-      </div>
-      <div class="col s9" ng-class="{'s12 back-auth': !signedIn}">
-        <div ui-view></div>
+      </div>-->
+      <div class="col s12 main-content" ng-class="{'bg-auth': !signedIn}">
+        <div ui-view ></div>
       </div>
     </div>
 
     <%#= render "partials/footer" %>
   </body>
 </html>
+  
