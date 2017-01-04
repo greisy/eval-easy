@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   #devise_for :users
   root to: 'application#angular'
 
-  resources :institutions
+  resources :institutions do
+    resources :degrees, shallow: true
+  end
 
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',

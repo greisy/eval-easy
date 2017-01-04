@@ -21,7 +21,6 @@ angular
         $scope.user = user;
         $scope.test = "TextoAhi";
         $scope.institution = Institution.get({id: user.institution_id});
-        console.log($scope.institution);
         $scope.signedIn = Auth.isAuthenticated();
       });
       $scope.$on('devise:logout', function (e, user){

@@ -11,15 +11,13 @@
   <body>
     <div ng-include="'views/nav/_nav.html'"></div>
     <div class="row content" ng-controller="NavCtrl">
-      <!--<div class="col s3" ng-include="'views/nav/_sideNav.html'">
-        
-      </div>-->
       <div class="col s12 main-content" ng-class="{'bg-auth': !signedIn}">
         <div ui-view ></div>
       </div>
     </div>
-
-    <%#= render "partials/footer" %>
   </body>
 </html>
-  
+
+      <!--<div class="col s3" ng-include="'views/nav/_sideNav.html'">
+        
+      </div>-->

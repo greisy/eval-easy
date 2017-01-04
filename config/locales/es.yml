@@ -1,0 +1,19 @@
+es:
+  activerecord:
+    errors:
+      messages:
+        not_found: "no encontrado"
+        taken: "No puede existir más de un %{attribute}"
+        not_saved:
+          one: "Ha habido 1 error"
+          other: "Han habido %{count} errores."
+        record_invalid: "Recurso invalido" 
+    models:
+      degree: "Carrera"
+      institution: "Institución"
+    attributes:
+      degree:
+        name: "Nombre"
+        description: "Descripción"
+        total_credit: "Total de créditos"
+        institution_id: "Institución"
