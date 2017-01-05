@@ -44,7 +44,7 @@ angular.module('evalEasy', [
       .state('subjects',{
         url: '/subjects',
         templateUrl: 'views/subjects/_index.html',
-        controller: 'SubjectCtrl', //Se colocaran en un solo controlador los metodos CRUD
+        //controller: 'SubjectCtrl', //Se colocaran en un solo controlador los metodos CRUD
         onEnter: ['$state','Auth', function($state, Auth){
           cancan($state, Auth);
         }]

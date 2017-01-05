@@ -1,5 +1,5 @@
 angular
     .module('evalEasy')
-        .controller('SubjectCtrl', ['$scope','$state','DegreeFactory',function($scope, $state, DegreeFactory){
-           
+        .controller('SubjectCtrl', ['$scope','$state',function($scope, $state){
+          
         }]);

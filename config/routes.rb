@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   #devise_for :users
   root to: 'application#angular'
 
-  resources :institutions do
-    resources :degrees, shallow: true
+  resources :institutions, only: [:index, :show] do
+    resources :degrees, only: [:index, :create],shallow: true
+    resources :subjects, only: [:index, :create], shallow: true
   end
 
   devise_for :users, controllers: {
