@@ -1,4 +1,5 @@
 class Scale < ActiveRecord::Base
+  belongs_to :scale_type
   validate :max_grade_must_greater_than_min_grade
 
   def max_grade_must_greater_than_min_grade

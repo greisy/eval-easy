@@ -6,6 +6,10 @@ class SubjectsController < ApplicationController
     render json: subjects, status: 200
   end
 
+  def create
+    debugger
+    
+  end
   private
 
   def set_models

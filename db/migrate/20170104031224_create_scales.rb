@@ -6,7 +6,8 @@ class CreateScales < ActiveRecord::Migration
       t.integer :maximum_grade
       t.integer :grade_to_pass_default
       t.text :description
-      t.reference :scale_type
+      t.string :alphabetic_scale
+      t.references :scale_type
 
       t.timestamps null: false
     end

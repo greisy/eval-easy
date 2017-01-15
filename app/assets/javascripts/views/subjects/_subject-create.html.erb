@@ -1,0 +1,75 @@
+<div class="card">
+  <div class="card-content">
+      <div class="row">
+        <form class="col s12" ng-submit="addNewSubject()">
+          <div class="row">
+            <div class="col s12">
+              <span class="card-title title">Agregar Asignatura</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="name" type="text" class="validate" ng-model="subject.name" ng-blur="fillGradeToPass(subject.name)">
+              <label for="total_credit">Nombre</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="code" type="text" class="validate" ng-model="subject.code" min="0" max="200" step="1">
+              <label for="code">Código</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="credits" type="number" class="validate" ng-model="subject.credits" min="0" max="200" step="1">
+              <label for="credits">Créditos</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <select class="browser-default border-bottom" ng-model="subject.scale" ng-change="fillGradeToPass(subject)" ng-options="scale as scale.name for scale in scales" ng-if="scales" ng-class="{'input-filled':subject.scale != null}">
+                <option value="">Escoge escala de calificación</option>
+              </select>
+            </div>
+            <div class="input-field col s6">
+              <p ng-if="subject.scale.scale_type.name=='numerica'" class="range-field">
+                <input type="range" id="test5" min="{{subject.scale.minimum_grade}}" max="{{subject.scale.maximum_grade}}" ng-model="subject.grade_to_pass" />
+              </p>
+              <select  class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="item for item in alphabetic_scales" ng-if="subject.scale.scale_type.name=='alfabetica'" ng-class="{'input-filled':subject.grade_to_pass != null}">
+                <option value="">Nota minima</option>
+              </select>
+              <select  class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="item for item in description_scales" ng-if="subject.scale.scale_type.name=='por descripcion'" ng-class="{'input-filled':subject.grade_to_pass != null}">
+                <option value="">Nota minima</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+              <p>
+                <input type="checkbox" class="filled-in" id="filled-in-box" ng-model="subject.round_up"/>
+                <label for="filled-in-box">Redondear hacia arriba</label>
+              </p>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="description" class="materialize-textarea" ng-model="subject.description"></textarea>
+              <label for="description">Descripción:</label>
+            </div>
+          </div>
+          <div class="center-align">
+            <div class="row">
+              <button type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
+                Agregar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+        
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
+<!--
+<dropdown-resource resources="scales" show-information="Ingrese el tipo de escala de calificacion" show-error="Verificar nombre de la escala" model="subject.scale_id"></dropdown-resource>-->

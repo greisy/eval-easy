@@ -1,0 +1,5 @@
+<input class="validate" type="text" name="resource" id="resource" ng-model="query" ng-focus="showCollection()" required >
+  <label for="resource">{{showInformation}}</label>
+<ul class="collection item-list" id ="collection">
+  <li class="collection-item change-color" ng-click="setResource(resource)" id="{{resource.id}}" ng-repeat="resource in resources | filter: query " ng-mouseover="changeColor(resource.id)" >{{resource.name}}</li>
+</ul>

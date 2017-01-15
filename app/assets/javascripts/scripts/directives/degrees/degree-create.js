@@ -10,6 +10,7 @@ angular.module('evalEasy')
         scope.addNewDegree = function(){
           Auth.currentUser().then(function (user){
             scope.degree.institution_id = user.institution_id;
+            debugger
             var degreeNew = new DegreeFactory(scope.degree);
             degreeNew.$save({institution_id: user.institution_id})
               .then(function(data){

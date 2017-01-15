@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118223851) do
+ActiveRecord::Schema.define(version: 20170105011509) do
 
   create_table "degrees", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -38,6 +38,39 @@ ActiveRecord::Schema.define(version: 20161118223851) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "scale_types", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "scales", force: :cascade do |t|
+    t.string   "name",                  limit: 255
+    t.integer  "minimum_grade",         limit: 4
+    t.integer  "maximum_grade",         limit: 4
+    t.integer  "grade_to_pass_default", limit: 4
+    t.text     "description",           limit: 65535
+    t.string   "alphabetic_scale",      limit: 255
+    t.integer  "scale_type_id",         limit: 4
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "code",          limit: 255
+    t.string   "name",          limit: 255
+    t.text     "description",   limit: 65535
+    t.integer  "credits",       limit: 4
+    t.integer  "scale_id",      limit: 4
+    t.integer  "grade_to_pass", limit: 4
+    t.boolean  "round_up",                    default: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "subjects", ["scale_id"], name: "index_subjects_on_scale_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -70,6 +103,7 @@ ActiveRecord::Schema.define(version: 20161118223851) do
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
   add_foreign_key "degrees", "institutions"
+  add_foreign_key "subjects", "scales"
   add_foreign_key "users", "institutions"
   add_foreign_key "users", "roles"
 end

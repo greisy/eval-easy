@@ -7,6 +7,7 @@ class CreateSubjects < ActiveRecord::Migration
       t.integer :credits
       t.references :scale, index: true, foreign_key: true
       t.integer :grade_to_pass
+      t.boolean :round_up, default: false
 
       t.timestamps null: false
     end
