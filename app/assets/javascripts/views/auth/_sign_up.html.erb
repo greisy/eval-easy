@@ -19,22 +19,26 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12">
           <input class="validate" type="text" name="nombre" id="name" ng-model="user.name" required>
           <label for="name" data-error="Verificar nombre">Nombre:</label>
         </div>
+      </div>
+      <div class="row">
         <div class="input-field col s6">
           <input class="validate" type="text" name="apellido" id="lastname" ng-model="user.last_name" required>
           <label for="lastname" data-error="Verificar apellido">Apellido:</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12">
           <i class="material-icons prefix">picture_in_picture</i>
           <input class="validate" type="text" name="cedula" id="identity_card" ng-model="user.identity_card" required>
           <label for="identity_card" data-error="Verificar cédula">Cédula:</label>
         </div>
-        <div class="input-field col s6">
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
           <i class="material-icons prefix">phone</i>
           <input class="validate" type="text" name="telefono" id="phone" ng-model="user.phone" required>
           <label for="phone" data-error="Verificar número de telefono">Teléfono:</label>
@@ -96,8 +100,8 @@
                     <input type="password" class="form-control" id="pwd" ng-model="user.passwordConfirmation" match="user.password" name="passwordConfirmation" match-ignore-empty="true" pattern: ".{8,}" required>
                     <label class="control-label" ng-show="sign_up.passwordConfirmation.$error.match" >Las contraseñas no coinciden, por favor verifique</label>
                   </div>
-                  
-                  
+
+
                   <button type="submit" class="btn btn-primary" ng-disabled="!canSubmitSign()" ng-class="{'dark-grey': !canSubmitSignUp(), 'green' : canSubmitSignUp() } ">Registrarme
                   </button>
                 </form>
