@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170105011509) do
   end
 
   add_index "degrees", ["institution_id"], name: "index_degrees_on_institution_id", using: :btree
+  add_index "degrees", ["name", "institution_id"], name: "index_degrees_on_name_and_institution_id", unique: true, using: :btree
 
   create_table "institutions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -59,17 +60,20 @@ ActiveRecord::Schema.define(version: 20170105011509) do
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.string   "code",          limit: 255
-    t.string   "name",          limit: 255
-    t.text     "description",   limit: 65535
-    t.integer  "credits",       limit: 4
-    t.integer  "scale_id",      limit: 4
-    t.integer  "grade_to_pass", limit: 4
-    t.boolean  "round_up",                    default: false
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.string   "code",           limit: 255
+    t.string   "name",           limit: 255
+    t.text     "description",    limit: 65535
+    t.integer  "credits",        limit: 4
+    t.integer  "scale_id",       limit: 4
+    t.integer  "grade_to_pass",  limit: 4
+    t.boolean  "round_up",                     default: false
+    t.integer  "institution_id", limit: 4
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
+  add_index "subjects", ["institution_id", "code", "name"], name: "index_subjects_on_institution_id_and_code_and_name", unique: true, using: :btree
+  add_index "subjects", ["institution_id"], name: "index_subjects_on_institution_id", using: :btree
   add_index "subjects", ["scale_id"], name: "index_subjects_on_scale_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -103,6 +107,7 @@ ActiveRecord::Schema.define(version: 20170105011509) do
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
   add_foreign_key "degrees", "institutions"
+  add_foreign_key "subjects", "institutions"
   add_foreign_key "subjects", "scales"
   add_foreign_key "users", "institutions"
   add_foreign_key "users", "roles"

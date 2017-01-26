@@ -8,5 +8,6 @@ class CreateDegrees < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :degrees, [:name, :institution_id], unique: true
   end
 end

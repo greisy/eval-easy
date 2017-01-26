@@ -11,15 +11,17 @@ angular.module("evalEasy")
           auth.currentUser().then(function(user){
             scope.subject.institution_id = user.institution_id;
             var subjectNew = new SubjectFactory(scope.subject);
-            subjectNew.$save({institution_id:user.institution_id})
+            subjectNew.$save({institution_id: user.institution_id})
               .then(function(data){
                 scope.$emit('SubjectCreated', 'Subject created');
               }).catch(function(subject){
-                $scope.errors = [subject.data.error];
+                //$scope.errors = [subject.data.error];
+                console.log("Failed");
               });
           });
         }
         scope.fillGradeToPass = function(strg){
+          debugger
           if ( !(strg.scale == null)){
             if(strg.scale.scale_type.name=="alfabetica"){
               scope.alphabetic_scales = strg.scale.alphabetic_scale.split(";");
