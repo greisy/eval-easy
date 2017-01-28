@@ -7,12 +7,13 @@ angular
           }
         };
         $scope.institutions = Institution.query();
-        $scope.register = function(){
+        $scope.signUp = function(){
           var admin_role = 1;
           $scope.user.role_id = admin_role;
           Auth.register($scope.user, config).then(function(registeredUser){
             console.log("User registered"+registeredUser);
-            $state.go("degrees");
+            $state.go("sign_in");
+            $scope.success = "Recibiras un correo con instrucciones para confirmar su correo, en pocos minutos";
           }, function(error){
             console.log("An error has happened");
           });
@@ -28,4 +29,9 @@ angular
         $scope.canSubmitSign = function(){
           return $scope.sign.$valid;
         };
+        $scope.checkMatch = function(){
+          if($scope.user.password != $scope.user.passwordConfirmation){
+            $('#passwordConfirmation').addClass('invalid');
+          }
+        }
       }]);
