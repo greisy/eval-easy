@@ -3,11 +3,10 @@ class SubjectsController < ApplicationController
 
   def index
     @subjects =  @institution.subjects
-    render json: subjects, status: 200
+    render json: @subjects, status: 200
   end
 
   def create
-    debugger
     subject = Subject.new(subject_params)
     subject.scale_id = scale_params[:id]
     if subject.save

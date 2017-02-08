@@ -39,7 +39,7 @@ angular.module('evalEasy')
           Auth.currentUser().then(function (user){
             scope.degrees = DegreeFactory.query({institution_id: user.institution_id});
           });
-        })
+        });
       }
     }
   });

@@ -15,18 +15,34 @@ angular.module("evalEasy")
               .then(function(data){
                 scope.$emit('SubjectCreated', 'Subject created');
               }).catch(function(subject){
+                debugger
                 //$scope.errors = [subject.data.error];
                 console.log("Failed");
               });
           });
         }
         scope.fillGradeToPass = function(strg){
-          debugger
           if ( !(strg.scale == null)){
             if(strg.scale.scale_type.name=="alfabetica"){
-              scope.alphabetic_scales = strg.scale.alphabetic_scale.split(";");
+              scope.alphabetic_scales = [];
+              var alphabetic_scale = {};
+              var alphabetics = strg.scale.alphabetic_scale.split(";");
+              for(var i=0;i< alphabetics.length; i++){
+                alphabetic_scale.id = i+1;
+                alphabetic_scale.name = alphabetics[i];
+                scope.alphabetic_scales.push(alphabetic_scale);
+                alphabetic_scale = {};
+              }
             }else if(strg.scale.scale_type.name=="por descripcion"){
-              scope.description_scales = strg.scale.description.split(";");
+              scope.description_scales = [];
+              var description = {};
+              var descriptions = strg.scale.description.split(";");
+              for(var i=0;i< descriptions.length; i++){
+                description.id = i+1;
+                description.name = descriptions[i];
+                scope.description_scales.push(description);
+                description = {};
+              }
             }
           }
         }

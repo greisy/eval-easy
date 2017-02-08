@@ -34,10 +34,10 @@
               <p ng-if="subject.scale.scale_type.name=='numerica'" class="range-field">
                 <input type="range" id="test5" min="{{subject.scale.minimum_grade}}" max="{{subject.scale.maximum_grade}}" ng-model="subject.grade_to_pass" />
               </p>
-              <select  class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="item for item in alphabetic_scales" ng-if="subject.scale.scale_type.name=='alfabetica'" ng-class="{'input-filled':subject.grade_to_pass != null}">
+              <select ng-if="subject.scale.scale_type.name=='alfabetica'" class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="option.name for option in alphabetic_scales track by option.id" ng-class="{'input-filled':subject.grade_to_pass != null}">
                 <option value="">Nota minima</option>
               </select>
-              <select  class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="item for item in description_scales" ng-if="subject.scale.scale_type.name=='por descripcion'" ng-class="{'input-filled':subject.grade_to_pass != null}">
+              <select ng-if="subject.scale.scale_type.name=='por descripcion'" class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="option.name for option in description_scales track by option.id" ng-class="{'input-filled':subject.grade_to_pass != null}">
                 <option value="">Nota minima</option>
               </select>
             </div>
