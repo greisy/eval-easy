@@ -48,6 +48,14 @@ angular.module('evalEasy', [
         onEnter: ['$state','Auth', function($state, Auth){
           cancan($state, Auth);
         }]
+      })
+      .state('teachers',{
+        url: '/teachers',
+        templateUrl: 'views/teachers/_index.html',
+        controller: 'TeacherCtrl', //Se colocaran en un solo controlador los metodos CRUD
+        onEnter: ['$state','Auth', function($state, Auth){
+          cancan($state, Auth);
+        }]
       });
       //$locationProvider.html5Mode(true);
       $locationProvider.html5Mode({
