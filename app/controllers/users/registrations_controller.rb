@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params[:user][:institution_id] = institution.id
     role = Role.find params[:user][:role_id]
     params[:user][:role_id] = role.id
+    params[:user][:document_type_id] = params[:user][:document_type_id][:id]
     super
    end
 

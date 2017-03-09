@@ -7,6 +7,7 @@ class SubjectsController < ApplicationController
   end
 
   def create
+    debugger
     subject = Subject.new(subject_params)
     subject.scale_id = scale_params[:id]
     if subject.save

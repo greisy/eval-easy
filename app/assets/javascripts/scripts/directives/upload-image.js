@@ -1,8 +1,8 @@
 angular.module('evalEasy')
-  .directive('imageUpload',function(){
+  .directive('uploadImage',function(){
     return{
       restrict: "E",
-      templateUrl: 'views/directives/image-upload.html',
+      templateUrl: 'views/directives/upload-image.html',
       scope: {},
       link: function(scope, element, attr){
         scope.readUrl = function(image){

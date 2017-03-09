@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105011509) do
+ActiveRecord::Schema.define(version: 20170222014835) do
 
   create_table "degrees", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20170105011509) do
 
   add_index "degrees", ["institution_id"], name: "index_degrees_on_institution_id", using: :btree
   add_index "degrees", ["name", "institution_id"], name: "index_degrees_on_name_and_institution_id", unique: true, using: :btree
+
+  create_table "document_types", force: :cascade do |t|
+    t.string   "code",        limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "institutions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -99,6 +106,7 @@ ActiveRecord::Schema.define(version: 20170105011509) do
     t.integer  "institution_id",         limit: 4
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.integer  "document_type_id",       limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

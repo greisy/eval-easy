@@ -1,42 +1,61 @@
 <div class="card">
   <div class="card-content">
-      <div class="row">
-        <form class="col s12" ng-submit="addNewTeacher()">
-          <div class="row">
-            <div class="col s12">
-              <span class="card-title title">Agregar Agente Evaluador</span>
-            </div>
+    <div class="row">
+      <form class="col s12" ng-submit="addNewTeacher()">
+        <div class="row">
+          <div class="col s12">
+            <span class="card-title title">Agregar Agente Evaluador</span>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="input-field col s8">
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="name" type="text" class="validate" ng-model="teacher.name">
-                  <label for="name">Nombre</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="last_name" type="text" class="validate" ng-model="teacher.last_name">
-                  <label for="last_name">Apellido</label>
-                </div>
-              </div>
-            </div>
-            <div class="input-field col s4">
-              <image-upload></image-upload>
-            </div>
+        <div class="row"><!--zero-margin-bottom-->
+          <div class="input-field col s12 without-margin-top">
+            <input id="name" type="text" class="validate" ng-model="teacher.name">
+            <label for="name">Nombre</label>
           </div>
-          <div class="center-align">
+        </div>
+        <div class="row">
+          <div class="input-field col s12 without-margin-top">
+            <input id="last_name" type="text" class="validate" ng-model="teacher.last_name">
+            <label for="last_name">Apellido</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 without-margin-top">
             <div class="row">
-              <button type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
-                Agregar Agente Evaluador
-              </button>
+              <div class="input-field col s4 without-margin-top">
+                <select class="browser-default border-bottom" ng-model="teacher.document_type_id" ng-options="option.code for option in document_types track by option.id" ng-class="{'input-filled':user.document_type_id != null}">
+                  <option value=""></option>
+                </select>
+              </div>
+              <div class="input-field col s8 without-margin-top">
+                <input id="identity_card" type="text" class="validate" ng-model="teacher.identity_card">
+                <label for="identity_card">Cédula de Identidad</label>
+              </div>
             </div>
           </div>
-        </form>
-      </div>
-
+        </div>
+        <div class="row">
+          <div class="input-field col s12 without-margin-top">
+            <input id="email" type="text" class="validate" ng-model="teacher.email">
+            <label for="email">Correo Electrónico</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 without-margin-top">
+            <input id="phone" type="text" class="validate" ng-model="teacher.phone">
+            <label for="phone">Teléfono</label>
+          </div>
+        </div>
+        <div class="center-align">
+          <div class="row">
+            <button type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
+              Agregar Agente Evaluador
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 <script type="text/javascript">
@@ -44,4 +63,7 @@
     $('select').material_select();
   });
 </script>
-<!--
+
+<!--<div class="input-field col s4 without-margin-top">
+              <upload-image></upload-image>
+            </div>-->

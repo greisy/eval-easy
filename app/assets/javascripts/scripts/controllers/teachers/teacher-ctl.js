@@ -1,4 +1,7 @@
 angular.module('evalEasy')
-  .controller('TeacherCtrl', ['$scope', '$state', function($scope, $state){
-    
+  .controller('TeacherCtrl', ['Auth','$scope', '$state', 'ScaleFactory', function(auth, $scope, $state, ScaleFactory){
+    $scope.document_types = ScaleFactory.query();
+    auth.currentUser().then(function(user){
+      $scope.user = user;
+    });
   }]);

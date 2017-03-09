@@ -32,9 +32,14 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s4">
+          <select class="browser-default border-bottom" ng-model="user.document_type_id" ng-options="option.code for option in document_types track by option.id" ng-class="{'input-filled':user.document_type_id != null}">
+            <option value=""></option>
+          </select>
+        </div>
+        <div class="input-field col s8">
           <input class="validate" type="text" name="identity_card" id="identity_card" ng-model="user.identity_card" required>
-          <label for="identity_card" data-error="Formato incorrecto">Cédula:</label>
+          <label for="identity_card" data-error="Formato incorrecto">Documento:</label>
         </div>
       </div>
       <div class="row">
