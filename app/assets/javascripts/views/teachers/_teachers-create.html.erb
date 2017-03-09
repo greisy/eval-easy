@@ -12,7 +12,7 @@
           <div class="file-field input-field">
             <div class="btn col s4">
               <span>Archivo</span>
-              <input type="file" accept="application/vnd.ms-excel" />
+              <input type="file" name="file" onchange="angular.element(this).scope().savingFile(this.files)">
             </div>
             <div class="file-path-wrapper col s8">
               <input class="file-path validate" type="text" ng-model="teachers.file">

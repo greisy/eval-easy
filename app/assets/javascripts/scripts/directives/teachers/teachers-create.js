@@ -16,6 +16,10 @@ angular.module('evalEasy')
           }, function(response){
 
           });
+        };
+        scope.savingFile = function(files){
+          scope.teachers = new FormData();
+          scope.teachers.append("file", files[0]);
         }
       }
     }
