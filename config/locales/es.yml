@@ -11,9 +11,17 @@ es:
     models:
       degree: "Carrera"
       institution: "Institución"
+      user: "Usuario"
     attributes:
       degree:
         name: "Nombre"
         description: "Descripción"
         total_credit: "Total de créditos"
         institution_id: "Institución"
+      user:
+        identity_card: "Documento"
+        name: "Nombre"
+        last_name: "Apellido"
+        email: "Correo Electronico"
+        phone: "Teléfono"
+        

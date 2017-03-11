@@ -9,12 +9,19 @@ angular.module('evalEasy')
       link: function(scope, element, attrs, ctrl){
         scope.teachers = {};
         scope.addNewTeachers = function(){
+          debugger
+          scope.errors = null;
           scope.teachers.institution_id = scope.institution_id;
           scope.teachers.role_id = 3;
-          TeacherFactory.create_teachers(scope.teachers, scope.institution_id).then(function(response){
-
+          TeacherFactory.create_teachers(scope.teachers, scope.institution_id).then(
+            function(response){
+              Materialize.toast('Se agregáron los agentes evaluadores correctamente!', 4000);
+              debugger
+              scope.teachers = {};
+              scope.$emit('TeacherCreated', 'Teachers created');
           }, function(response){
-
+            scope.errors = response.data.result;
+            console.log(response);
           });
         };
         scope.savingFile = function(files){

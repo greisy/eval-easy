@@ -14,7 +14,12 @@ class User < ActiveRecord::Base
   
   ## CALLBACKS
 
+  ## SCOPE
+
+  scope :evaluator_agents, -> (institution_id) { where(institution_id: institution_id, role_id: Role.find_by_name("EvaluatorAgent").id) }
+
   ##METHODS
+
   private
 
 

@@ -14,7 +14,10 @@ angular.module('evalEasy')
           scope.teacher.role_id = 3;
           scope.teacher.password = "11223344";
           TeacherFactory.create(scope.teacher, scope.info).then(function(response){
-            console.log("Teacher added");
+             Materialize.toast('Se ha agregado el agente evaluador correctamente', 4000);
+             scope.teacher={};
+             scope.$emit('TeacherCreated', 'Teacher created');
+
           }, function(response){
             console.log("Failed adding a new teacher");
           });

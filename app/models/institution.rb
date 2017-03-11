@@ -5,4 +5,5 @@ class Institution < ActiveRecord::Base
 
   has_many :degrees
   has_many :subjects
+  has_many :users
 end
