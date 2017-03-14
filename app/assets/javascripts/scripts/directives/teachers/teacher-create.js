@@ -9,6 +9,7 @@ angular.module('evalEasy')
       link: function(scope, element, attrs, ctrl){
         scope.document_types = DocumentTypeFactory.query();
         scope.teacher = {};
+        scope.edit = false;
         scope.addNewTeacher = function(){
           scope.teacher.institution_id = scope.info;
           scope.teacher.role_id = 3;
@@ -17,23 +18,20 @@ angular.module('evalEasy')
              Materialize.toast('Se ha agregado el agente evaluador correctamente', 4000);
              scope.teacher={};
              scope.$emit('TeacherCreated', 'Teacher created');
-
           }, function(response){
             console.log("Failed adding a new teacher");
           });
-
-          // add institution id and role
-          /*auth.currentUser().then(function(user){
-            debugger
-            scope.teacher.institution_id = user.institution_id;
-            scope.teacher.role_id = 3;
-            scope.teacher.password="123456789";
-            TeacherFactory.create(scope.teacher, user.institution_id).then(function(response){
-              console.log("Teacher added");
-            }, function(response){
-              console.log("Failed adding new teacher");
-            });
-          });*/
+        }
+        scope.$on('editTeacher', function(event, data){
+          debugger
+          scope.teacher = data;
+          scope.edit = true;
+          angular.element(document).find("form#teacherForm label").addClass("active");
+        });
+        scope.addEfect = function(){
+          scope.edit = false;
+          scope.teacher = {};
+          angular.element(document).find("form#teacherForm label").removeClass("active");
         }
       }
     }
@@ -52,3 +50,17 @@ TeacherFactory.create(scope.teacher, user.institution_id).success(function(data)
     console.log("Teacher added");
   });
 */
+
+
+          // add institution id and role
+          /*auth.currentUser().then(function(user){
+            debugger
+            scope.teacher.institution_id = user.institution_id;
+            scope.teacher.role_id = 3;
+            scope.teacher.password="123456789";
+            TeacherFactory.create(scope.teacher, user.institution_id).then(function(response){
+              console.log("Teacher added");
+            }, function(response){
+              console.log("Failed adding new teacher");
+            });
+          });*/

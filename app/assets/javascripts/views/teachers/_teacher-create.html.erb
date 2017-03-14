@@ -1,10 +1,16 @@
 <div class="card">
   <div class="card-content">
     <div class="row">
-      <form class="col s12" ng-submit="addNewTeacher()">
+      <form class="col s12" ng-submit="editTeacher()" ng-disabled="!(edit)" id="teacherForm">
+      <form class="col s12" ng-submit="addNewTeacher()" ng-disabled="edit" id="teacherForm">
         <div class="row">
-          <div class="col s12">
+          <div ng-class="{'col s12': !edit, 'col s8': edit}">
             <span class="card-title title">Agregar Agente Evaluador</span>
+          </div>
+          <div class="offset-s2 col s2" ng-show="edit" ng-click="addEfect()">
+
+  <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        
           </div>
         </div>
 
@@ -49,7 +55,10 @@
         </div>
         <div class="center-align">
           <div class="row">
-            <button type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
+            <button ng-show="edit" type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
+              Editar Agente Evaluador
+            </button>
+            <button ng-hide="edit" type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
               Agregar Agente Evaluador
             </button>
           </div>

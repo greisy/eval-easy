@@ -17,6 +17,9 @@ angular.module('evalEasy')
         });
       })
     });
+    $scope.editTeacher = function(teacher){
+      $scope.$broadcast('editTeacher', teacher);
+    }
     /*
     $scope.$on('TeacherCreated', function(event, data){
       debugger
