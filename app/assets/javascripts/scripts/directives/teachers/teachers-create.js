@@ -16,7 +16,6 @@ angular.module('evalEasy')
           TeacherFactory.create_teachers(scope.teachers, scope.institution_id).then(
             function(response){
               Materialize.toast('Se agregáron los agentes evaluadores correctamente!', 4000);
-              debugger
               scope.teachers = {};
               scope.$emit('TeacherCreated', 'Teachers created');
           }, function(response){

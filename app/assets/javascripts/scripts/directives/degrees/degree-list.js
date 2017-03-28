@@ -33,13 +33,23 @@ angular.module('evalEasy')
 
         Auth.currentUser().then(function (user){
           scope.degrees = DegreeFactory.query({institution_id: user.institution_id});
-        });
 
-        scope.$on('dispara', function(event, data){
-          Auth.currentUser().then(function (user){
-            scope.degrees = DegreeFactory.query({institution_id: user.institution_id});
+          scope.$on('updateDegreesList', function(event, data){
+            scope.degrees.push(data);
           });
         });
+        scope.editDegree = function(degree){
+          scope.$emit('editDegree', degree);
+        };
       }
     }
   });
+
+
+
+
+/*scope.$on('dispara', function(event, data){
+  Auth.currentUser().then(function (user){
+    scope.degrees = DegreeFactory.query({institution_id: user.institution_id});
+  });
+});*/

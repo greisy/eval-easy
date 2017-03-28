@@ -14,6 +14,7 @@ angular.module('evalEasy')
           scope.teacher.institution_id = scope.info;
           scope.teacher.role_id = 3;
           scope.teacher.password = "11223344";
+          scope.teacher.document_type_id = parseInt(scope.teacher.document_type_id);
           TeacherFactory.create(scope.teacher, scope.info).then(function(response){
              Materialize.toast('Se ha agregado el agente evaluador correctamente', 4000);
              scope.teacher={};
@@ -23,8 +24,9 @@ angular.module('evalEasy')
           });
         }
         scope.$on('editTeacher', function(event, data){
-          debugger
-          scope.teacher = data;
+          scope.teacher = angular.copy(data);
+          //scope.backupTeacher = data;
+          scope.teacher.document_type_id = String(data.document_type_id);
           scope.edit = true;
           angular.element(document).find("form#teacherForm label").addClass("active");
         });
@@ -32,7 +34,26 @@ angular.module('evalEasy')
           scope.edit = false;
           scope.teacher = {};
           angular.element(document).find("form#teacherForm label").removeClass("active");
-        }
+        };
+        scope.saveTeacher = function(){
+          if (scope.edit){
+            scope.editTeacher();
+          }else{
+            scope.addNewTeacher();
+          }
+        };
+        scope.editTeacher = function(){
+          TeacherFactory.update(scope.teacher).success(function(data, status, headers, config){
+            Materialize.toast('Se ha editado el agente evaluador correctamente', 4000);
+            //scope.backupTeacher = data;
+            var id = "#"+ data.id;
+
+            scope.$emit('TeacherEdited', data);
+          })
+          .error(function(data, status, header, config){
+            console.log("Ocurrió un error");
+          });
+        };
       }
     }
   }]);

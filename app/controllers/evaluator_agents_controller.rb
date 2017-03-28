@@ -1,6 +1,7 @@
 require 'roo'
 class EvaluatorAgentsController < ApplicationController
   before_action :set_models, only: [:index]
+  before_action :set_evaluator_agent, only: [:update, :toggle_authorized]
 
   def index
     @teachers = User.evaluator_agents(@institution.id)
@@ -9,7 +10,6 @@ class EvaluatorAgentsController < ApplicationController
 
   def create
     evaluator_agent = User.new(evaluator_agent_params)
-    evaluator_agent.document_type_id = document_type_params[:id]
     if evaluator_agent.save
       render json: evaluator_agent, status: :created
     else
@@ -53,16 +53,34 @@ class EvaluatorAgentsController < ApplicationController
       render json: { result: "Success" }, status: :ok 
     end
   end
-
+  def update
+    if @evaluator_agent.update(evaluator_agent_params)
+      render json: @evaluator_agent, status: :ok
+    else
+      render json: @evaluator_agent.errors, status: :unprocessable_entity
+    end 
+  end
+  def toggle_authorized
+    if @evaluator_agent.authorized
+      @evaluator_agent.authorized = false
+    else
+      @evaluator_agent.authorized = true
+    end
+    if @evaluator_agent.save
+      render json:  @evaluator_agent, status: :ok
+    else
+      render json: @evaluator_agent.errors, status: :unprocessable_entity
+    end
+  end
 
   private
+  def set_evaluator_agent
+     @evaluator_agent = User.find params[:id]
+  end
   def set_models
     @institution = Institution.find params[:institution_id]
   end
   def evaluator_agent_params
-    params.require(:evaluator_agent).permit(:name, :last_name, :identity_card, :phone, :institution_id, :role_id, :email, :password)
-  end
-  def document_type_params
-    params.require(:document_type_id).permit(:id)
+    params.require(:evaluator_agent).permit(:name, :last_name, :identity_card, :phone, :institution_id, :role_id, :email, :password, :document_type_id)
   end
 end

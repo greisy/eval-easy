@@ -14,8 +14,11 @@ angular.module("evalEasy")
         }
       },
       link: function($scope, iElm, iAttrs, controller) {
-        $scope.$on('flag', function(event, data){
-          $scope.$broadcast('dispara', 'enviando desde el padre');
+        $scope.$on('degreeCreated', function(event, data){
+          $scope.$broadcast('updateDegreesList', data);
+        });
+        $scope.$on('editDegree', function(event, data){
+          $scope.$broadcast('fillForm', data);
         });
       }
     };

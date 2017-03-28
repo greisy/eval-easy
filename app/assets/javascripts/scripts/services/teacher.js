@@ -1,5 +1,5 @@
 angular
-  .module('evalEasy').factory('TeacherFactory', ['$http', function($http){
+  .module('evalEasy').factory('TeacherFactory', ['$http', '$resource', function($http, $resource){
     return{
       all: function(institution_id){
         return $http({method: 'GET', url: '/institutions/'+institution_id+'/evaluator_agents'});
@@ -14,6 +14,12 @@ angular
                           headers: {'Content-Type': undefined },
                           transformRequest: angular.identity
         });
+      }, 
+      update: function(object){
+        return $http.put("/evaluator_agents/"+object.id, object);
+      },
+      toggle_authorized: function(object){
+        return $http.patch("/evaluator_agents/"+object.id+"/toggle_authorized", object);
       }
     }
   }]);

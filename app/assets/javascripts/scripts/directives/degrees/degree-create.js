@@ -10,20 +10,26 @@ angular.module('evalEasy')
         scope.addNewDegree = function(){
           Auth.currentUser().then(function (user){
             scope.degree.institution_id = user.institution_id;
-            debugger
             var degreeNew = new DegreeFactory(scope.degree);
             degreeNew.$save({institution_id: user.institution_id})
               .then(function(data){
-                scope.$emit('flag', 'enviando desde el hijo');
+                Materialize.toast('Se agregó la carrera correctamente!', 4000);
+                scope.$emit('degreeCreated', data);
               }).catch(function(degree){
                 $scope.errors = [degree.data.error];
               });
-
-            /*DegreeFactory.save({institution_id: user.institution_id}, scope.degree, function(data, data2){
-debugger
-            });*/
           });
-        }
+        };
+        scope.$on('fillForm', function(event, data){
+          debugger
+          scope.degree = angular.copy(data);
+        });
       }
     }
   });
+
+
+
+/*DegreeFactory.save({institution_id: user.institution_id}, scope.degree, function(data, data2){
+debugger
+});*/

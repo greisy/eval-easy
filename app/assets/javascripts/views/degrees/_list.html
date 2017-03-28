@@ -1,6 +1,68 @@
 <div class="card">
   <div class="card-content">
     <div class="row">
+      <div class="col s4">
+        <span class="card-title title">Carreras</span>
+      </div>
+      <div class="input-field col s4 offset-s4">
+        <input id="search" type="text" class="validate" ng-model="search">
+        <label for="search">Buscar carrera</label>
+      </div>
+    </div>
+      <ul class="collapsible" data-collapsible="accordion">
+        <li ng-repeat= "degree in degrees | filter: search" id="{{degree.id}}">
+          <div class="collapsible-header" ><!--ng-class="{' grey lighten-1':!degree.authorized}"-->
+            <div class="row zero-margin-bottom">
+              <div class="col s1">
+                <i class="material-icons">keyboard_arrow_down</i>
+              </div>
+              <div class="col s10">
+                {{degree.name}}
+              </div>
+              <div class="col s1">
+                <i class="material-icons" ng-click="editDegree(degree)">edit</i>
+              </div>
+              <!--
+              <div class="col s1">
+                <i class="material-icons" ng-show="teacher.authorized" ng-click="switchAuthorized(teacher)">not_interested</i>
+                <i class="material-icons" ng-show="!teacher.authorized" ng-click="switchAuthorized(teacher)">check</i>
+              </div>-->
+            </div>
+          </div>
+          <div class="collapsible-body tabs-top-space">
+            <div class="row">
+              <div class="offset-s1 col s4">
+                <strong>Descripción: </strong>{{degree.description}}
+              </div>
+              <div class="col s4">
+                <span>Total de créditos: </span>{{degree.total_credit}}
+              </div>
+              <div class="col s3">
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="card">
+  <div class="card-content">
+    <div class="row">
       <div class="col s2">
         <span class="card-title title">Carreras</span>
       </div>
@@ -15,7 +77,7 @@
       </li>
     </ul>
   </div>
-</div>
+</div>-->
 
 <!--
 <h3 class="title little-size">Carreras</h3>

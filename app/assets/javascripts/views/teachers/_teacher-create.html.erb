@@ -1,8 +1,7 @@
 <div class="card">
   <div class="card-content">
     <div class="row">
-      <form class="col s12" ng-submit="editTeacher()" ng-disabled="!(edit)" id="teacherForm">
-      <form class="col s12" ng-submit="addNewTeacher()" ng-disabled="edit" id="teacherForm">
+      <form class="col s12" ng-submit="saveTeacher()" id="teacherForm">
         <div class="row">
           <div ng-class="{'col s12': !edit, 'col s8': edit}">
             <span class="card-title title">Agregar Agente Evaluador</span>
@@ -30,9 +29,13 @@
           <div class="input-field col s12 without-margin-top">
             <div class="row">
               <div class="input-field col s4 without-margin-top">
+                <select class="browser-default border-bottom" ng-model="teacher.document_type_id">
+                  <option ng-repeat="option in document_types" value="{{option.id}}">{{option.code}}</option>
+                </select>
+                <!--
                 <select class="browser-default border-bottom" ng-model="teacher.document_type_id" ng-options="option.code for option in document_types track by option.id" ng-class="{'input-filled':user.document_type_id != null}">
                   <option value=""></option>
-                </select>
+                </select>-->
               </div>
               <div class="input-field col s8 without-margin-top">
                 <input id="identity_card" type="text" class="validate" ng-model="teacher.identity_card">

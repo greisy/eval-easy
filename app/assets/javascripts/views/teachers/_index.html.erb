@@ -15,17 +15,21 @@
               </div>
             </div>
               <ul class="collapsible" data-collapsible="accordion">
-                <li ng-repeat= "teacher in teachers | filter: search">
-                  <div class="collapsible-header">
+                <li ng-repeat= "teacher in teachers | filter: search" id="{{teacher.id}}">
+                  <div class="collapsible-header" ng-class="{' grey lighten-1':!teacher.authorized}">
                     <div class="row zero-margin-bottom">
                       <div class="col s1">
                         <i class="material-icons">keyboard_arrow_down</i>
                       </div>
-                      <div class="col s10">
+                      <div class="col s9">
                         {{teacher.name}} {{teacher.last_name}}
                       </div>
                       <div class="col s1">
                         <i class="material-icons" ng-click="editTeacher(teacher)">edit</i>
+                      </div>
+                      <div class="col s1">
+                        <i class="material-icons" ng-show="teacher.authorized" ng-click="switchAuthorized(teacher)">not_interested</i>
+                        <i class="material-icons" ng-show="!teacher.authorized" ng-click="switchAuthorized(teacher)">check</i>
                       </div>
                     </div>
                   </div>

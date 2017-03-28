@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   resources :institutions, only: [:index, :show] do
     resources :degrees, only: [:index, :create],shallow: true
     resources :subjects, only: [:index, :create], shallow: true
-    resources :evaluator_agents, only: [:index, :create] do
+    resources :evaluator_agents, only: [:index, :create, :update], shallow: true do
       post :create_teachers, on: :collection
+      patch :toggle_authorized, on: :member
     end
   end
   resources :scales, only: [:index]
