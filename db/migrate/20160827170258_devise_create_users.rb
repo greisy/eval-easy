@@ -31,12 +31,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
 
       ## Custom fields
-      t.references :role, index: true, foreign_key: true
       t.string :identity_card
       t.string :name
       t.string :last_name
       t.string :phone
-      t.references :institution, index: true, foreign_key: true
+      #t.references :institution, index: true, foreign_key: true
 
       t.timestamps null: false
     end

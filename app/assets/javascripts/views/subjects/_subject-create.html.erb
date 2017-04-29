@@ -1,16 +1,26 @@
 <div class="card">
   <div class="card-content">
       <div class="row">
-        <form class="col s12" ng-submit="addNewSubject()">
+        <form class="col s12" ng-submit="saveSubject()" name="sign" novalidate id="subjectForm">
           <div class="row">
-            <div class="col s12">
-              <span class="card-title title">Agregar Asignatura</span>
+            <div  ng-class="{'col s12': !edit, 'col s8': edit}">
+              <span class="card-title title" ng-hide="edit">Agregar Asignatura</span>
+              <span class="card-title title" ng-show="edit">Editar Asignatura</span>
+            </div>
+            <div class="offset-s2 col s2" ng-show="edit" ng-click="addEffect()">
+              <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
             </div>
           </div>
-
+          <div class="row">
+            <div class="input-field col s12" ng-class="{'card-panel red darken-4': errors.length > 0}" ng-show="errors.length > 0"> 
+              <ul>
+                <li ng-repeat="error in errors"><span class="white-text">{{error}}</span></li>
+              </ul>
+            </div>
+          </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="name" type="text" class="validate" ng-model="subject.name">
+              <input id="name" type="text" class="validate" ng-model="subject.name" required>
               <label for="name">Nombre</label>
             </div>
           </div>
@@ -19,34 +29,33 @@
               <input id="code" type="text" class="validate" ng-model="subject.code" min="0" max="200" step="1">
               <label for="code">Código</label>
             </div>
-            <div class="input-field col s6">
-              <input id="credits" type="number" class="validate" ng-model="subject.credits" min="0" max="200" step="1">
-              <label for="credits">Créditos</label>
+            <div class="col s6">
+              <p>
+                <input type="checkbox" class="filled-in" id="filled-in-box" ng-model="subject.round_up"/>
+                <label for="filled-in-box">Redondear hacia arriba</label>
+              </p>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <select class="browser-default border-bottom" ng-model="subject.scale" ng-change="fillGradeToPass(subject)" ng-options="scale as scale.name for scale in scales" ng-if="scales" ng-class="{'input-filled':subject.scale != null}">
+              <select id="test" class="browser-default border-bottom" ng-model="subject.scale" ng-change="fillGradeToPass(subject.scale)" ng-options="scale as scale.name for scale in scales track by scale.id" ng-if="scales" ng-class="{'input-filled':subject.scale != null}" required>
                 <option value="">Escoge escala de calificación</option>
               </select>
+              <!--<select class="browser-default border-bottom" ng-model="subject.scale_id" ng-class="{'input-filled':subject.scale_id != null}" ng-change="fillGradeToPass(subject)">
+                <option ng-repeat="option in scales" value="{{option.id}}">{{option.name}}</option>
+              </select>-->
             </div>
             <div class="input-field col s6">
               <p ng-if="subject.scale.scale_type.name=='numerica'" class="range-field">
                 <input type="range" id="test5" min="{{subject.scale.minimum_grade}}" max="{{subject.scale.maximum_grade}}" ng-model="subject.grade_to_pass" />
               </p>
-              <select ng-if="subject.scale.scale_type.name=='alfabetica'" class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="option.name for option in alphabetic_scales track by option.id" ng-class="{'input-filled':subject.grade_to_pass != null}">
+              <select ng-if="subject.scale.scale_type.name=='alfabetica'" class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="option.id as option.name for option in alphabetic_scales" ng-class="{'input-filled':subject.grade_to_pass != null}">
                 <option value="">Nota minima</option>
               </select>
-              <select ng-if="subject.scale.scale_type.name=='por descripcion'" class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="option.name for option in description_scales track by option.id" ng-class="{'input-filled':subject.grade_to_pass != null}">
+              <select ng-if="subject.scale.scale_type.name=='por descripcion'" class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="option.id as option.name for option in description_scales" ng-class="{'input-filled':subject.grade_to_pass != null}">
                 <option value="">Nota minima</option>
               </select>
             </div>
-          </div>
-          <div class="row">
-              <p>
-                <input type="checkbox" class="filled-in" id="filled-in-box" ng-model="subject.round_up"/>
-                <label for="filled-in-box">Redondear hacia arriba</label>
-              </p>
           </div>
           <div class="row">
             <div class="input-field col s12">
@@ -56,8 +65,11 @@
           </div>
           <div class="center-align">
             <div class="row">
-              <button type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
-                Agregar
+              <button ng-show="edit" type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
+                Editar Asignatura
+              </button>
+              <button ng-hide="edit" type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
+                Agregar Asignatura
               </button>
             </div>
           </div>

@@ -1,29 +1,27 @@
 angular
   .module('evalEasy')
-      .controller('AuthCtrl',['$scope', '$state','Auth','InstitutionFactory', 'DocumentTypeFactory', function($scope, $state, Auth, Institution, DocumentTypeFactory){
+      .controller('AuthCtrl',['$scope', '$state','Auth','EnvironmentFactory','localStorageService', function($scope, $state, Auth,Environment, localStorageService){
         var config = {
           headers: {
             'X-HTTP-Method-Override': 'POST'
           }
         };
-        $scope.document_types = DocumentTypeFactory.query();
-        $scope.institutions = Institution.query();
-        $scope.signUp = function(){
-          var admin_role = 1;
-          $scope.user.role_id = admin_role;
-          debugger
-          Auth.register($scope.user, config).then(function(registeredUser){
-            console.log("User registered"+registeredUser);
-            $state.go("sign_in");
-            $scope.success = "Recibiras un correo con instrucciones para confirmar su correo, en pocos minutos";
-          }, function(error){
-            console.log("An error has happened");
-          });
-        };
         $scope.login = function(){
           Auth.login($scope.user, config).then(function(data){
             console.log(data);
-            $state.go("subjects");
+            Environment.all(data).then(function(response){
+              environments = response.data;
+              if(jQuery.isEmptyObject(localStorageService.get('current_environment'))){
+                localStorageService.set('current_environment', environments[0]);
+              }
+
+              if(jQuery.isEmptyObject(localStorageService.get('environments'))){
+                localStorageService.set('environments', environments);
+              }
+              $state.go("subjects");
+            },function(response){
+              console.log("There has had an error on the server");
+            });
           }, function(error){
             $scope.error = error.data.error;
           });
@@ -31,9 +29,16 @@ angular
         $scope.canSubmitSign = function(){
           return $scope.sign.$valid;
         };
-        $scope.checkMatch = function(){
-          if($scope.user.password != $scope.user.passwordConfirmation){
-            $('#passwordConfirmation').addClass('invalid');
-          }
-        }
       }]);
+
+
+/*
+Role.query().$promise.then(function(roles){
+  roles.forEach( function (role){
+    if(role.permission_level == 3){
+      $scope.environment.role_id = role.id;
+    }
+  });
+
+});
+*/

@@ -66,3 +66,4 @@ group :development do
 end
 ## FONT AWESOME
 gem 'font-awesome-sass'
+gem 'jbuilder', '~> 2.0'

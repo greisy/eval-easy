@@ -1,25 +1,35 @@
 angular
   .module('evalEasy').factory('TeacherFactory', ['$http', '$resource', function($http, $resource){
     return{
-      all: function(institution_id){
-        return $http({method: 'GET', url: '/institutions/'+institution_id+'/evaluator_agents'});
+      all: function(environment_id, kind_user){
+        return $http({method: 'GET', url: '/environments/'+environment_id+'/environment_users',
+                    params: {kind_user: kind_user }});
       },
-      create: function(object, institution_id){
-        return $http.post('/institutions/'+institution_id+'/evaluator_agents', object);
+      create: function(object, environment_id){
+        return $http.post('/environments/'+environment_id+'/environment_users', object);
       },
-      create_teachers: function(object, institution_id){
-        return $http.post('/institutions/'+institution_id+'/evaluator_agents/create_teachers',
-                          object, {
-                          withCredentials: true,
-                          headers: {'Content-Type': undefined },
-                          transformRequest: angular.identity
-        });
-      }, 
+      create_teachers: function(environment_user, teachers, environment_id){
+        teachers.append('environment_user',  angular.toJson(environment_user));
+
+        return $http({method: 'POST',
+                      url: '/environments/'+environment_id+'/environment_users/create_environment_users',
+                      headers : { 'Content-Type': undefined},
+                      data: teachers,
+                      transformRequest: angular.identity
+                      });
+      },
       update: function(object){
-        return $http.put("/evaluator_agents/"+object.id, object);
+        return $http.put('/environment_users/'+object.user.environment_user_id, object);
       },
       toggle_authorized: function(object){
         return $http.patch("/evaluator_agents/"+object.id+"/toggle_authorized", object);
       }
     }
   }]);
+
+          /*$http.post('/environments/'+environment_id+'/environment_users/create_environment_users',
+                          object, {
+                          withCredentials: true,
+                          headers: {'Content-Type': undefined },
+                          transformRequest: angular.identity
+        });*/

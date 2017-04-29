@@ -16,6 +16,7 @@ class EvaluatorAgentsController < ApplicationController
       render json: evaluator_agent.errors, status: :unprocessable_entity
     end
   end
+  
   def create_teachers
     flag = true
     evaluator_agents = []
@@ -78,7 +79,7 @@ class EvaluatorAgentsController < ApplicationController
      @evaluator_agent = User.find params[:id]
   end
   def set_models
-    @institution = Institution.find params[:institution_id]
+    @environment = Environment.find params[:environment_id]
   end
   def evaluator_agent_params
     params.require(:evaluator_agent).permit(:name, :last_name, :identity_card, :phone, :institution_id, :role_id, :email, :password, :document_type_id)

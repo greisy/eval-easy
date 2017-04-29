@@ -1,4 +1,11 @@
-angular
-    .module('evalEasy').factory('InstitutionFactory',['$resource', function ($resource){
-    	return $resource("/institutions/:id", {}, {});
-    }]);
+angular.module('evalEasy')
+  .factory('InstitutionFactory', ['$http', function($http){
+    return{
+      create: function(object){
+        return $http.post('/institutions', object);
+      },
+      all: function(){
+        return $http({method: 'GET', url: '/institutions'})
+      }
+    }
+  }]);

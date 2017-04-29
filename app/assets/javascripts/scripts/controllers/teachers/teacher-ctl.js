@@ -1,22 +1,26 @@
 angular.module('evalEasy')
-  .controller('TeacherCtrl', ['Auth','$scope', '$state', 'ScaleFactory', 'TeacherFactory', function(auth, $scope, $state, ScaleFactory, TeacherFactory){
+  .controller('TeacherCtrl', ['Auth','$scope', '$state', 'ScaleFactory', 'TeacherFactory', 'localStorageService', function(auth, $scope, $state, ScaleFactory, Teacher, localStorageService){
     $scope.document_types = ScaleFactory.query();
-    auth.currentUser().then(function(user){
-      $scope.user = user;
-      TeacherFactory.all($scope.user.institution_id).then(function(response){
-          $scope.teachers = response.data;
-        },function(response){
+    Teacher.all(localStorageService.get('current_environment').id, 'Docente').then(function(response){
+      $scope.teachers = response.data;
+    },function(response){
 
-        });
-      $scope.$on('TeacherCreated', function(event, data){
-        TeacherFactory.all($scope.user.institution_id).then(function(response){
-          $scope.teachers = response.data;
-        },function(response){
-
-        });
+    });
+    $scope.$on('UserCreated', function(event, data){
+      $scope.teachers.push(data);
+    });
+    $scope.$on('UsersCreated', function(event, data){
+      data.forEach(function(user){
+        $scope.teachers.push(user);
       });
-      $scope.$on('TeacherEdited', function(event, data){
-        $("#"+data.id+" .collapsible-header").addClass("teal lighten-4");
+    });
+    $scope.editTeacher = function(teacher){
+      var id= "#"+teacher.id;
+      $(id+" .collapsible-header").addClass("teal lighten-4");
+      $scope.$broadcast('editUser', teacher);
+    };
+    $scope.$on('UserEdited', function(event, data){
+      $("#"+data.id+" .collapsible-header").addClass("teal lighten-4");
         for(var i= 0; i< $scope.teachers.length; i++){
           if($scope.teachers[i].id == data.id){
             $scope.teachers[i] = data;
@@ -24,6 +28,13 @@ angular.module('evalEasy')
           }
         }
       });
+  }]);
+  /*
+    auth.currentUser().then(function(user){
+      $scope.user = user;
+
+      
+
     });
     $scope.editTeacher = function(teacher){
       var id= "#"+teacher.id;

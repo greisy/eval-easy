@@ -1,3 +1,3 @@
-Institution.create_with({ address: 'Av. Principal de las Mercedes, diagonal al c.c Paseo las Mercedes', phone: '999-88-77'}).find_or_create_by(name: 'Harvard')
-Institution.create_with({ address: 'Plaza Venezuela', phone: '777-99-33'}).find_or_create_by(name: 'Universidad Central de Venezuela')
-Institution.create_with({ address: 'Sartenejas', phone: '1122-3344'}).find_or_create_by(name: 'Universidad Simón Bolívar')
+Institution.find_or_create_by(name: 'Harvard')
+Institution.find_or_create_by(name: 'Universidad Central de Venezuela')
+Institution.find_or_create_by(name: 'Universidad Simón Bolívar')

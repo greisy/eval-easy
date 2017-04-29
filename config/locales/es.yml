@@ -3,11 +3,16 @@ es:
     errors:
       messages:
         not_found: "no encontrado"
-        taken: "No puede existir más de un %{attribute}"
+        taken: "Este %{attribute} ya se encuentra registrado"
         not_saved:
           one: "Ha habido 1 error"
           other: "Han habido %{count} errores."
-        record_invalid: "Recurso invalido" 
+        record_invalid: "Recurso invalido"
+      models:
+        user:
+          attributes:
+            identity_card:
+              blank: "El %{attribute} no puede estar vacio"
     models:
       degree: "Carrera"
       institution: "Institución"
@@ -24,4 +29,6 @@ es:
         last_name: "Apellido"
         email: "Correo Electronico"
         phone: "Teléfono"
-        
+      subject:
+        code: "Código"
+        name: "Nombre de asignatura"  

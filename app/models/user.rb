@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
 
   ## ASSOCIATIONS
-    belongs_to :role
-    belongs_to :institution
+    has_many :environments, dependent: :destroy
+    has_many :environment_users, dependent: :destroy
+    belongs_to :document_type
   ## VALIDATIONS
-  # Include default devise modules. Others available are:
+  # Include default devise modules.thers available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
 
   ## SCOPE
 
-  scope :evaluator_agents, -> (institution_id) { where(institution_id: institution_id, role_id: Role.find_by_name("EvaluatorAgent").id) }
+  scope :evaluator_agents, -> (institution_id) { where(institution_id: environment_id, role_id: Role.find_by_name("Docente").id) }
 
   ##METHODS
 

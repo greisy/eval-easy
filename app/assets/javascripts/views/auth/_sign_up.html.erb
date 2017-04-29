@@ -12,7 +12,15 @@
         <h5 class="condensed" style="min-width:300px;">Registrarme</h5>
       </div>
     </div>
+    
     <form class="col s12" name="sign" ng-submit="signUp()" novalidate>
+      <div class="row">
+        <div class="input-field col s12" ng-class="{'card-panel red darken-4': errors.length > 0}" ng-show="errors.length > 0"> 
+          <ul>
+            <li ng-repeat="error in errors"><span class="white-text">{{error}}</span></li>
+          </ul>
+        </div>
+      </div>
       <div class="row">
         <div class="input-field col s12" ng-class="{'card-panel red darken-4': error}" ng-if="error">
           <span class="white-text">{{error}}</span>
@@ -33,9 +41,11 @@
       </div>
       <div class="row">
         <div class="input-field col s4">
-          <select class="browser-default border-bottom" ng-model="user.document_type_id" ng-options="option.code for option in document_types track by option.id" ng-class="{'input-filled':user.document_type_id != null}">
-            <option value=""></option>
+          <select class="browser-default border-bottom" ng-model="user.document_type_id">
+            <option ng-repeat="document_type in document_types" ng-value="document_type.id">{{document_type.code}}</option>
           </select>
+          <!--<select class="browser-default border-bottom" ng-model="user.document_type_id" ng-options="option.code for (option.id, option.code) in document_types track by option.id" ng-class="{'input-filled':user.document_type_id != null}" required>
+          </select>-->
         </div>
         <div class="input-field col s8">
           <input class="validate" type="text" name="identity_card" id="identity_card" ng-model="user.identity_card" required>
@@ -50,7 +60,7 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <dropdown-resource resources="institutions" show-information="Ingrese el nombre de la institución" show-error="Verificar nombre de la institución" model="user.institution_id"></dropdown-resource>
+          <dropdown-resource resources="institutions" show-information="Ingrese el nombre de la institución" show-error="Verificar nombre de la institución" model="environment.institution_name"></dropdown-resource>
         </div>
       </div>
       <div class="row">
@@ -88,7 +98,6 @@
     </form>
   </div>
 </div>
-
 
 
 

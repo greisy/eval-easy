@@ -3,7 +3,8 @@ angular.module('evalEasy', [
   'ngResource',
   'templates',
   'Devise', 
-  'validation.match'
+  'validation.match',
+  'LocalStorageModule'
   ])
   .config(["$locationProvider", "$stateProvider","$urlRouterProvider", "AuthProvider",function ($locationProvider, $stateProvider, $urlRouterProvider, AuthProvider) {
     
@@ -26,7 +27,7 @@ angular.module('evalEasy', [
       .state('sign_up',{
         url: '/registrarse',
         templateUrl: 'views/auth/_sign_up.html',
-        controller: 'AuthCtrl',
+        controller: 'RegistrationCtrl',
         onEnter: ['$state','Auth', function($state, Auth){
           Auth.currentUser().then(function(){
             $state.go('degrees');
@@ -53,6 +54,14 @@ angular.module('evalEasy', [
         url: '/teachers',
         templateUrl: 'views/teachers/_index.html',
         controller: 'TeacherCtrl', //Se colocaran en un solo controlador los metodos CRUD
+        onEnter: ['$state','Auth', function($state, Auth){
+          cancan($state, Auth);
+        }]
+      })
+      .state('students',{
+        url: '/students',
+        templateUrl: 'views/students/_index.html',
+        controller: 'StudentCtrl', //Se colocaran en un solo controlador los metodos CRUD
         onEnter: ['$state','Auth', function($state, Auth){
           cancan($state, Auth);
         }]

@@ -11,12 +11,12 @@
               </div>
               <div class="input-field col s4 offset-s4">
                 <input id="search" type="text" class="validate" ng-model="search">
-                <label for="search">Buscar agentes evaluadores</label>
+                <label for="search">Buscar agente evaluador</label>
               </div>
             </div>
               <ul class="collapsible" data-collapsible="accordion">
                 <li ng-repeat= "teacher in teachers | filter: search" id="{{teacher.id}}">
-                  <div class="collapsible-header" ng-class="{' grey lighten-1':!teacher.authorized}">
+                  <div class="collapsible-header"> <!--ng-class="{' grey lighten-1':!teacher.authorized}"-->
                     <div class="row zero-margin-bottom">
                       <div class="col s1">
                         <i class="material-icons">keyboard_arrow_down</i>
@@ -36,7 +36,7 @@
                   <div class="collapsible-body tabs-top-space">
                     <div class="row">
                       <div class="offset-s1 col s4">
-                        <strong>Documento: </strong>{{teacher.identity_card}}
+                        <strong>Documento: </strong>{{teacher.document_type_code}}-{{teacher.identity_card}}
                       </div>
                       <div class="col s4">
                         <span>Teléfono: </span>{{teacher.phone}}
@@ -59,10 +59,10 @@
             </ul>
           </div>
           <div id="one_teacher" class="col s12">
-            <teacher-create info="{{user.institution_id}}"></teacher-create>
+            <user-create kind-user="Docente"></user-create>
           </div>
           <div id="multiple_teacher" class="col s12">
-            <teachers-create info="{{user.institution_id}}"></teachers-create>
+            <users-create kind-user="Docente"></users-create>
           </div>
         </div>
       </div>
