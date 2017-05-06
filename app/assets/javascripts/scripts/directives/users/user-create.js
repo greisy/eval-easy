@@ -12,18 +12,15 @@ angular.module('evalEasy')
         scope.user = {};
         scope.edit = false;
         scope.addNewUser = function(){
-          debugger
           scope.environment_user.environment_id = localStorageService.get('current_environment').id;
           Role.query().$promise.then(function(roles){
             roles.forEach( function (role){
-              debugger
               if(role.description == scope.kindUser){
                 scope.environment_user.role_id = role.id;
               }
             });
             scope.environment_user.user = scope.user;
             scope.environment_user.user.password = "11223344";
-            debugger
             User.create(scope.environment_user, localStorageService.get('current_environment').id).then(function(response){
               var message = "Se ha agregado el "+ scope.kind_user+ " correctamente";
               Materialize.toast(message, 4000);
@@ -69,7 +66,12 @@ angular.module('evalEasy')
             scope.$emit('UserEdited', data);
           })
           .error(function(data, status, header, config){
-            console.log("Ocurrió un error");
+            debugger
+            scope.errors = [];
+              for(var key in data){
+                scope.errors.push(data[key][0]);
+              }
+              console.log("Failed adding a new teacher");
           });
         };
       }

@@ -10,23 +10,27 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # GET /resource/password/edit?reset_password_token=abcdef
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+   end
 
   # PUT /resource/password
-  # def update
-  #   super
-  # end
+   def update
+    debugger
+     super
+   end
 
   # protected
 
-  # def after_resetting_password_path_for(resource)
+   def after_resetting_password_path_for(resource)
   #   super(resource)
-  # end
+   end
 
   # The path used after sending reset password instructions
-  # def after_sending_reset_password_instructions_path_for(resource_name)
-  #   super(resource_name)
-  # end
+   def after_sending_reset_password_instructions_path_for(resource_name)
+    debugger
+    change_password_path(resource_name)
+     #super(resource_name)
+   #  change_password_path(resource_name)
+   end
 end

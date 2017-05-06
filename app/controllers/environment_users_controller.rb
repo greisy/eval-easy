@@ -12,9 +12,12 @@ class EnvironmentUsersController < ApplicationController
 
   def create
     user = User.new(user_params)
+    user.skip_confirmation!
     if user.save
       @environment_user = @environment.environment_users.new(role_id: role_params[:role_id], user_id: user.id)
       if @environment_user.save
+        #DeviseMailer.confirmation_instructions(user, user.confirmation_token, {invitation: true, role: @environment_user.role.description}).deliver_now
+        user.send_reset_password_instructions
         respond_to do |format|
           format.json
         end
@@ -77,11 +80,9 @@ class EnvironmentUsersController < ApplicationController
   end
 
   def update
-    debugger
     user = @environment_user.user
     user.attributes = user_params
     respond_to do |format|
-      debugger
       if user.save
         format.json
       else
@@ -98,7 +99,7 @@ class EnvironmentUsersController < ApplicationController
     @environment = Environment.find params[:environment_id]
   end
   def user_params
-    params.require(:user).permit(:name, :last_name, :document_type_id, :identity_card, :email, :password, :phone)
+    params.require(:user).permit(:name, :last_name, :document_type_id, :identity_card, :email, :phone, :password) #:password
   end
   def role_params
     params.require(:environment_user).permit(:role_id)

@@ -34,6 +34,11 @@ angular.module('evalEasy', [
           })
         }]
       })
+      .state('change_password',{
+        url: '/cambiar_password/:id?reset_password_token',
+        templateUrl: 'views/auth/_activation.html',
+        controller: 'ValidationCtrl'
+      })
       .state('degrees',{
         url: '/degrees',
         templateUrl: 'views/degrees/_index.html',

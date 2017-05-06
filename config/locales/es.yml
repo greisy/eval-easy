@@ -24,7 +24,7 @@ es:
         total_credit: "Total de créditos"
         institution_id: "Institución"
       user:
-        identity_card: "Documento"
+        identity_card: "Documento de Identidad"
         name: "Nombre"
         last_name: "Apellido"
         email: "Correo Electronico"

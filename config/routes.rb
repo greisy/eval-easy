@@ -27,11 +27,13 @@ Rails.application.routes.draw do
   resources :document_types, only: [:index]
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
   }
   resources :users do # acortar
     resources :environments, only: [:index]
   end
   get "/iniciar_sesion", to: 'application#angular', as: :login
+  get "/cambiar_password/:id", to: 'application#angular', as: :change_password
   get '*path', to: 'application#angular'
 end
