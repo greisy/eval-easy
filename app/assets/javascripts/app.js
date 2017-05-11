@@ -70,6 +70,14 @@ angular.module('evalEasy', [
         onEnter: ['$state','Auth', function($state, Auth){
           cancan($state, Auth);
         }]
+      })
+      .state('planning',{
+        url: '/planning',
+        templateUrl: 'views/plannings/dashboard_planning',
+        controller: 'PlanningCtrl',
+        onEnter: ['$state','Auth', function($state, Auth){
+          cancan($state, Auth);
+        }]        
       });
       //$locationProvider.html5Mode(true);
       $locationProvider.html5Mode({
