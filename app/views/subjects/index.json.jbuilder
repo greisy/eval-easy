@@ -6,6 +6,8 @@ json.array! @subjects do |subject|
   json.scale_id subject.scale_id
   json.grade_to_pass subject.grade_to_pass
   json.round_up subject.round_up
+  json.start_date subject.start_date
+  json.end_date subject.end_date
   json.scale do
     json.id subject.scale.id
     json.name subject.scale.name

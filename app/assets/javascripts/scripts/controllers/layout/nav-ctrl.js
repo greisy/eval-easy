@@ -1,6 +1,6 @@
 angular
   .module("evalEasy")
-    .controller("NavCtrl",['$state','$scope', 'Auth', 'EnvironmentFactory','localStorageService',function($state,$scope, Auth, Environment, localStorageService){
+    .controller("NavCtrl",['$state','$scope', 'Auth', 'EnvironmentFactory','localStorageService','SubjectFactory',function($state,$scope, Auth, Environment, localStorageService, Subject){
       var config = {
       	headers: {
       		'X-HTTP-Method-Override': 'DELETE'
@@ -11,7 +11,6 @@ angular
       	$scope.user = user;
         $scope.signedIn = Auth.isAuthenticated();
       });*/
-
     	$scope.$on('devise:new-registration', function (e, user){
         $scope.user = user;
       });
@@ -54,7 +53,13 @@ angular
       	$scope.signedIn = Auth.isAuthenticated();
         $state.go('sign_in');
       });
+      $scope.environmentSubject = function(){
+        Subject.all(localStorageService.get('current_environment').id).then(function(response){
+          $scope.subjects = response.data;
+        },function(response){
 
+        });
+      }
     }]);
     /*
             EnvironmentUser.all(user).then(function(response){
