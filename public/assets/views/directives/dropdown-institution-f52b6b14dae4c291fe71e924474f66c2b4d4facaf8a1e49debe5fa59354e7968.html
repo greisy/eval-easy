@@ -1,0 +1,6 @@
+<i class="material-icons prefix">account_balance</i>
+<input class="validate" type="text" name="institucion" id="institution" ng-model="query" ng-focus="showCollection()" required placeholder="Ingrese el nombre de la institución" >
+	<label for="institution" data-error="Verificar nombre de institución"></label>
+<ul class="collection" id ="collection">
+	<li class="collection-item change-color" ng-click="setInstitution(institution)" id="{{institution.id}}" ng-repeat="institution in institutions | filter: query " ng-mouseover="changeColor(institution.id)" >{{institution.name}}</li>
+</ul>

@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-content">
+    <div class="row">
+      <form class="col s12" ng-submit="addNewUsers()">
+        <div class="row">
+          <div class="col s12">
+            <span class="card-title title">Agregar {{kindUser}}s</span>
+          </div>
+        </div>
+
+        <div class="row"><!--zero-margin-bottom-->
+          <div class="file-field input-field">
+            <div class="btn col s4">
+              <span>Archivo</span>
+              <input type="file" name="file" onchange="angular.element(this).scope().savingFile(this.files)" ng-click="cleanErrors()">
+            </div>
+            <div class="file-path-wrapper col s8">
+              <input class="file-path validate" type="text" ng-model="users.file">
+            </div>
+          </div>
+        </div>
+        
+        <div class="center-align">
+          <div class="row">
+            <button type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
+              Agregar {{kindUser}}s
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col s12" ng-show="errors">
+        <ul class="collection with-header collapsible" data-collapsible="accordion">
+          <li class="collection-header"><h4>{{errors.length}} registros deben ser corregidos para poder procesar correctamente el archivo:</h4></li>
+          <li ng-repeat="error in errors">
+            <div class="collapsible-header">Linea {{error.line}}:</div>
+            <div class="collapsible-body">
+              <div ng-repeat="(key, value) in error.row">{{value[0]}}</div>
+            </div>
+          </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('select').material_select();
+    $('.collapsible').collapsible();
+  });
+</script>
+
+<!--<div class="input-field col s4 without-margin-top">
+              <upload-image></upload-image>
+            </div>-->

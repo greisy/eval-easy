@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-content">
+    <div class="row">
+      <div class="col s2">
+        <span class="card-title title">Agentes Evaluadores</span>
+      </div>
+      <div class="input-field col s4 offset-s6">
+        <input id="search" type="text" class="validate" ng-model="search">
+        <label for="search">Buscar agentes evaluadores</label>
+      </div>
+    </div>
+    <ul class="li-divided">
+      <li ng-repeat="teacher in teachers | filter: search">
+        <h5>{{teacher.name}}</h5>
+      </li>
+    </ul>
+  </div>
+</div>
