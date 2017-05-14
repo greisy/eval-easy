@@ -10,7 +10,7 @@ default: &default
 
 development:
   <<: *default
-  database: evaleasy-dev
+  database: evaleasy-lab
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,6 +19,7 @@ test:
   <<: *default
   database: evaleasy-test
 
-#production:
-#  <<: *default
-#  database: evaleasy-production
+production:
+  <<: *default
+  database: evaleasy-production
+  username: evaleasy-lab
