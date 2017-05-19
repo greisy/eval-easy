@@ -67,4 +67,4 @@ group :development do
 end
 ## FONT AWESOME
 gem 'font-awesome-sass'
-gem 'jbuilder', '~> 2.0'
+gem 'rails_12factor', group: :production
