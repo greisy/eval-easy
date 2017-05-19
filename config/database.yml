@@ -5,7 +5,7 @@ default: &default
   encoding: unicode
   username: evaleasy
   password: 123456
-  host: http://127.0.0.1
+  host: localhost
   pool: 5
 
 development:
