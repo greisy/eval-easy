@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col s12">
+    <div class="row">
+      <div class="col s7">
+        <!--<teacher-list info="user.institution_id"></teacher-list>-->
+        <div class="card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col s4">
+                <span class="card-title title">Estudiantes</span>
+              </div>
+              <div class="input-field col s4 offset-s4">
+                <input id="search" type="text" class="validate" ng-model="search">
+                <label for="search">Buscar estudiante</label>
+              </div>
+            </div>
+              <ul class="collapsible" data-collapsible="accordion">
+                <li ng-repeat= "student in students | filter: search" id="{{student.id}}">
+                  <div class="collapsible-header"> <!--ng-class="{' grey lighten-1':!teacher.authorized}"-->
+                    <div class="row zero-margin-bottom">
+                      <div class="col s1">
+                        <i class="material-icons">keyboard_arrow_down</i>
+                      </div>
+                      <div class="col s9">
+                        {{student.name}} {{student.last_name}}
+                      </div>
+                      <div class="col s1">
+                        <i class="material-icons" ng-click="editStudent(student)">edit</i>
+                      </div>
+                      <!--<div class="col s1">
+                        <i class="material-icons" ng-show="teacher.authorized" ng-click="switchAuthorized(teacher)">not_interested</i>
+                        <i class="material-icons" ng-show="!teacher.authorized" ng-click="switchAuthorized(teacher)">check</i>
+                      </div>-->
+                    </div>
+                  </div>
+                  <div class="collapsible-body tabs-top-space">
+                    <div class="row">
+                      <div class="offset-s1 col s4">
+                        <strong>Documento: </strong>{{student.document_type_code}}-{{student.identity_card}}
+                      </div>
+                      <div class="col s7">
+                        <span>Teléfono: </span>{{student.phone}}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="offset-s1 col s4">
+                        <span>Correo: </span>{{student.email}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col s5 tabs-top-space">
+        <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s6"><a href="#one_teacher" class="teal-text text-darken-4">EStudiante</a></li>
+              <li class="tab col s6"><a href="#multiple_teacher" class="teal-text text-darken-4">Multiples estudiantes</a></li>
+            </ul>
+          </div>
+          <div id="one_teacher" class="col s12">
+            <user-create kind-user="Estudiante"></user-create>
+          </div>
+          <div id="multiple_teacher" class="col s12">
+            <users-create kind-user="Estudiante"></users-create>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
+</script>
+

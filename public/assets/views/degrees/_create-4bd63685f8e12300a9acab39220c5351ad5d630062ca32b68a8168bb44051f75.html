@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-content">
+    
+      <div class="row">
+        <form class="col s12" ng-submit="addNewDegree()">
+          <div class="row">
+            <div class="col s12">
+              <span class="card-title title">Agregar Carrera</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="name" type="text" class="validate" ng-model="degree.name">
+              <label for="name">Nombre de Carrera</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="total_credit" type="number" class="validate" ng-model="degree.total_credit" min="0" max="200" step="1">
+              <label for="total_credit">Total de Créditos</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="description" class="materialize-textarea" ng-model="degree.description"></textarea>
+              <label for="description">Descripción:</label>
+            </div>
+          </div>
+          <div class="center-align">
+            <div class="row">
+              <button type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
+                Agregar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+        
+  </div>
+</div>

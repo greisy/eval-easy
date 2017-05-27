@@ -1,0 +1,38 @@
+<div ng-controller="NavCtrl"> 
+
+  <nav class="white" ng-show="signedIn">
+    <div class="nav-wrapper">
+      <a href="" class="brand-logo gray-text">EvalEasy</a>
+      <!-- Preguntar cuál es el rol para mostrar este ul o el otro-->
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#" data-activates="slide-out" class="side-nav2"><i class="material-icons left">account_balance</i>Institución</a></li>
+        <li><a href="#"><i class="material-icons left">schedule</i>Planificación</a></li>
+        <li><a href="#" class="dropdown-button" data-activates="logout" data-beloworigin="true" data-constrainwidth="false"><i class="material-icons left">face</i>{{user.name}}</a>
+          <ul id="logout" class="dropdown-content">
+            <li><a ng-click="logout()">Cerrar Sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- 
+      <ul>Aqui colocaremos los li dinamicos con las asignaturas y el submenu siempre será el mismo</ul>  -->
+    </div>
+  </nav>
+
+  <ul id="slide-out" class="side-nav color-side-nav">
+    <li><div class="userView institution-info">
+      <a href="#!user"><img class="circle responsive-img" src="/assets/ucv-64f3183bdcb15e24a498ca2391335fb18ba5267be1c8740af980e44d345f419e.jpg" alt="Ucv" /></a>
+      <a href="#!name"><span class="name title little-size">{{institution.institution.name}}</span></a>
+    </div></li>
+    <!--<li><a ui-sref="degrees" class=".gray-link"><i class="material-icons">cloud</i>Carreras</a></li>-->
+    <li><a ui-sref="subjects" class=".gray-link"><i class="material-icons">import_contacts</i>Asignaturas</a></li>
+    <li><a ui-sref="teachers" class=".gray-link"><i class="material-icons">supervisor_account</i>Agentes Evaluadores</a></li>
+    
+    <!--<li><a href="#!" class=".gray-link"><i class="fa fa-calendar"></i>Periodo Academico</a></li>-->
+    <li><a ui-sref="students" class=".gray-link"><i class="material-icons">school</i>Estudiantes</a></li>
+  </ul>
+</div>
+<script type="text/javascript">
+  $(".side-nav2").sideNav();
+  $('.dropdown-button').dropdown();
+</script>

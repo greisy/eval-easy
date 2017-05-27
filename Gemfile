@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
@@ -17,8 +17,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'seedbank'
 #------------- EVALEASY PROJECT'S GEMS------------
 #A simple, fast Mysql library for Ruby, binding to libmysql
-gem 'mysql2'
-
+#gem 'mysql2'
+# Use postgresql as the database for Active Record
+gem 'pg'
 ## DEVISE
 gem 'devise'
 
@@ -66,4 +67,5 @@ group :development do
 end
 ## FONT AWESOME
 gem 'font-awesome-sass'
-gem 'jbuilder', '~> 2.0'
+gem 'rails_12factor', group: :production
+gem 'puma'

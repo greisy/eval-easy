@@ -1,0 +1,86 @@
+<div class="card">
+  <div class="card-content">
+    <div class="row">
+      <form class="col s12" ng-submit="saveUser()" id="userForm">
+        <div class="row">
+          <div ng-class="{'col s12': !edit, 'col s8': edit}">
+            <span class="card-title title" ng-hide="edit">Agregar {{kindUser}}</span>
+            <span class="card-title title" ng-show="edit">Editar {{kindUser}}</span>
+          </div>
+          <div class="offset-s2 col s2" ng-show="edit" ng-click="addEfect()">
+            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12" ng-class="{'card-panel red darken-4': errors.length > 0}" ng-show="errors.length > 0"> 
+            <ul>
+              <li ng-repeat="error in errors"><span class="white-text">{{error}}</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row"><!--zero-margin-bottom-->
+          <div class="input-field col s12 without-margin-top">
+            <input id="name" type="text" class="validate" ng-model="user.name">
+            <label for="name">Nombre</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 without-margin-top">
+            <input id="last_name" type="text" class="validate" ng-model="user.last_name">
+            <label for="last_name">Apellido</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 without-margin-top">
+            <div class="row">
+              <div class="input-field col s4 without-margin-top">
+                <select class="browser-default border-bottom" ng-model="user.document_type_id" ng-options="option.id as option.code for option in document_types">
+                  <option value=""></option>
+                </select>
+                <!--
+                <select class="browser-default border-bottom" ng-model="teacher.document_type_id" ng-options="option.code for option in document_types track by option.id" ng-class="{'input-filled':user.document_type_id != null}">
+                  <option value=""></option>
+                </select>-->
+              </div>
+              <div class="input-field col s8 without-margin-top">
+                <input id="identity_card" type="text" class="validate" ng-model="user.identity_card">
+                <label for="identity_card">Cédula de Identidad</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 without-margin-top">
+            <input id="email" type="text" class="validate" ng-model="user.email">
+            <label for="email">Correo Electrónico</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 without-margin-top">
+            <input id="phone" type="text" class="validate" ng-model="user.phone">
+            <label for="phone">Teléfono</label>
+          </div>
+        </div>
+        <div class="center-align">
+          <div class="row">
+            <button ng-show="edit" type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
+              Editar {{kindUser}}
+            </button>
+            <button ng-hide="edit" type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4">
+              Agregar {{kindUser}}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
+
+<!--<div class="input-field col s4 without-margin-top">
+              <upload-image></upload-image>
+            </div>-->

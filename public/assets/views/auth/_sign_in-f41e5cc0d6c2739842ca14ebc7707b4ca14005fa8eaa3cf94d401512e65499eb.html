@@ -1,0 +1,73 @@
+<div class="contenedor">
+  <div class="z-depth-1 grey lighten-4 row auth-box">
+    <div class="row">
+      <div class="col s12 center-align">
+        <img class="logo" src="/assets/logo-5b5813ca226ddcc37efb02ec930f21fc53ef95c71698addcb38b57c0bb5cfe66.png" alt="Logo" />
+        <h5 class="condensed" style="min-width:300px;">Iniciar sesión</h5>
+      </div>
+    </div>
+    <form class="col s12" name="sign" ng-submit="login()">
+      <div class="row">
+        <div class="input-field col s12" ng-class="{'card-panel red darken-4': error}" ng-if="error">
+          <span class="white-text">{{error}}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12" ng-class="{'card-panel darken-4': success}" ng-if="success">
+          <span class="white-text">{{success}}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="validate" type="email" name="email" id="email" ng-model="user.email" required>
+          <label for="email" data-error="Correo invalido">Correo Electrónico:</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input class="validate" type="password" id="pwd" ng-model="user.password" pattern: ".{8,}" required>
+          <label for="pwd" data-error="Su contraseña debe tener mas de 8 dígitos">Contraseña:</label>
+        </div>
+      </div>
+      <div class="center-align">
+        <div class="row">
+          <button type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4" ng-disabled="!canSubmitSign()">Iniciar Sesión
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s8 offset-4">
+          <a ui-sref="sign_up">Registrarme</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--<div class="row center-xs">
+    <div class="col-xs-4">
+        <div class="box text-left">
+            <div style="border:1px solid grey;padding:10px;">
+              <h2>Iniciar Sesion</h2>
+                <form name="sign" ng-submit="login()">
+                  <div class="form-group" ng-class="{'has-error': error}">
+                  <!--ng-show= "error"
+                    <label class="control-label" ng-if="error" >{{error}}</label>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" name="email" class="form-control" id="email" ng-model="user.email" required>
+                  </div>
+                  <div class="form-group" >
+                    <label for="pwd">Contraseña:</label>
+                    <input type="password" class="form-control" id="pwd" ng-model="user.password" pattern: ".{8,}" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary" ng-disabled="!canSubmitSign()" ng-class="{'dark-grey': !canSubmitSignUp(), 'green' : canSubmitSignUp() } " >Iniciar Sesión
+                  </button>
+                </form>
+              <a ui-sref="sign_up">Registrarme</a>
+            </div>
+        </div>
+    </div>
+</div>-->
