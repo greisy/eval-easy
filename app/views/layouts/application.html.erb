@@ -10,10 +10,8 @@
   </head>
   <body>
     <div ng-include="'views/nav/_nav.html'"></div>
-    <div class="row content" ng-controller="NavCtrl">
-      <div class="col s12 main-content" ng-class="{'bg-auth': !signedIn}">
-        <div ui-view ></div>
-      </div>
+    <div id="test" ng-class="{'bg-auth': !signedIn}">
+      <div ui-view ></div>
     </div>
   </body>
 </html>
