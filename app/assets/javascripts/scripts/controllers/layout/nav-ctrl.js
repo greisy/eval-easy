@@ -6,14 +6,12 @@ angular
       		'X-HTTP-Method-Override': 'DELETE'
       	}
       };
-      $scope.logout= Auth.logout;
+      $scope.logout = Auth.logout;
+      $scope.signedIn = Auth.isAuthenticated();
       /*Auth.currentUser().then(function (user){
       	$scope.user = user;
         $scope.signedIn = Auth.isAuthenticated();
       });*/
-    	$scope.$on('devise:new-registration', function (e, user){
-        $scope.user = user;
-      });
     	$scope.$on('devise:login', function (e, user){
         if(localStorageService.isSupported){
           if(!(jQuery.isEmptyObject(localStorageService.get('user')))){

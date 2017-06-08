@@ -22,7 +22,12 @@ angular.module('evalEasy', [
       .state('sign_in',{
         url: '/iniciar_sesion',
         templateUrl: 'views/auth/_sign_in.html',
-        controller: 'AuthCtrl'
+        controller: 'AuthCtrl',
+        onEnter: ['$state','Auth', function($state, Auth){
+          Auth.currentUser().then(function(){
+            $state.go('degrees');
+          })
+        }]
       })
       .state('sign_up',{
         url: '/registrarse',

@@ -1,6 +1,7 @@
 angular
   .module('evalEasy')
       .controller('AuthCtrl',['$scope', '$state','Auth','EnvironmentFactory','localStorageService', function($scope, $state, Auth,Environment, localStorageService){
+        $scope.signedIn = Auth.isAuthenticated();
         var config = {
           headers: {
             'X-HTTP-Method-Override': 'POST'

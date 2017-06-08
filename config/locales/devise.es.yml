@@ -27,13 +27,15 @@ es:
         invalid: "%{authentication_keys} o contraseña invalida"
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "Instrucciones para confirmar su cuenta"
       reset_password_instructions:
         subject: "Reset password instructions"
       unlock_instructions:
         subject: "Unlock instructions"
       password_change:
         subject: "Password Changed"
+      activation_account:
+        subject: "Activación de la cuenta"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."

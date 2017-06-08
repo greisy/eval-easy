@@ -8,11 +8,9 @@
     <%= csrf_meta_tags %>
      <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Oxygen" rel="stylesheet"> 
   </head>
-  <body>
+  <body ng-controller="NavCtrl" ng-class="{'bg-auth': !signedIn}">
     <div ng-include="'views/nav/_nav.html'"></div>
-    <div id="test" ng-class="{'bg-auth': !signedIn}">
-      <div ui-view ></div>
-    </div>
+    <div ui-view ></div>
   </body>
 </html>
 
