@@ -5,8 +5,8 @@
       <a href="" class="brand-logo gray-text">EvalEasy</a>
       <!-- Preguntar cuál es el rol para mostrar este ul o el otro-->
       <ul class="right hide-on-med-and-down">
-        <li><a href="#" data-activates="slide-out" class="side-nav2"><i class="material-icons left">account_balance</i>Institución</a></li>
-        <li><a href="#" data-activates="slide-planning" class="side-nav3" ng-click=""><i class="material-icons left">schedule</i>Planificación</a></li>
+        <li><a href="#" data-activates="slide-out" class="side-nav2" ng-click="environmentSubject()"><i class="material-icons left">account_balance</i>Institución</a></li>
+        <!--<li><a href="#" data-activates="slide-planning" class="side-nav3" ng-click="" ng-hide="subjects.length== 0"><i class="material-icons left">schedule</i>Planificación</a></li>-->
         <li><a href="#" class="dropdown-button" data-activates="logout" data-beloworigin="true" data-constrainwidth="false"><i class="material-icons left">face</i>{{user.name}}</a>
           <ul id="logout" class="dropdown-content">
             <li><a ng-click="logout()">Cerrar Sesión</a></li>
@@ -25,6 +25,7 @@
       <a href="#!name"><span class="name title little-size">{{institution.institution.name}}</span></a>
     </div></li>
     <!--<li><a ui-sref="degrees" class=".gray-link"><i class="material-icons">cloud</i>Carreras</a></li>-->
+    <li ng-hide="subjects.length == 0"><a href="#add_planning">Nueva planificacion<i class="material-icons">add_circle</i></a></li>
     <li><a ui-sref="subjects" class=".gray-link"><i class="material-icons">import_contacts</i>Asignaturas</a></li>
     <li><a ui-sref="teachers" class=".gray-link"><i class="material-icons">supervisor_account</i>Agentes Evaluadores</a></li>
     
@@ -38,29 +39,15 @@
         <a href="#!name"><span class="name title little-size">{{institution.institution.name}}</span></a>
       </div>
     </li>
-    <li><a href="#add_planning">Nueva planificacion <i class="material-icons">add_circle</i></a></li>
-
     <!--<li ng-repeat="subject in subjects"><a ui-sref="subjects" class=".gray-link"><p class="sidebar-item">{{subject.name}}- {{subject.start_date | monthYear }}</p></a></li>-->
   </ul>
 </div>
-<div id="add_planning" class="modal modal-fixed-footer">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
-</div>
+<div ng-include="'views/planning/new.html'"></div>
 <script type="text/javascript">
   $(".side-nav2").sideNav();
   $(".side-nav3").sideNav({
     menuWidth: 350
   });
   $('.dropdown-button').dropdown();
-  $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-  });
-      
+
 </script>

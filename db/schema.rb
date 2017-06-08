@@ -11,21 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420020224) do
+ActiveRecord::Schema.define(version: 20170608155839) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "academic_terms", force: :cascade do |t|
+    t.integer  "range_date_term_id"
+    t.integer  "subject_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "academic_terms", ["range_date_term_id"], name: "index_academic_terms_on_range_date_term_id", using: :btree
+  add_index "academic_terms", ["subject_id"], name: "index_academic_terms_on_subject_id", using: :btree
 
   create_table "document_types", force: :cascade do |t|
     t.string   "code",        limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.text     "description"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "environment_users", force: :cascade do |t|
-    t.integer  "user_id",        limit: 4
-    t.integer  "role_id",        limit: 4
-    t.integer  "environment_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.integer  "environment_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "environment_users", ["environment_id"], name: "index_environment_users_on_environment_id", using: :btree
@@ -33,10 +46,10 @@ ActiveRecord::Schema.define(version: 20170420020224) do
   add_index "environment_users", ["user_id"], name: "index_environment_users_on_user_id", using: :btree
 
   create_table "environments", force: :cascade do |t|
-    t.integer  "institution_id", limit: 4
-    t.integer  "user_id",        limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "institution_id"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "environments", ["institution_id"], name: "index_environments_on_institution_id", using: :btree
@@ -48,8 +61,19 @@ ActiveRecord::Schema.define(version: 20170420020224) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "range_date_terms", force: :cascade do |t|
+    t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "environment_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "range_date_terms", ["environment_id"], name: "index_range_date_terms_on_environment_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
-    t.integer  "permission_level", limit: 4
+    t.integer  "permission_level"
     t.string   "description",      limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
@@ -64,26 +88,26 @@ ActiveRecord::Schema.define(version: 20170420020224) do
 
   create_table "scales", force: :cascade do |t|
     t.string   "name",                  limit: 255
-    t.integer  "minimum_grade",         limit: 4
-    t.integer  "maximum_grade",         limit: 4
-    t.integer  "grade_to_pass_default", limit: 4
-    t.text     "description",           limit: 65535
+    t.integer  "minimum_grade"
+    t.integer  "maximum_grade"
+    t.integer  "grade_to_pass_default"
+    t.text     "description"
     t.string   "alphabetic_scale",      limit: 255
-    t.integer  "scale_type_id",         limit: 4
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.integer  "scale_type_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "subjects", force: :cascade do |t|
     t.string   "code",           limit: 255
     t.string   "name",           limit: 255
-    t.text     "description",    limit: 65535
-    t.integer  "scale_id",       limit: 4
-    t.integer  "grade_to_pass",  limit: 4
-    t.boolean  "round_up",                     default: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.integer  "environment_id", limit: 4
+    t.text     "description"
+    t.integer  "scale_id"
+    t.integer  "grade_to_pass"
+    t.boolean  "round_up",                   default: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "environment_id"
     t.date     "start_date"
     t.date     "end_date"
   end
@@ -96,7 +120,7 @@ ActiveRecord::Schema.define(version: 20170420020224) do
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -111,16 +135,19 @@ ActiveRecord::Schema.define(version: 20170420020224) do
     t.string   "phone",                  limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-    t.integer  "document_type_id",       limit: 4
+    t.integer  "document_type_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "academic_terms", "range_date_terms"
+  add_foreign_key "academic_terms", "subjects"
   add_foreign_key "environment_users", "environments"
   add_foreign_key "environment_users", "roles"
   add_foreign_key "environment_users", "users"
   add_foreign_key "environments", "institutions"
   add_foreign_key "environments", "users"
+  add_foreign_key "range_date_terms", "environments"
   add_foreign_key "subjects", "scales"
 end

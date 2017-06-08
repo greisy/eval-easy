@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :environment_users, defaults: {format: :json}, only: [:index, :create, :update], shallow: true do
       post :create_environment_users, on: :collection
     end
+    resources :academic_terms, defaults: {format: :json}, only: [:create]
   end
   resources :roles, only: [:index]
 =begin
