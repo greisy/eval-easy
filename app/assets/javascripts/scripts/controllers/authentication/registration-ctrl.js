@@ -6,6 +6,7 @@ angular
             'X-HTTP-Method-Override': 'POST'
           }
         };
+        $scope.user= {};
         $scope.document_types = DocumentType.query();
         Institution.all().then(function(response){
           $scope.institutions = response.data;

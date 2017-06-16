@@ -3,6 +3,4 @@ class DocumentTypesController < ApplicationController
     document_types = DocumentType.all
     render json: document_types, status: 200
   end
-
-
 end

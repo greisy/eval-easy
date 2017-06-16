@@ -1,13 +1,12 @@
 angular
   .module("evalEasy")
-    .controller("NavCtrl",['$state','$scope', 'Auth', 'EnvironmentFactory','localStorageService','SubjectFactory',function($state,$scope, Auth, Environment, localStorageService, Subject){
+    .controller("NavCtrl",['$state','$scope', 'Auth', 'EnvironmentFactory','localStorageService','SubjectFactory','RangeDateTermFactory',function($state,$scope, Auth, Environment, localStorageService, Subject, RangeDateTerm){
       var config = {
       	headers: {
       		'X-HTTP-Method-Override': 'DELETE'
       	}
       };
       $scope.logout = Auth.logout;
-      $scope.signedIn = Auth.isAuthenticated();
       /*Auth.currentUser().then(function (user){
       	$scope.user = user;
         $scope.signedIn = Auth.isAuthenticated();
@@ -20,27 +19,29 @@ angular
             localStorageService.set('user', user);
             $scope.user = user;
           }
-            Environment.all(user).then(function(response){
-              environments = response.data;
-              if(!(jQuery.isEmptyObject(localStorageService.get('current_environment')))){
-                $scope.institution = localStorageService.get('current_environment');
-              }else{
-                localStorageService.set('current_environment', environments[0]);
-                $scope.institution = localStorageService.get('current_environment');
-              }
-
-              if(!(jQuery.isEmptyObject(localStorageService.get('environments')))){
-                $scope.institutions = localStorageService.get('environments');
-              }else{
-                localStorageService.set('environments', environments);
-                $scope.institutions = localStorageService.get('environments');
-              }
-          });
         }else{
           console.log('error in localStorageService');
         }
         $scope.signedIn = Auth.isAuthenticated();
       });
+      $scope.set_values = function(){
+        Subject.all(localStorageService.get('current_environment').id).then(function(response){
+          $scope.subjects = response.data;
+        },function(response){
+
+        });
+        if(!(jQuery.isEmptyObject(localStorageService.get('current_environment')))){
+          $scope.institution = localStorageService.get('current_environment');
+          RangeDateTerm.all(localStorageService.get('current_environment').id).then(function(response) {
+            $scope.range_date_terms = response.data;
+          });
+        }
+
+        if(!(jQuery.isEmptyObject(localStorageService.get('environments')))){
+          $scope.institutions = localStorageService.get('environments');
+        }
+      };
+
       $scope.$on('devise:logout', function (e, user){
       	$scope.user = {};
         $scope.environment = {};
@@ -52,12 +53,8 @@ angular
         $state.go('sign_in');
       });
       $scope.environmentSubject = function(){
-        Subject.all(localStorageService.get('current_environment').id).then(function(response){
-          $scope.subjects = response.data;
-        },function(response){
 
-        });
-      }
+      };
     }]);
     /*
             EnvironmentUser.all(user).then(function(response){

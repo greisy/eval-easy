@@ -12,8 +12,10 @@ Rails.application.routes.draw do
       post :create_environment_users, on: :collection
     end
     resources :academic_terms, defaults: {format: :json}, only: [:create]
+    resources :range_date_terms, only: [:index]
   end
   resources :roles, only: [:index]
+  get 'range_date_terms/:range_date_term_id/academic_terms', to: 'academic_terms#index', :defaults => { :format => 'json' }
 =begin
   resources :institutions, only: [:index, :show] do
     resources :degrees, only: [:index, :create],shallow: true

@@ -8,9 +8,12 @@ angular
           }
         };
         $scope.login = function(){
+          debugger
           Auth.login($scope.user, config).then(function(data){
+            debugger
             console.log(data);
             Environment.all(data).then(function(response){
+              debugger
               environments = response.data;
               if(jQuery.isEmptyObject(localStorageService.get('current_environment'))){
                 localStorageService.set('current_environment', environments[0]);
@@ -20,8 +23,6 @@ angular
                 localStorageService.set('environments', environments);
               }
               $state.go("subjects");
-            },function(response){
-              console.log("There has had an error on the server");
             });
           }, function(error){
             $scope.error = error.data.error;

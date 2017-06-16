@@ -6,6 +6,7 @@
 //= require angular-validation-match
 //= require angular-local-storage
 //= require materialize
+//= require angular-materialize
 //= require angular-ui-router
 //= require angular-resource
 //= require_tree .

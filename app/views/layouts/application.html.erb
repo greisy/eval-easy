@@ -9,11 +9,7 @@
      <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Oxygen" rel="stylesheet"> 
   </head>
   <body ng-controller="NavCtrl" ng-class="{'bg-auth': !signedIn}">
-    <div ng-include="'views/nav/_nav.html'"></div>
+    <div ng-include="'views/nav/_nav.html'" ng-show="signedIn"></div>
     <div ui-view ></div>
   </body>
 </html>
-
-      <!--<div class="col s3" ng-include="'views/nav/_sideNav.html'">
-        
-      </div>-->

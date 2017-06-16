@@ -68,4 +68,8 @@ end
 ## FONT AWESOME
 gem 'font-awesome-sass'
 gem 'rails_12factor', group: :production
-gem 'puma'
+group :production do
+  gem 'puma'
+end
+
+gem 'validates_timeliness', '~> 4.0'

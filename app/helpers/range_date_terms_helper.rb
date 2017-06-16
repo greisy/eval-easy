@@ -1,0 +1,2 @@
+module RangeDateTermsHelper
+end

@@ -13,10 +13,11 @@ class EnvironmentUsersController < ApplicationController
   def create
     user = User.new(user_params)
     user.skip_confirmation!
-    if user.save
+    if user.valid?
       @environment_user = @environment.environment_users.new(role_id: role_params[:role_id], user_id: user.id)
       if @environment_user.save
         #DeviseMailer.confirmation_instructions(user, user.confirmation_token, {invitation: true, role: @environment_user.role.description}).deliver_now
+        user.save
         user.send_reset_password_instructions
         respond_to do |format|
           format.json

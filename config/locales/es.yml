@@ -13,6 +13,12 @@ es:
           attributes:
             identity_card:
               blank: "El %{attribute} no puede estar vacio"
+        range_date_term:
+          attributes:
+            start_date:
+              before: "La fecha de inicio debe ser menor a la fecha fin del periodo academico"
+            end_date:
+              after: "La fecha fin del periodo academico debe ser mayor a la fecha de inicio"
     models:
       degree: "Carrera"
       institution: "Institución"

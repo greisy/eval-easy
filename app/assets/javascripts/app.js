@@ -4,7 +4,8 @@ angular.module('evalEasy', [
   'templates',
   'Devise', 
   'validation.match',
-  'LocalStorageModule'
+  'LocalStorageModule',
+  'ui.materialize'
   ])
   .config(["$locationProvider", "$stateProvider","$urlRouterProvider", "AuthProvider",function ($locationProvider, $stateProvider, $urlRouterProvider, AuthProvider) {
     
@@ -25,7 +26,7 @@ angular.module('evalEasy', [
         controller: 'AuthCtrl',
         onEnter: ['$state','Auth', function($state, Auth){
           Auth.currentUser().then(function(){
-            $state.go('degrees');
+            $state.go('subjects');
           })
         }]
       })
@@ -35,7 +36,7 @@ angular.module('evalEasy', [
         controller: 'RegistrationCtrl',
         onEnter: ['$state','Auth', function($state, Auth){
           Auth.currentUser().then(function(){
-            $state.go('degrees');
+            $state.go('subjects');
           })
         }]
       })
@@ -76,13 +77,13 @@ angular.module('evalEasy', [
           cancan($state, Auth);
         }]
       })
-      .state('planning',{
-        url: '/planning',
-        templateUrl: 'views/plannings/dashboard_planning',
-        controller: 'PlanningCtrl',
+      .state('plannings',{
+        url: '/plannings/:id',
+        templateUrl: 'views/plannings/_show.html',
+        controller: 'PlanningCtrl', //Se colocaran en un solo controlador los metodos CRUD
         onEnter: ['$state','Auth', function($state, Auth){
           cancan($state, Auth);
-        }]        
+        }]
       });
       //$locationProvider.html5Mode(true);
       $locationProvider.html5Mode({
