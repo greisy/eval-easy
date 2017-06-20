@@ -1,6 +1,6 @@
 angular
   .module("evalEasy")
-    .controller("NavCtrl",['$state','$scope', 'Auth', 'EnvironmentFactory','localStorageService','SubjectFactory','RangeDateTermFactory',function($state,$scope, Auth, Environment, localStorageService, Subject, RangeDateTerm){
+    .controller("NavCtrl",['$state','$scope', 'Auth', 'EnvironmentFactory','localStorageService','RangeDateTermFactory',function($state,$scope, Auth, Environment, localStorageService, RangeDateTerm){
       var config = {
       	headers: {
       		'X-HTTP-Method-Override': 'DELETE'
@@ -25,11 +25,6 @@ angular
         $scope.signedIn = Auth.isAuthenticated();
       });
       $scope.set_values = function(){
-        Subject.all(localStorageService.get('current_environment').id).then(function(response){
-          $scope.subjects = response.data;
-        },function(response){
-
-        });
         if(!(jQuery.isEmptyObject(localStorageService.get('current_environment')))){
           $scope.institution = localStorageService.get('current_environment');
           RangeDateTerm.all(localStorageService.get('current_environment').id).then(function(response) {
@@ -52,20 +47,4 @@ angular
       	$scope.signedIn = Auth.isAuthenticated();
         $state.go('sign_in');
       });
-      $scope.environmentSubject = function(){
-
-      };
     }]);
-    /*
-            EnvironmentUser.all(user).then(function(response){
-          debugger
-          for(environment_user in response.data){
-            debugger
-            if(environment_user.role_name == "Coordinador"){
-              $scope.institution = environment_user.environment_name;
-            }
-          }
-          //$scope.institution = Institution.get({id: user.institution_id});
-        }, function(response){
-
-        });*/

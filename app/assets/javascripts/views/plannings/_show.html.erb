@@ -4,11 +4,11 @@
       <div class="card-content">
         <div class="row">
           <div class="offset-l5 col l6">
-            <h6>{{result.academic_term.range_date_term.name}}<a id="bla" href="#add_planning"><i class="material-icons">edit</i></h6>
+            <h6>{{result.academic_term.range_date_term.name}}<a href="#edit_planning"><i class="material-icons">edit</i></h6>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<modal-planning title="Editar Planificación" range-date-term="result.academic_term.range_date_term"></modal-planning>
+<modal-planning-edit range-date-term="result.academic_term.range_date_term" selected-subjects="selectedSubjects" subjects="subjects"></modal-planning-edit>

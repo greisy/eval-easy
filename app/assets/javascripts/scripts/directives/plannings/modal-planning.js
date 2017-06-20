@@ -4,20 +4,13 @@ angular.module('evalEasy')
       restrict: 'E',
       templateUrl: 'views/plannings/_new.html',
       scope: {
-        title: "@",
-        test1: "=rangeDateTerm"
       },
       link: function(scope, element, attrs, ctrl){
-        debugger
-        angular.element(document).find("#bla").on('click', function(){
-          debugger
-          scope.range_date_term = angular.copy(scope.test1);
+        angular.element(document).find("#new_planning").on('click', function(){
           SubjectFactory.all(localStorageService.get('current_environment').id).then(function(response){
             scope.subjects = response.data;
-          },function(response){
           });
         });
-        scope.selected_subjects = [];
         scope.addNewPlanning = function(){
           scope.academic_term = {};
           scope.academic_term.subjects = scope.selected_subject;

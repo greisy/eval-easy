@@ -5,7 +5,6 @@ angular.module("evalEasy")
       templateUrl: 'views/subjects/_list.html',
       scope: {},
       link: function(scope, element, attrs){
-        debugger
         //scope.subjects = Subject.query({environment_id: localStorageService.get('current_environment').id});
         Subject.all(localStorageService.get('current_environment').id).then(function(response){
           scope.subjects = response.data;

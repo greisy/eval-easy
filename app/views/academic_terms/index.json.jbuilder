@@ -9,8 +9,7 @@ json.set! :academic_term do
   json.set! :array do
     json.array! @academic_terms do |academic_term|
       json.id academic_term.id
-      json.subject do
-        json.id academic_term.subject.id
+      json.detail_subject do
         json.code academic_term.subject.code
         json.name academic_term.subject.name
         json.description academic_term.subject.description
@@ -29,6 +28,11 @@ json.set! :academic_term do
         json.grade_to_pass academic_term.subject.grade_to_pass
         json.round_up academic_term.subject.round_up
       end
+    end
+  end
+  json.set! :subjects do
+    json.array! @range_date_term.subjects do |subject|
+      json.id subject.id
     end
   end
 end
