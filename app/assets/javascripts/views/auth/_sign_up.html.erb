@@ -23,47 +23,59 @@
       <!--Name-->
         <div class="row">
           <div class="input-field col l6">
-            <input class="validate" type="text" name="name" id="name" ng-model="user.name" required>
-            <label for="name" data-error="Formato incorrecto">Nombre:</label>
+            <i class="material-icons prefix">account_circle</i>
+            <input placeholder="Pedro" class="validate" type="text" name="name" id="name" ng-model="user.name" required>
+            <label for="name" data-error="Nombre inválido">Nombre:</label>
           </div>
           <div class="input-field col l6">
-            <input class="validate" type="text" name="last_name" id="last_name" ng-model="user.last_name" required>
-            <label for="last_name" data-error="Formato incorrecto">Apellido:</label>
+            <input placeholder="Perez" class="validate" type="text" name="last_name" id="last_name" ng-model="user.last_name" required>
+            <label for="last_name" data-error="Apellido inválido">Apellido:</label>
           </div>
         </div>
         <div class="row">
-          <div class="input-field col l4">
-            <select class="browser-default border-bottom" ng-model="user.document_type_id">
-              <option ng-repeat="document_type in document_types" ng-value="document_type.id">{{document_type.code}}</option>
-            </select>
+          <div class="input-field col l1">
+            <i class="material-icons prefix">credit_card</i>
+          </div>
+          <div class="input-field col l2">
+                <select class="" ng-model="user.document_type_id" material-select watch>
+                    <option ng-repeat="document_type in document_types" ng-value="document_type.id">{{document_type.code}}</option>
+                </select>
+                <label>Documento</label>
             <!--<select class="browser-default border-bottom" ng-model="user.document_type_id" ng-options="option.code for (option.id, option.code) in document_types track by option.id" ng-class="{'input-filled':user.document_type_id != null}" required>
             </select>-->
           </div>
-          <div class="input-field col l8">
-            <input class="validate" type="text" name="identity_card" id="identity_card" ng-model="user.identity_card" required>
-            <label for="identity_card" data-error="Formato incorrecto">Documento:</label>
+          <div class="input-field col l9">
+
+            <input placeholder="19645454" class="validate" type="text" name="identity_card" id="identity_card" ng-model="user.identity_card" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col l1">
+            <i class="material-icons">account_balance</i>
+          </div>
+          <div class="input-field col l11">
+
+            <dropdown-resource resources="institutions" show-information="Institución Académica" show-error="Verificar nombre de la institución" model="environment.institution_name"></dropdown-resource>
           </div>
         </div>
         <div class="row">
           <div class="input-field col l12">
-            <dropdown-resource resources="institutions" show-information="Ingrese el nombre de la institución" show-error="Verificar nombre de la institución" model="environment.institution_name"></dropdown-resource>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col l12">
-            <input class="validate" type="email" name="email" id="email" ng-model="user.email" required>
+            <i class="material-icons prefix">email</i>
+            <input placeholder="evaleasy@domain.com" class="validate" type="email" name="email" id="email" ng-model="user.email" required>
             <label for="email" data-error="Correo invalido">Correo Electrónico:</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col l12">
-            <input class="validate" type="password" id="pwd" ng-model="user.password" pattern= ".{8,}" required name="passwordName">
+            <i class="material-icons prefix">lock</i>
+            <input placeholder="Debe tener al menos 8 dígitos" class="validate" type="password" id="pwd" ng-model="user.password" pattern= ".{8,}" required name="passwordName">
             <label for="pwd" data-error="Su contraseña debe tener mas de 8 dígitos">Contraseña:</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col l12">
-            <input class="validate" type="password" id="passwordConfirmation" ng-model="user.passwordConfirmation"
+            <i class="material-icons prefix">lock</i>
+            <input placeholder="Debe tener al menos 8 dígitos" class="validate" type="password" id="passwordConfirmation" ng-model="user.passwordConfirmation"
                    name="myPasswordConfirmation" match="user.password" match-ignore-empty="true"
                    required ng-class="{'invalid':sign.myPasswordConfirmation.$error.match}"
                    ng-blur="checkMatch()">

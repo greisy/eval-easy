@@ -9,7 +9,6 @@ angular.module('evalEasy')
       require: "^modalPlanningEdit",
       link: function(scope, element, attrs,modalPlanningEdit){
         scope.subjectActive = function(id){
-
           var flag = false;
           selected_subjects = modalPlanningEdit.getSelectedSubjects();
           for(var i = 0; i< selected_subjects.length; i++){

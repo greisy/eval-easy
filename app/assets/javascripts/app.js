@@ -9,11 +9,10 @@ angular.module('evalEasy', [
   ])
   .config(["$locationProvider", "$stateProvider","$urlRouterProvider", "AuthProvider",function ($locationProvider, $stateProvider, $urlRouterProvider, AuthProvider) {
     
-    var cancan = function(state, Auth) {
-      Auth.currentUser().then(function(user){
-      }, function(error){
+    var authorization = function(state, Auth) {
+      if(!(Auth.isAuthenticated())){
         state.go('sign_in');
-      });
+      }
     };
 /*    AuthProvider.parse(function(response){
       return response.data.user;
@@ -50,7 +49,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/degrees/_index.html',
         //controller: 'DegreeCtrl', //Se colocaran en un solo controlador los metodos CRUD
         onEnter: ['$state','Auth', function($state, Auth){
-          cancan($state, Auth);
+          authorization($state, Auth);
         }]
       })
       .state('subjects',{
@@ -58,7 +57,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/subjects/_index.html',
         controller: 'SubjectCtrl', //Se colocaran en un solo controlador los metodos CRUD
         onEnter: ['$state','Auth', function($state, Auth){
-          cancan($state, Auth);
+          authorization($state, Auth);
         }]
       })
       .state('teachers',{
@@ -66,7 +65,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/teachers/_index.html',
         controller: 'TeacherCtrl', //Se colocaran en un solo controlador los metodos CRUD
         onEnter: ['$state','Auth', function($state, Auth){
-          cancan($state, Auth);
+          authorization($state, Auth);
         }]
       })
       .state('students',{
@@ -74,7 +73,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/students/_index.html',
         controller: 'StudentCtrl', //Se colocaran en un solo controlador los metodos CRUD
         onEnter: ['$state','Auth', function($state, Auth){
-          cancan($state, Auth);
+          authorization($state, Auth);
         }]
       })
       .state('plannings',{
@@ -82,7 +81,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/plannings/_show.html',
         controller: 'PlanningCtrl', //Se colocaran en un solo controlador los metodos CRUD
         onEnter: ['$state','Auth', function($state, Auth){
-          cancan($state, Auth);
+          authorization($state, Auth);
         }]
       });
       //$locationProvider.html5Mode(true);
