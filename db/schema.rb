@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 20170608155839) do
   add_index "academic_terms", ["subject_id"], name: "index_academic_terms_on_subject_id", using: :btree
 
   create_table "document_types", force: :cascade do |t|
-    t.string   "code",        limit: 255
+    t.string   "code"
     t.text     "description"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "environment_users", force: :cascade do |t|
@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 20170608155839) do
   add_index "environments", ["user_id"], name: "index_environments_on_user_id", using: :btree
 
   create_table "institutions", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "range_date_terms", force: :cascade do |t|
@@ -74,39 +74,39 @@ ActiveRecord::Schema.define(version: 20170608155839) do
 
   create_table "roles", force: :cascade do |t|
     t.integer  "permission_level"
-    t.string   "description",      limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "description"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "scale_types", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "description", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "scales", force: :cascade do |t|
-    t.string   "name",                  limit: 255
+    t.string   "name"
     t.integer  "minimum_grade"
     t.integer  "maximum_grade"
     t.integer  "grade_to_pass_default"
     t.text     "description"
-    t.string   "alphabetic_scale",      limit: 255
+    t.string   "alphabetic_scale"
     t.integer  "scale_type_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.string   "code",           limit: 255
-    t.string   "name",           limit: 255
+    t.string   "code"
+    t.string   "name"
     t.text     "description"
     t.integer  "scale_id"
     t.integer  "grade_to_pass"
-    t.boolean  "round_up",                   default: false
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.boolean  "round_up",       default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "environment_id"
     t.date     "start_date"
     t.date     "end_date"
@@ -115,26 +115,26 @@ ActiveRecord::Schema.define(version: 20170608155839) do
   add_index "subjects", ["scale_id"], name: "index_subjects_on_scale_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.string   "confirmation_token",     limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email",      limit: 255
-    t.string   "identity_card",          limit: 255
-    t.string   "name",                   limit: 255
-    t.string   "last_name",              limit: 255
-    t.string   "phone",                  limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.string   "unconfirmed_email"
+    t.string   "identity_card"
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "document_type_id"
   end
 
