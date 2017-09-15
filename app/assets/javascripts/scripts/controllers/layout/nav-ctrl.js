@@ -51,7 +51,9 @@ angular
       	$scope.signedIn = Auth.isAuthenticated();
         $state.go('sign_in');
       });
+      
       $scope.environmentSubject = function(){
+        debugger
         Subject.all(localStorageService.get('current_environment').id).then(function(response){
           $scope.subjects = response.data;
         },function(response){

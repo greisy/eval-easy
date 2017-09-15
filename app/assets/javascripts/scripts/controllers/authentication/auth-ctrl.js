@@ -1,6 +1,7 @@
 angular
   .module('evalEasy')
       .controller('AuthCtrl',['$scope', '$state','Auth','EnvironmentFactory','localStorageService', function($scope, $state, Auth,Environment, localStorageService){
+        debugger
         $scope.signedIn = Auth.isAuthenticated();
         var config = {
           headers: {
@@ -8,6 +9,7 @@ angular
           }
         };
         $scope.login = function(){
+          debugger
           Auth.login($scope.user, config).then(function(data){
             console.log(data);
             Environment.all(data).then(function(response){

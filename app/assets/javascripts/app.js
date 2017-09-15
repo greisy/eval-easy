@@ -14,6 +14,27 @@ angular.module('evalEasy', [
         state.go('sign_in');
       });
     };
+
+    function is_user_sign_in($state, Auth){
+      debugger
+      return Auth.currentUser().then(function(user){
+        debugger
+        $state.go('degrees');
+      }, function(_error){
+        debugger
+        console.log("The user is not authenticated");
+      });
+    }
+    function CheckForAuthenticatedUser($state, Auth){
+      debugger
+      return Auth.currentUser().then(function(user){
+        debugger
+        return user;
+      }, function(_error){
+        debugger
+        $state.go('sign_in');
+      });
+    }
 /*    AuthProvider.parse(function(response){
       return response.data.user;
     });*/
@@ -23,66 +44,65 @@ angular.module('evalEasy', [
         url: '/iniciar_sesion',
         templateUrl: 'views/auth/_sign_in.html',
         controller: 'AuthCtrl',
-        onEnter: ['$state','Auth', function($state, Auth){
-          Auth.currentUser().then(function(){
-            $state.go('degrees');
-          })
-        }]
+        resolve: {
+          uno: is_user_sign_in
+        }
       })
       .state('sign_up',{
         url: '/registrarse',
         templateUrl: 'views/auth/_sign_up.html',
         controller: 'RegistrationCtrl',
-        onEnter: ['$state','Auth', function($state, Auth){
-          Auth.currentUser().then(function(){
-            $state.go('degrees');
-          })
-        }]
+        resolve: {
+          dos: is_user_sign_in 
+        }
       })
       .state('change_password',{
         url: '/cambiar_password/:id?reset_password_token',
         templateUrl: 'views/auth/_activation.html',
-        controller: 'ValidationCtrl'
+        controller: 'ValidationCtrl',
+        resolve: {
+          tres: is_user_sign_in
+        }
       })
       .state('degrees',{
         url: '/degrees',
         templateUrl: 'views/degrees/_index.html',
         //controller: 'DegreeCtrl', //Se colocaran en un solo controlador los metodos CRUD
-        onEnter: ['$state','Auth', function($state, Auth){
-          cancan($state, Auth);
-        }]
+        resolve: {
+          cuatro: CheckForAuthenticatedUser
+        }
       })
       .state('subjects',{
         url: '/subjects',
         templateUrl: 'views/subjects/_index.html',
         controller: 'SubjectCtrl', //Se colocaran en un solo controlador los metodos CRUD
-        onEnter: ['$state','Auth', function($state, Auth){
-          cancan($state, Auth);
-        }]
+        resolve: {
+          cinco: CheckForAuthenticatedUser
+        }
       })
       .state('teachers',{
         url: '/teachers',
         templateUrl: 'views/teachers/_index.html',
         controller: 'TeacherCtrl', //Se colocaran en un solo controlador los metodos CRUD
-        onEnter: ['$state','Auth', function($state, Auth){
-          cancan($state, Auth);
-        }]
+        resolve: {
+          seis: CheckForAuthenticatedUser
+        }
       })
       .state('students',{
         url: '/students',
         templateUrl: 'views/students/_index.html',
         controller: 'StudentCtrl', //Se colocaran en un solo controlador los metodos CRUD
-        onEnter: ['$state','Auth', function($state, Auth){
-          cancan($state, Auth);
-        }]
+        resolve:{
+          siete: CheckForAuthenticatedUser
+        }
       })
       .state('planning',{
         url: '/planning',
         templateUrl: 'views/plannings/dashboard_planning',
         controller: 'PlanningCtrl',
-        onEnter: ['$state','Auth', function($state, Auth){
-          cancan($state, Auth);
-        }]        
+        resolve: {
+          ocho: CheckForAuthenticatedUser
+        }      
       });
       //$locationProvider.html5Mode(true);
       $locationProvider.html5Mode({

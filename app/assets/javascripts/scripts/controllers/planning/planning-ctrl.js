@@ -1,6 +1,7 @@
 angular
   .module('evalEasy')
     .controller('PlanningCtrl',['$scope', '$state', 'PlanningFactory', 'SubjectFactory','localStorageService', function($scope, $state, Planning, Subject, localStorageService){
+      debugger
       Subject.all(localStorageService.get('current_environment').id).then(function(response){
           $scope.subjects = response.data;
         },function(response){
