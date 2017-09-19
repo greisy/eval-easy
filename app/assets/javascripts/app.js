@@ -16,22 +16,16 @@ angular.module('evalEasy', [
     };
 
     function is_user_sign_in($state, Auth){
-      debugger
       return Auth.currentUser().then(function(user){
-        debugger
         $state.go('degrees');
       }, function(_error){
-        debugger
         console.log("The user is not authenticated");
       });
     }
     function CheckForAuthenticatedUser($state, Auth){
-      debugger
       return Auth.currentUser().then(function(user){
-        debugger
         return user;
       }, function(_error){
-        debugger
         $state.go('sign_in');
       });
     }
@@ -45,7 +39,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/auth/_sign_in.html',
         controller: 'AuthCtrl',
         resolve: {
-          uno: is_user_sign_in
+          check_if_sign_in: is_user_sign_in
         }
       })
       .state('sign_up',{
@@ -53,7 +47,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/auth/_sign_up.html',
         controller: 'RegistrationCtrl',
         resolve: {
-          dos: is_user_sign_in 
+          check_if_sign_in: is_user_sign_in 
         }
       })
       .state('change_password',{
@@ -61,7 +55,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/auth/_activation.html',
         controller: 'ValidationCtrl',
         resolve: {
-          tres: is_user_sign_in
+          check_if_sign_in: is_user_sign_in
         }
       })
       .state('degrees',{
@@ -69,7 +63,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/degrees/_index.html',
         //controller: 'DegreeCtrl', //Se colocaran en un solo controlador los metodos CRUD
         resolve: {
-          cuatro: CheckForAuthenticatedUser
+          check_if_sign_in: CheckForAuthenticatedUser
         }
       })
       .state('subjects',{
@@ -77,7 +71,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/subjects/_index.html',
         controller: 'SubjectCtrl', //Se colocaran en un solo controlador los metodos CRUD
         resolve: {
-          cinco: CheckForAuthenticatedUser
+          check_if_sign_in: CheckForAuthenticatedUser
         }
       })
       .state('teachers',{
@@ -85,7 +79,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/teachers/_index.html',
         controller: 'TeacherCtrl', //Se colocaran en un solo controlador los metodos CRUD
         resolve: {
-          seis: CheckForAuthenticatedUser
+          check_if_sign_in: CheckForAuthenticatedUser
         }
       })
       .state('students',{
@@ -93,7 +87,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/students/_index.html',
         controller: 'StudentCtrl', //Se colocaran en un solo controlador los metodos CRUD
         resolve:{
-          siete: CheckForAuthenticatedUser
+          check_if_sign_in: CheckForAuthenticatedUser
         }
       })
       .state('planning',{
@@ -101,7 +95,7 @@ angular.module('evalEasy', [
         templateUrl: 'views/plannings/dashboard_planning',
         controller: 'PlanningCtrl',
         resolve: {
-          ocho: CheckForAuthenticatedUser
+          check_if_sign_in: CheckForAuthenticatedUser
         }      
       });
       //$locationProvider.html5Mode(true);
