@@ -4,7 +4,8 @@ angular.module('evalEasy', [
   'templates',
   'Devise', 
   'validation.match',
-  'LocalStorageModule'
+  'LocalStorageModule',
+  'ui.materialize'
   ])
   .config(["$locationProvider", "$stateProvider","$urlRouterProvider", "AuthProvider",function ($locationProvider, $stateProvider, $urlRouterProvider, AuthProvider) {
     

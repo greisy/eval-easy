@@ -5,6 +5,7 @@
 //= require angular-rails-templates
 //= require angular-validation-match
 //= require angular-local-storage
+//= require angular-materialize
 //= require materialize
 //= require angular-ui-router
 //= require angular-resource

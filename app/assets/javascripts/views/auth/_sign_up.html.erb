@@ -23,53 +23,72 @@
       <div class="row">
         <div class="input-field col l6">
           <i class="material-icons prefix">account_circle</i>
-          <input class="validate" type="text" name="name" id="name" ng-model="user.name" required>
+          <input class="validate" type="text" name="name" id="name" ng-model="user.name" required ng-class="{'error-border-bottom-red tooltip-space-bottom': sign.name.$dirty && sign.name.$invalid }">
+          <p ng-show="sign.name.$dirty && sign.name.$invalid" class="error-message">El nombre es requerido</p>
           <label for="name" data-error="Formato incorrecto">Nombre:</label>
         </div>
         <div class="input-field col l6">
           <i class="material-icons prefix">account_circle</i>
-          <input class="validate" type="text" name="last_name" id="last_name" ng-model="user.last_name" required >
+          <input class="validate" type="text" name="last_name" id="last_name" ng-model="user.last_name" required ng-class="{'error-border-bottom-red tooltip-space-bottom': sign.last_name.$dirty && sign.last_name.$invalid }">
+          <p ng-show="sign.last_name.$dirty && sign.last_name.$invalid" class="error-message">El apellido es requerido</p>
           <label for="last_name" data-error="Formato incorrecto">Apellido:</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col l2">
-          <select class="browser-default border-bottom" ng-model="user.document_type_id">
+          <i class="material-icons prefix">payment</i>
+          <select class="" ng-model="user.document_type_id" material-select watch required>
             <option ng-repeat="document_type in document_types" ng-value="document_type.id">{{document_type.code}}</option>
           </select>
+          <label>Documento</label>
           <!--<select class="browser-default border-bottom" ng-model="user.document_type_id" ng-options="option.code for (option.id, option.code) in document_types track by option.id" ng-class="{'input-filled':user.document_type_id != null}" required>
           </select>-->
         </div>
         <div class="input-field col l10 ">
-          <input class="validate" type="text" name="identity_card" ng-model="user.identity_card" required>
+          <input class="validate" type="text" name="identity_card" ng-model="user.identity_card" required ng-focus="identity_card=true" ng-blur="identity_card=false" ng-class="{'tooltip-space-bottom': identity_card || (sign.identity_card.$dirty && sign.identity_card.$invalid), 'error-border-bottom-red': sign.identity_card.$dirty && sign.identity_card.$invalid}" pattern="[0-9]{1,}">
+          <p ng-show="sign.identity_card.$dirty && sign.identity_card.$error.required" class="error-message tooltip-space-left" ng-class="{'tooltip-space-left': sign.identity_card.$dirty && sign.identity_card.$invalid}">El nro de documento es requerido</p>
+          <p ng-show="sign.identity_card.$dirty && sign.identity_card.$error.pattern" class="error-message tooltip-space-left" ng-class="{'tooltip-space-left': sign.identity_card.$dirty && sign.identity_card.$invalid}">Se permiten solo números</p>
+          <p ng-show="identity_card && !(sign.identity_card.$dirty && sign.identity_card.$invalid)" class="tooltip tooltip-space-left">Ej.: 123456</p>
         </div>
       </div>
       <div class="row">
         <div class="input-field col l12">
-          <dropdown-resource resources="institutions" show-information="Nombre de la institución" show-error="Verificar nombre de la institución" model="environment.institution_name"></dropdown-resource>
+          <dropdown-resource resources="institutions" show-information="Nombre de la institución" show-error="Verificar nombre de la institución" model="environment.institution_name"></dropdown-resource>   
         </div>
       </div>
       <div class="row">
         <div class="input-field col l12">
-          <input class="validate" type="email" name="email" id="email" ng-model="user.email" required ng-focus="email=true" ng-blur="email=false">
-          <p ng-show="email">Ej.: nombre@ejemplo.com</p>
+          <i class="material-icons prefix">email</i>
+          <input class="validate" type="email" name="email" id="email" ng-model="user.email" required ng-focus="email=true" ng-blur="email=false" ng-class="{'tooltip-space-bottom': email || (sign.email.$dirty && sign.email.$invalid), 'error-border-bottom-red' : sign.email.$dirty && sign.email.$invalid}">
+          <p ng-show="sign.email.$dirty && sign.email.$error.required" class="error-message">El correo electrónico es requerido</p>
+          <p ng-show="sign.email.$dirty && sign.email.$error.email" class="error-message">Ingrese un correo válido</p>
+          <p ng-show="email && !(sign.email.$dirty && sign.email.$invalid)" class="tooltip">Ej.: nombre@ejemplo.com</p>
           <label for="email" data-error="Correo invalido">Correo Electrónico:</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col l12">
-          <input class="validate" type="password" id="pwd" ng-model="user.password" pattern= ".{8,}" required name="password" ng-focus="password=true" ng-blur="password=false">
-          <p ng-show="password">Debe ser mayor a 8 dígitos</p>
+          <i class="material-icons prefix">lock</i>
+          <input class="validate" type="password" id="pwd" ng-model="user.password" pattern= ".{8,}" required name="password" ng-focus="password=true" ng-blur="password=false" ng-class="{'tooltip-space-bottom': password || sign.password.$dirty && sign.password.$invalid, 'error-border-bottom-red' : sign.password.$dirty && sign.password.$invalid}">
+          <p ng-show="sign.password.$dirty && sign.password.$error.required" class="error-message">La contraseña es requerida</p>
+          <p ng-show="sign.password.$dirty && sign.password.$error.pattern" class="error-message">La contraseña debe ser mayor a 8</p>
+          <p ng-show="password && !(sign.password.$dirty && sign.password.$invalid)" class="tooltip">Debe ser mayor a 8 dígitos</p>
           <label for="pwd" data-error="Su contraseña debe tener mas de 8 dígitos">Contraseña:</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col l12">
+          <i class="material-icons prefix">lock</i>
           <input class="validate" type="password" id="passwordConfirmation" ng-model="user.passwordConfirmation"
-                 name="myPasswordConfirmation" match="user.password" match-ignore-empty="true"
-                 required ng-class="{'invalid':sign.myPasswordConfirmation.$error.match}"
-                 ng-blur="checkMatch()">
+                 name="passwordConfirmation" match="user.password" match-ignore-empty="true"
+                 required ng-class="{'invalid tooltip-space-bottom':sign.passwordConfirmation.$error.match}"
+                 ng-blur="checkMatch()" ng-focus="passwordConfirmation=true" ng-blur="passwordConfirmation=false">
           <label for="pwd" data-error="Las contraseñas no coinciden, por favor verifique">Confirmar contraseña:</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col l12">
+
         </div>
       </div>
       <div class="center-align">
@@ -83,6 +102,7 @@
           <a ui-sref="sign_in">Iniciar Sesión</a>
         </div>
       </div>
+      <button class="g-recaptcha" data-sitekey="6Lej5iYUAAAAAKZjfy9MDxJsyz7ewMLMN7FZ8yw7" data-callback="YourOnSubmitFn"> Submit</button>
     </form>
   </div>
 </div>
