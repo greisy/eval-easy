@@ -6,6 +6,7 @@
 //= require angular-validation-match
 //= require angular-local-storage
 //= require angular-materialize
+//= require angular-recaptcha
 //= require materialize
 //= require angular-ui-router
 //= require angular-resource

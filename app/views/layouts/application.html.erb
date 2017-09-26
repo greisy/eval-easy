@@ -7,7 +7,6 @@
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
      <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Oxygen" rel="stylesheet">
-     <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body ng-controller="NavCtrl" ng-class="{'bg-auth': !signedIn}">
     <div ng-include="'views/nav/_nav.html'"></div>
@@ -15,8 +14,3 @@
       <div ui-view ></div>
     </div>
   </body>
-</html>
-
-      <!--<div class="col s3" ng-include="'views/nav/_sideNav.html'">
-        
-      </div>-->

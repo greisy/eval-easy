@@ -6,6 +6,7 @@ angular
             'X-HTTP-Method-Override': 'POST'
           }
         };
+        $scope.user = {};
         $scope.document_types = DocumentType.query();
         Institution.all().then(function(response){
           $scope.institutions = response.data;
@@ -38,7 +39,6 @@ angular
           };
           Auth.logout(config).then(function(oldUser){
             Materialize.toast("Te has registrado exitosamente"+ oldUser.name +". Recibiras un correo a" + oldUser.email+"con instrucciones para confirmar tu cuenta, en pocos minutos", 6000);
-            $state.go("sign_in");
           });
         });
         $scope.canSubmitSign = function(){

@@ -27,6 +27,7 @@
     "materialize": "^0.97.8",
     "material-design-icons": "^3.0.1",
     "angular-local-storage": "^0.5.2",
-    "angular-materialize": "^0.2.2"
+    "angular-materialize": "^0.2.2",
+    "angular-recaptcha": "^4.1.0"
   }
 }

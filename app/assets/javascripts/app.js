@@ -5,7 +5,8 @@ angular.module('evalEasy', [
   'Devise', 
   'validation.match',
   'LocalStorageModule',
-  'ui.materialize'
+  'ui.materialize',
+  'vcRecaptcha'
   ])
   .config(["$locationProvider", "$stateProvider","$urlRouterProvider", "AuthProvider",function ($locationProvider, $stateProvider, $urlRouterProvider, AuthProvider) {
     

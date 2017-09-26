@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  include RegistrationsHelper
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
 
@@ -9,7 +10,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
    def create
-    super
+    response=check_recaptcha('6LcumDEUAAAAAGfho8ymo5QtlSr_0UvX-8g-7l_j',params["user"]["recaptcha"])
+    if (response["success"])
+      super
+    else
+
+    end
    end
 
   # GET /resource/edit

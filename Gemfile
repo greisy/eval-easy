@@ -25,6 +25,7 @@ gem 'devise'
 
 #It uses to improve ripl(irb)'s default inspect output
 gem 'hirb'
+gem 'rest-client'
 
 #Sprockets Rails
 gem 'sprockets-rails', :require => 'sprockets/railtie'
