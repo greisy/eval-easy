@@ -44,7 +44,6 @@ angular
         $scope.signedIn = Auth.isAuthenticated();
       });
       $scope.$on('devise:logout', function (e, user){
-        debugger
       	$scope.user = {};
         $scope.environment = {};
         $scope.environments = [];

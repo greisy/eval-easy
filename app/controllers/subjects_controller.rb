@@ -36,7 +36,6 @@ class SubjectsController < ApplicationController
   private
 
   def set_models
-    debugger
     @environment = Environment.find params[:environment_id]
   end
 

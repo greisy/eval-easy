@@ -8,8 +8,10 @@ angular.module('evalEasy', [
   'ui.materialize',
   'vcRecaptcha'
   ])
-  .config(["$locationProvider", "$stateProvider","$urlRouterProvider", "AuthProvider",function ($locationProvider, $stateProvider, $urlRouterProvider, AuthProvider) {
-    
+  .config(["$locationProvider", "$stateProvider","$urlRouterProvider", "AuthProvider","$qProvider",function ($locationProvider, $stateProvider, $urlRouterProvider, AuthProvider, $qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);    
+
+
     var cancan = function(state, Auth) {
       Auth.currentUser().then(function(user){
       }, function(error){
@@ -47,11 +49,22 @@ angular.module('evalEasy', [
       .state('sign_up',{
         url: '/registrarse',
         templateUrl: 'views/auth/_sign_up.html',
-        controller: 'RegistrationCtrl'
+        controller: 'RegistrationCtrl', 
+        resolve: {
+          check_if_sign_in: is_user_sign_in
+        }
       })
       .state('change_password',{
         url: '/cambiar_password/:id?reset_password_token',
         templateUrl: 'views/auth/_activation.html',
+        controller: 'ValidationCtrl',
+        resolve: {
+          check_if_sign_in: is_user_sign_in
+        }
+      })
+      .state('sendResetPassword',{
+        url: '/forgot_password',
+        templateUrl: 'views/auth/_forgot_password.html',
         controller: 'ValidationCtrl',
         resolve: {
           check_if_sign_in: is_user_sign_in

@@ -28,7 +28,6 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # The path used after sending reset password instructions
    def after_sending_reset_password_instructions_path_for(resource_name)
-    debugger
     change_password_path(resource_name)
      #super(resource_name)
    #  change_password_path(resource_name)

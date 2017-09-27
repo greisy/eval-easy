@@ -34,14 +34,12 @@ angular
           });
         };
         $scope.$on('devise:new-registration', function (e, user){
-          debugger
           var config = {
             headers: {
               'X-HTTP-Method-Override': 'DELETE'
             }
           };
           Auth.logout(config).then(function(oldUser){
-            debugger
             Materialize.toast("Te has registrado exitosamente"+ oldUser.name +". Recibiras un correo a" + oldUser.email+"con instrucciones para confirmar tu cuenta, en pocos minutos", 6000);
           });
         });
