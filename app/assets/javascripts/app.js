@@ -47,10 +47,7 @@ angular.module('evalEasy', [
       .state('sign_up',{
         url: '/registrarse',
         templateUrl: 'views/auth/_sign_up.html',
-        controller: 'RegistrationCtrl',
-        resolve: {
-          check_if_sign_in: is_user_sign_in 
-        }
+        controller: 'RegistrationCtrl'
       })
       .state('change_password',{
         url: '/cambiar_password/:id?reset_password_token',

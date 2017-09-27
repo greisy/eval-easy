@@ -6,7 +6,9 @@ angular
       		'X-HTTP-Method-Override': 'DELETE'
       	}
       };
-      $scope.logout = Auth.logout;
+      $scope.logout = function(){
+        Auth.logout(); 
+      };
       $scope.signedIn = Auth.isAuthenticated();
       /*Auth.currentUser().then(function (user){
       	$scope.user = user;
@@ -42,6 +44,7 @@ angular
         $scope.signedIn = Auth.isAuthenticated();
       });
       $scope.$on('devise:logout', function (e, user){
+        debugger
       	$scope.user = {};
         $scope.environment = {};
         $scope.environments = [];
@@ -53,7 +56,6 @@ angular
       });
       
       $scope.environmentSubject = function(){
-        debugger
         Subject.all(localStorageService.get('current_environment').id).then(function(response){
           $scope.subjects = response.data;
         },function(response){

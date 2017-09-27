@@ -16,9 +16,11 @@ angular
         $scope.environment = {};
         $scope.signUp = function(){
           Auth.register($scope.user, config).then(function(registeredUser){
+            debugger
             console.log("User registered"+registeredUser);
             $scope.environment.user_id = registeredUser.id;
             Environment.create($scope.environment).then(function(response){
+              debugger
               console.log("Environment creation success");
             },function(response){
               console.log("Failed adding a new environment");
@@ -32,12 +34,14 @@ angular
           });
         };
         $scope.$on('devise:new-registration', function (e, user){
+          debugger
           var config = {
             headers: {
               'X-HTTP-Method-Override': 'DELETE'
             }
           };
           Auth.logout(config).then(function(oldUser){
+            debugger
             Materialize.toast("Te has registrado exitosamente"+ oldUser.name +". Recibiras un correo a" + oldUser.email+"con instrucciones para confirmar tu cuenta, en pocos minutos", 6000);
           });
         });
