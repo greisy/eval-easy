@@ -22,7 +22,7 @@
                         <i class="material-icons">keyboard_arrow_down</i>
                       </div>
                       <div class="col s10">
-                        {{teacher.name}} {{teacher.last_name}}
+                        <h5>{{teacher.name}} {{teacher.last_name}}</h5>
                       </div>
                       <div class="col s1">
                         <i class="material-icons" ng-click="editTeacher(teacher)">edit</i>
@@ -35,16 +35,23 @@
                   </div>
                   <div class="collapsible-body tabs-top-space">
                     <div class="row">
-                      <div class="offset-s1 col s4">
-                        <strong>Documento: </strong>{{teacher.document_type_code}}-{{teacher.identity_card}}
+                      <div class="offset-s1 col s6">
+                        <h5 class="h5-font-size">Documento: </h5>
+                        <h6>{{teacher.document_type_code}}-{{teacher.identity_card}}</h6>
                       </div>
-                      <div class="col s7">
-                        <span>Teléfono: </span>{{teacher.phone}}
+                      <div class="col s5">
+                        <h5 class="h5-font-size">Teléfono: </h5>
+                        <h6 class="">{{teacher.phone}}</h6>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="offset-s1 col s4">
-                        <span>Correo: </span>{{teacher.email}}
+                      <div class="offset-s1 col s6">
+                        <h5 class="h5-font-size">Correo: </h5>
+                        <h6 class="">{{teacher.email}}</h6>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="offset-s1 col s6">
                       </div>
                     </div>
                   </div>

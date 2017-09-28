@@ -11,6 +11,7 @@ class EnvironmentUsersController < ApplicationController
   end
 
   def create
+    debugger
     user = User.new(user_params)
     user.skip_confirmation!
     if user.save
