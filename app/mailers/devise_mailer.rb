@@ -13,7 +13,6 @@ class DeviseMailer < Devise::Mailer
   end
 
   def reset_password_instructions(record, token, options={})
-    debugger
     if record.password == "11223344"
       options[:template_name] = "activation_account"
     else

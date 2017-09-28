@@ -16,11 +16,9 @@ angular
         $scope.environment = {};
         $scope.signUp = function(){
           Auth.register($scope.user, config).then(function(registeredUser){
-            debugger
             console.log("User registered"+registeredUser);
             $scope.environment.user_id = registeredUser.id;
             Environment.create($scope.environment).then(function(response){
-              debugger
               console.log("Environment creation success");
             },function(response){
               console.log("Failed adding a new environment");

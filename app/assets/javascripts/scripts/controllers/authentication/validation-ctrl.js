@@ -6,7 +6,6 @@ angular.module("evalEasy")
     console.log('id' + $scope.id);
     console.log('reset_password_token' + $stateParams.reset_password_token);
     $scope.activate = function(){
-      debugger
       var parameters = {
         password: $scope.user.password,
         password_confirmation: $scope.user.password_confirmation,
@@ -14,6 +13,7 @@ angular.module("evalEasy")
       }
       Auth.resetPassword(parameters).then(function(new_data){
         $state.go('sign_in');
+        Materialize.toast("Se ha modificado la contraseña correctamente, por favor iniciar sesión para validar el cambio", 6000);
       }, function(error){
         $scope.errors = [];
         for(var key in error.data.errors){
@@ -30,7 +30,7 @@ angular.module("evalEasy")
       });
 
       $scope.$on('devise:send-reset-password-instructions-successfully', function(event){
-        Materialize.toast("Se ha enviado instrucciones para recuperar contraseña al correo indicado", 6000);
+        Materialize.toast("Se ha enviado instrucciones para recuperar su contraseña al correo indicado", 6000);
         $state.go('sign_in');
       });
 
