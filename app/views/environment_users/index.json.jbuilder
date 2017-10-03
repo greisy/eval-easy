@@ -8,4 +8,5 @@ json.array! @evaluator_agents do |evaluator_agent|
   json.document_type_code evaluator_agent.user.document_type.code
   json.email evaluator_agent.user.email
   json.environment_user_id evaluator_agent.id
+  json.confirmed_account evaluator_agent.user.confirmed_account
 end

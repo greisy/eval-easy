@@ -21,11 +21,26 @@
                       <div class="col s1">
                         <i class="material-icons">keyboard_arrow_down</i>
                       </div>
-                      <div class="col s10">
+                      <div class="col s9">
                         <h5>{{teacher.name}} {{teacher.last_name}}</h5>
                       </div>
                       <div class="col s1">
                         <i class="material-icons" ng-click="editTeacher(teacher)">edit</i>
+                      </div>
+                        <!-- Modal Trigger -->
+                        <!-- Modal Trigger -->
+                      <div class="col s1"> 
+                        <a data-target='demoModal' modal><i class="material-icons">delete</i></a>
+                        <!-- Modal Structure -->
+                        <div id="demoModal" class="modal">
+                          <div class="modal-content">
+                            <h4>Modal header</h4>
+                            <p>A bunch of text</p>
+                          </div>
+                          <div class="modal-footer">
+                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                          </div>
+                        </div>
                       </div>
                       <!--<div class="col s1">
                         <i class="material-icons" ng-show="teacher.authorized" ng-click="switchAuthorized(teacher)">not_interested</i>
@@ -48,6 +63,10 @@
                       <div class="offset-s1 col s6">
                         <h5 class="h5-font-size">Correo: </h5>
                         <h6 class="">{{teacher.email}}</h6>
+                      </div>
+                      <div class="col s5">
+                        <h5 class="h5-font-size">Se ha confirmado la cuenta: </h5>
+                        <h6 class="">{{teacher.confirmed_account | roundUp}}</h6>
                       </div>
                     </div>
                     <div class="row">

@@ -22,21 +22,21 @@ angular
             localStorageService.set('user', user);
             $scope.user = user;
           }
-            Environment.all(user).then(function(response){
-              environments = response.data;
-              if(!(jQuery.isEmptyObject(localStorageService.get('current_environment')))){
-                $scope.institution = localStorageService.get('current_environment');
-              }else{
-                localStorageService.set('current_environment', environments[0]);
-                $scope.institution = localStorageService.get('current_environment');
-              }
+          Environment.all(user).then(function(response){
+            environments = response.data;
+            if(!(jQuery.isEmptyObject(localStorageService.get('current_environment')))){
+              $scope.institution = localStorageService.get('current_environment');
+            }else{
+              localStorageService.set('current_environment', environments[0]);
+              $scope.institution = localStorageService.get('current_environment');
+            }
 
-              if(!(jQuery.isEmptyObject(localStorageService.get('environments')))){
-                $scope.institutions = localStorageService.get('environments');
-              }else{
-                localStorageService.set('environments', environments);
-                $scope.institutions = localStorageService.get('environments');
-              }
+            if(!(jQuery.isEmptyObject(localStorageService.get('environments')))){
+              $scope.institutions = localStorageService.get('environments');
+            }else{
+              localStorageService.set('environments', environments);
+              $scope.institutions = localStorageService.get('environments');
+            }
           });
         }else{
           console.log('error in localStorageService');

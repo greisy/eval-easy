@@ -55,7 +55,7 @@ angular.module('evalEasy', [
         }
       })
       .state('change_password',{
-        url: '/cambiar_password/:id?reset_password_token',
+        url: '/cambiar_password/:id?confirmation_token',
         templateUrl: 'views/auth/_activation.html',
         controller: 'ValidationCtrl',
         resolve: {

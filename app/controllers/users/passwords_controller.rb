@@ -15,7 +15,12 @@ class Users::PasswordsController < Devise::PasswordsController
    end
 
   # PUT /resource/password
-   def update
+  def update
+    user = User.find(params["user"][:id])
+    unless user.confirmed_account
+      user.confirmed_account = true
+      user.save
+    end
      super
    end
 

@@ -1,15 +1,17 @@
 angular.module("evalEasy")
   .controller('ValidationCtrl', ['$scope', '$state', 'Auth','$stateParams', function($scope, $state, Auth, $stateParams){
-    //$scope.id = $stateParams.id;
-    $scope.reset_password_token = $stateParams.reset_password_token;
+    $scope.confirmation_token = $stateParams.confirmation_token;
+    
     $scope.user = {};
-    console.log('id' + $scope.id);
-    console.log('reset_password_token' + $stateParams.reset_password_token);
+    $scope.user.id = $stateParams.id;
+    console.log('id' + $scope.user.id);
+    console.log('confirmation_token' + $stateParams.confirmation_token);
     $scope.activate = function(){
       var parameters = {
         password: $scope.user.password,
         password_confirmation: $scope.user.password_confirmation,
-        reset_password_token: $scope.reset_password_token
+        reset_password_token: $scope.confirmation_token,
+        id: $scope.user.id
       }
       Auth.resetPassword(parameters).then(function(new_data){
         $state.go('sign_in');
@@ -22,7 +24,7 @@ angular.module("evalEasy")
         console.log("An error has happened");
       });
     };
-    $scope.sendResetPassword = function(){
+    $scope.sendResetPasswordInstructionsPassword = function(){
       var parameters = {
         email: $scope.user.email
       };
