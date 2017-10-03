@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :institutions, only: [:index]
   resources :environments, only: [:create] do
     resources :subjects,defaults: {format: :json}, only: [:index,:create, :update], shallow: true
-    resources :environment_users, defaults: {format: :json}, only: [:index, :create, :update], shallow: true do
+    resources :environment_users, defaults: {format: :json}, only: [:index, :create, :update, :destroy], shallow: true do
       post :create_environment_users, on: :collection
     end
     resources :academic_terms, defaults: {format: :json}, only: [:create]

@@ -10,72 +10,75 @@
                 <span class="card-title title">Agentes Evaluadores</span>
               </div>
               <div class="input-field col s4 offset-s4">
+                <i class="material-icons prefix">search</i>
                 <input id="search" type="text" class="validate" ng-model="search">
                 <label for="search">Buscar agente evaluador</label>
               </div>
             </div>
-              <ul class="collapsible" data-collapsible="accordion">
-                <li ng-repeat= "teacher in teachers | filter: search" id="{{teacher.id}}">
-                  <div class="collapsible-header"> <!--ng-class="{' grey lighten-1':!teacher.authorized}"-->
-                    <div class="row zero-margin-bottom">
-                      <div class="col s1">
-                        <i class="material-icons">keyboard_arrow_down</i>
-                      </div>
-                      <div class="col s9">
-                        <h5>{{teacher.name}} {{teacher.last_name}}</h5>
-                      </div>
-                      <div class="col s1">
-                        <i class="material-icons" ng-click="editTeacher(teacher)">edit</i>
-                      </div>
-                        <!-- Modal Trigger -->
-                        <!-- Modal Trigger -->
-                      <div class="col s1"> 
-                        <a data-target='demoModal' modal><i class="material-icons">delete</i></a>
-                        <!-- Modal Structure -->
-                        <div id="demoModal" class="modal">
-                          <div class="modal-content">
-                            <h4>Modal header</h4>
-                            <p>A bunch of text</p>
-                          </div>
-                          <div class="modal-footer">
-                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                          </div>
+            <h6 class="center-align" ng-hide="teachers.length > 0">No tiene ningún docente registrado</h6>
+            <ul class="collapsible" data-collapsible="accordion" ng-show="teachers.length > 0">
+              <li ng-repeat= "teacher in teachers | filter: search" id="{{teacher.id}}">
+                <div class="collapsible-header"> <!--ng-class="{' grey lighten-1':!teacher.authorized}"-->
+                  <div class="row zero-margin-bottom">
+                    <div class="col s1">
+                      <i class="material-icons">keyboard_arrow_down</i>
+                    </div>
+                    <div class="col s9">
+                      <h5>{{teacher.name}} {{teacher.last_name}}</h5>
+                    </div>
+                    <div class="col s1">
+                      <i class="material-icons" ng-click="editTeacher(teacher)">edit</i>
+                    </div>
+                      <!-- Modal Trigger -->
+                      <!-- Modal Trigger -->
+                    <div class="col s1"> 
+                      <a data-target='demoModal' modal><i class="material-icons">delete</i></a>
+                      <!-- Modal Structure -->
+                      <div id="demoModal" class="modal">
+                        <div class="modal-content">
+                          <h4>Eliminar docente</h4>
+                          <p>¿Está seguro que desea eliminar al docente {{teacher.name}} {{teacher.last_name}}?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="deleteTeacher(teacher)">Eliminar</a>
+                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
                         </div>
                       </div>
-                      <!--<div class="col s1">
-                        <i class="material-icons" ng-show="teacher.authorized" ng-click="switchAuthorized(teacher)">not_interested</i>
-                        <i class="material-icons" ng-show="!teacher.authorized" ng-click="switchAuthorized(teacher)">check</i>
-                      </div>-->
+                    </div>
+                    <!--<div class="col s1">
+                      <i class="material-icons" ng-show="teacher.authorized" ng-click="switchAuthorized(teacher)">not_interested</i>
+                      <i class="material-icons" ng-show="!teacher.authorized" ng-click="switchAuthorized(teacher)">check</i>
+                    </div>-->
+                  </div>
+                </div>
+                <div class="collapsible-body tabs-top-space">
+                  <div class="row">
+                    <div class="offset-s1 col s6">
+                      <h5 class="h5-font-size">Documento: </h5>
+                      <h6>{{teacher.document_type_code}}-{{teacher.identity_card}}</h6>
+                    </div>
+                    <div class="col s5">
+                      <h5 class="h5-font-size">Teléfono: </h5>
+                      <h6 class="">{{teacher.phone}}</h6>
                     </div>
                   </div>
-                  <div class="collapsible-body tabs-top-space">
-                    <div class="row">
-                      <div class="offset-s1 col s6">
-                        <h5 class="h5-font-size">Documento: </h5>
-                        <h6>{{teacher.document_type_code}}-{{teacher.identity_card}}</h6>
-                      </div>
-                      <div class="col s5">
-                        <h5 class="h5-font-size">Teléfono: </h5>
-                        <h6 class="">{{teacher.phone}}</h6>
-                      </div>
+                  <div class="row">
+                    <div class="offset-s1 col s6">
+                      <h5 class="h5-font-size">Correo: </h5>
+                      <h6 class="">{{teacher.email}}</h6>
                     </div>
-                    <div class="row">
-                      <div class="offset-s1 col s6">
-                        <h5 class="h5-font-size">Correo: </h5>
-                        <h6 class="">{{teacher.email}}</h6>
-                      </div>
-                      <div class="col s5">
-                        <h5 class="h5-font-size">Se ha confirmado la cuenta: </h5>
-                        <h6 class="">{{teacher.confirmed_account | roundUp}}</h6>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="offset-s1 col s6">
-                      </div>
+                    <div class="col s5">
+                      <h5 class="h5-font-size">Se ha confirmado la cuenta: </h5>
+                      <h6 class="">{{teacher.confirmed_account | roundUp}}</h6>
                     </div>
                   </div>
-                </li>
-              </ul>
+                  <div class="row">
+                    <div class="offset-s1 col s6">
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -84,7 +87,7 @@
           <div class="col s12">
             <ul class="tabs">
               <li class="tab col s6"><a href="#one_teacher" class="teal-text text-darken-4">Agente Evaluador</a></li>
-              <li class="tab col s6"><a href="#multiple_teacher" class="teal-text text-darken-4">Multiples Agentes evaluadores</a></li>
+              <li class="tab col s6"><a href="#multiple_teacher" class="teal-text text-darken-4">Carga masiva</a></li>
             </ul>
           </div>
           <div id="one_teacher" class="col s12">

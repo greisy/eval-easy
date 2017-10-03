@@ -23,6 +23,9 @@ angular
       },
       toggle_authorized: function(object){
         return $http.patch("/evaluator_agents/"+object.id+"/toggle_authorized", object);
+      },
+      delete: function(object){
+        return $http.delete('environment_users/'+object.environment_user_id);
       }
     }
   }]);

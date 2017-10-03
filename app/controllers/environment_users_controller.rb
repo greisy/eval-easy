@@ -1,7 +1,7 @@
 require 'roo'
 class EnvironmentUsersController < ApplicationController
   before_action :set_environment, only: [:index, :create, :create_environment_users]
-  before_action :set_environment_user, only: [:update]
+  before_action :set_environment_user, only: [:update, :destroy]
   def index
     @evaluator_agents = EnvironmentUser.users(@environment.id, params[:kind_user])
     #render json: evaluator_agents, status: 200
@@ -90,6 +90,18 @@ class EnvironmentUsersController < ApplicationController
       end
     end
   end
+
+  def destroy
+    user = @environment_user.user
+    respond_to do |format|
+      if user.destroy
+        format.json { render json: user, status: 200 } 
+      else
+        format.json { render json: user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def set_environment_user
