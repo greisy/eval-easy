@@ -5,51 +5,53 @@
         <span class="card-title title">Asignaturas</span>
       </div>
       <div class="input-field col s4 offset-s4">
+        <i class="material-icons prefix">search</i>
         <input id="search" type="text" class="validate" ng-model="search">
         <label for="search">Buscar asignatura</label>
       </div>
     </div>
-      <ul class="collapsible" data-collapsible="accordion">
-        <li ng-repeat= "subject in subjects | filter: search" id="{{subject.id}}" >
-        <!--ng-class="{' grey lighten-1':!teacher.authorized}"-->
-          <div class="collapsible-header">
-            <div class="row zero-margin-bottom">
-              <div class="col s1">
-                <i class="material-icons">keyboard_arrow_down</i>
-              </div>
-              <div class="col s9">
-                <strong>Codigo: </strong>{{subject.code}} | <strong>{{subject.name}}</strong>
-              </div>
-              <div class="offset-s1 col s1">
+    <h6 class="center-align" ng-hide="subjects.length > 0">No tiene ninguna asignatura registrada</h6>
+    <ul class="collapsible" data-collapsible="accordion" ng-show="subjects.length > 0">
+      <li ng-repeat= "subject in subjects | filter: search" id="{{subject.id}}" >
+      <!--ng-class="{' grey lighten-1':!teacher.authorized}"-->
+        <div class="collapsible-header">
+          <div class="row zero-margin-bottom">
+            <div class="col s1">
+              <i class="material-icons">keyboard_arrow_down</i>
+            </div>
+            <div class="col s9">
+              <strong>Codigo: </strong>{{subject.code}} | <strong>{{subject.name}}</strong>
+            </div>
+            <div class="offset-s1 col s1">
 
-                <i class="material-icons" ng-click="editSubject(subject)">edit</i>
-              </div>
+              <i class="material-icons" ng-click="editSubject(subject)">edit</i>
             </div>
           </div>
-          <div class="collapsible-body tabs-top-space">
-            <div class="row">
-              <div class="offset-s1 col s11">
-                <strong>Tipo de escala: </strong>{{subject.scale.name}} | <strong>Nota minima: {{subject.scale.minimum_grade}}</strong>,<strong>Nota máxima:</strong>{{subject.scale.maximum_grade}} (Nota para aprobar por defecto: {{subject.scale.grade_to_pass_default}})| <strong>Nota para aprobar:</strong>{{subject.grade_to_pass}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="offset-s1 col s4">
-                <span>Se redondeará hacia arriba: </span>{{subject.round_up | roundUp}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="offset-s1 col s4">
-                <strong>Comienzo de evaluación: </strong>{{subject.start_date}} | <strong>Finalización de evaluación: </strong>{{subject.end_date}} 
-              </div>
-            </div>
-            <div class="row">
-              <div class="offset-s1 col s4">  
-                <strong>Descripcion: </strong>{{subject.description}}
-              </div>
+        </div>
+        <div class="collapsible-body tabs-top-space">
+          <div class="row">
+            <div class="offset-s1 col s11">
+              <strong>Tipo de escala: </strong>{{subject.scale.name}} | <strong>Nota minima: {{subject.scale.minimum_grade}}</strong>,<strong>Nota máxima:</strong>{{subject.scale.maximum_grade}} (Nota para aprobar por defecto: {{subject.scale.grade_to_pass_default}})| <strong>Nota para aprobar:</strong>{{subject.grade_to_pass}}
             </div>
           </div>
-        </li>
-      </ul>
+          <div class="row">
+            <div class="offset-s1 col s4">
+              <span>Se redondeará hacia arriba: </span>{{subject.round_up | roundUp}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="offset-s1 col s4">
+              <strong>Comienzo de evaluación: </strong>{{subject.start_date}} | <strong>Finalización de evaluación: </strong>{{subject.end_date}} 
+            </div>
+          </div>
+          <div class="row">
+            <div class="offset-s1 col s4">  
+              <strong>Descripcion: </strong>{{subject.description}}
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
 <script type="text/javascript">
