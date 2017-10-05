@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002143603) do
+ActiveRecord::Schema.define(version: 20171005014110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,17 +102,10 @@ ActiveRecord::Schema.define(version: 20171002143603) do
     t.string   "code"
     t.string   "name"
     t.text     "description"
-    t.integer  "scale_id"
-    t.integer  "grade_to_pass"
-    t.boolean  "round_up",       default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "environment_id"
-    t.date     "start_date"
-    t.date     "end_date"
   end
-
-  add_index "subjects", ["scale_id"], name: "index_subjects_on_scale_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -150,5 +143,4 @@ ActiveRecord::Schema.define(version: 20171002143603) do
   add_foreign_key "environments", "institutions"
   add_foreign_key "environments", "users"
   add_foreign_key "range_date_terms", "environments"
-  add_foreign_key "subjects", "scales"
 end

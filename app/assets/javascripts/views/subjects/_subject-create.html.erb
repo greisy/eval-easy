@@ -29,33 +29,6 @@
               <input id="code" type="text" class="validate" ng-model="subject.code" min="0" max="200" step="1">
               <label for="code">Código</label>
             </div>
-            <div class="col s6">
-              <p>
-                <input type="checkbox" class="filled-in" id="filled-in-box" ng-model="subject.round_up"/>
-                <label for="filled-in-box">Redondear hacia arriba</label>
-              </p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
-              <select id="test" class="browser-default border-bottom" ng-model="subject.scale" ng-change="fillGradeToPass(subject.scale)" ng-options="scale as scale.name for scale in scales track by scale.id" ng-if="scales" ng-class="{'input-filled':subject.scale != null}" required>
-                <option value="">Escoge escala de calificación</option>
-              </select>
-              <!--<select class="browser-default border-bottom" ng-model="subject.scale_id" ng-class="{'input-filled':subject.scale_id != null}" ng-change="fillGradeToPass(subject)">
-                <option ng-repeat="option in scales" value="{{option.id}}">{{option.name}}</option>
-              </select>-->
-            </div>
-            <div class="input-field col s6">
-              <p ng-if="subject.scale.scale_type.name=='numerica'" class="range-field">
-                <input type="range" id="test5" min="{{subject.scale.minimum_grade}}" max="{{subject.scale.maximum_grade}}" ng-model="subject.grade_to_pass" />
-              </p>
-              <select ng-if="subject.scale.scale_type.name=='alfabetica'" class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="option.id as option.name for option in alphabetic_scales" ng-class="{'input-filled':subject.grade_to_pass != null}">
-                <option value="">Nota minima</option>
-              </select>
-              <select ng-if="subject.scale.scale_type.name=='por descripcion'" class="browser-default border-bottom" ng-model="subject.grade_to_pass" ng-options="option.id as option.name for option in description_scales" ng-class="{'input-filled':subject.grade_to_pass != null}">
-                <option value="">Nota minima</option>
-              </select>
-            </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
