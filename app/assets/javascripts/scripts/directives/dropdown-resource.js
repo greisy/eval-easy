@@ -10,6 +10,7 @@ angular.module('evalEasy')
         resources: "="
       },
       link: function(scope, element, attrs){
+        scope.filteredItems = [];
         //console.log(element[0].querySelector("ul.collection").id);
         //element.css("display", "none");
         scope.setResource = function(resource){
@@ -32,12 +33,16 @@ angular.module('evalEasy')
           }
           */
         };
+        //check if the user has introduced a new institution's name that's not registered
         scope.checkNewEnvironment = function(){
-          if (scope.filteredItems.length == 0){
-            scope.model = scope.query;
-            angular.element(document).find("ul.collection").removeClass('show-list');
+          if (!(scope.filteredItems == undefined)){
+            if ( scope.filteredItems.length == 0){
+              scope.model = scope.query;
+              angular.element(document).find("ul.collection").removeClass('show-list');
+            }
           }
         };
+        // check if the user has introduced a new institution's name, if that is the case it will erase the current list
         scope.check = function(){
           if (scope.filteredItems.length == 0){
             angular.element(document).find("ul.collection").removeClass('show-list');

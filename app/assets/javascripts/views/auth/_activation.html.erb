@@ -1,49 +1,60 @@
-<div class="contenedor">
-  <div class="z-depth-1 grey lighten-4 row auth-box">
-    <div class="row">
-      <div class="col s12 center-align">
-        <%= image_tag("logo", class: "logo") %>
-        <h5 class="condensed" style="min-width:300px;">Cambiar contraseña para Activar cuenta</h5>
-      </div>
-    </div>
-    <form class="col s12" name="sign" ng-submit="activate()">
-      <div class="row">
-        <div class="input-field col s12" ng-class="{'card-panel red darken-4': error}" ng-if="error">
-          <span class="white-text">{{error}}</span>
+<div class="container">
+  <div class="row">
+    <div class="col m6 s12 offset-m3 z-depth-1 grey lighten-4 auth-box">
+      <div class="row space-top">
+        <div class="col s12 center-align">
+          <%= image_tag("logo", class: "logo") %>
+          <h5 class="condensed" style="min-width:300px;">Cambiar contraseña</h5>
         </div>
       </div>
-      <div class="row">
-        <div class="input-field col s12" ng-class="{'card-panel darken-4': success}" ng-if="success">
-          <span class="white-text">{{success}}</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input class="validate" type="password" id="pwd" ng-model="user.password" pattern: ".{8,}" required>
-          <label for="email" data-error="Su contraseña debe tener mas de 8 digitos">Contraseña:</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input class="validate" type="password" id="pwd" ng-model="user.password_confirmation" pattern: ".{8,}" required>
-          <label for="pwd" data-error="Su contraseña debe tener mas de 8 dígitos">Confirmar contraseña:</label>
-        </div>
-      </div>
-      <div class="center-align">
+      <form class="col s12" name="sign" ng-submit="activate()">
         <div class="row">
-          <button type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4" ng-disabled="!canSubmitSign()">Activar
-          </button>
+          <div class="input-field col l12" ng-class="{'card-panel red darken-4': errors.length > 0}" ng-show="errors.length > 0"> 
+            <ul>
+              <li ng-repeat="error in errors"><span class="white-text">{{error}}</span></li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col s8 offset-4">
-          <a ui-sref="sign_in">Iniciar sesión</a>
+        <div class="row">
+          <div class="input-field col s12" ng-class="{'card-panel darken-4': success}" ng-if="success">
+            <span class="white-text">{{success}}</span>
+          </div>
         </div>
-      </div>
-    </form>
+        <div class="row">
+          <div class="input-field col l12">
+            <i class="material-icons prefix">lock</i>
+            <input class="validate" type="password" id="pwd" ng-model="user.password" pattern= ".{8,}" required name="password" ng-focus="password=true" ng-blur="password=false" ng-class="{'tooltip-space-bottom': password || sign.password.$dirty && sign.password.$invalid, 'error-border-bottom-red' : sign.password.$dirty && sign.password.$invalid}">
+            <p ng-show="sign.password.$dirty && sign.password.$error.required" class="error-message">La contraseña es requerida</p>
+            <p ng-show="sign.password.$dirty && sign.password.$error.pattern" class="error-message">La contraseña debe ser mayor a 8</p>
+            <p ng-show="password && !(sign.password.$dirty && sign.password.$invalid)" class="tooltip">Debe ser mayor a 8 dígitos</p>
+            <label for="pwd" data-error="Su contraseña debe tener mas de 8 dígitos">Contraseña:</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col l12">
+            <i class="material-icons prefix">lock</i>
+            <input class="validate" type="password" id="passwordConfirmation" ng-model="user.passwordConfirmation"
+                   name="passwordConfirmation" match="user.password" match-ignore-empty="true"
+                   required ng-class="{'invalid tooltip-space-bottom':sign.passwordConfirmation.$error.match}"
+                   ng-blur="checkMatch()" ng-focus="passwordConfirmation=true" ng-blur="passwordConfirmation=false">
+            <label for="pwd" data-error="Las contraseñas no coinciden, por favor verifique">Confirmar contraseña:</label>
+          </div>
+        </div>
+        <div class="center-align">
+          <div class="row">
+            <button type="submit" class="col s12 btn btn-large waves-effect indigo teal darken-4" ng-disabled="!canSubmitSign()">Modificar contraseña
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col m12 center-align">
+            <a ui-sref="sign_in">Iniciar sesión</a>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-
 
 <!--<div class="row center-xs">
     <div class="col-xs-4">

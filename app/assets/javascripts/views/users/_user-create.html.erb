@@ -1,14 +1,14 @@
 <div class="card">
   <div class="card-content">
     <div class="row">
-      <form class="col s12" ng-submit="saveUser()" id="userForm">
+      <form class="col s12" ng-submit="saveUser()" id="userForm" name="addUser">
         <div class="row">
           <div ng-class="{'col s12': !edit, 'col s8': edit}">
             <span class="card-title title" ng-hide="edit">Agregar {{kindUser}}</span>
             <span class="card-title title" ng-show="edit">Editar {{kindUser}}</span>
           </div>
           <div class="offset-s2 col s2" ng-show="edit" ng-click="addEfect()">
-            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+            <a class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons">add</i></a>
           </div>
         </div>
         <div class="row">
@@ -20,44 +20,50 @@
         </div>
         <div class="row"><!--zero-margin-bottom-->
           <div class="input-field col s12 without-margin-top">
-            <input id="name" type="text" class="validate" ng-model="user.name">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name" type="text" class="validate" name="name" ng-model="user.name" required ng-class="{'error-border-bottom-red tooltip-space-bottom': addUser.name.$dirty && addUser.name.$invalid }">
+            <p ng-show="addUser.name.$dirty && addUser.name.$invalid" class="error-message">El nombre es requerido</p>
             <label for="name">Nombre</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12 without-margin-top">
-            <input id="last_name" type="text" class="validate" ng-model="user.last_name">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="last_name" type="text" class="validate" ng-model="user.last_name" name="last_name" required ng-class="{'error-border-bottom-red tooltip-space-bottom': addUser.last_name.$dirty && addUser.last_name.$invalid }">
+            <p ng-show="addUser.last_name.$dirty && addUser.last_name.$invalid" class="error-message">El apellido es requerido</p>
             <label for="last_name">Apellido</label>
           </div>
         </div>
         <div class="row">
-          <div class="input-field col s12 without-margin-top">
-            <div class="row">
-              <div class="input-field col s4 without-margin-top">
-                <select class="browser-default border-bottom" ng-model="user.document_type_id" ng-options="option.id as option.code for option in document_types">
-                  <option value=""></option>
-                </select>
-                <!--
-                <select class="browser-default border-bottom" ng-model="teacher.document_type_id" ng-options="option.code for option in document_types track by option.id" ng-class="{'input-filled':user.document_type_id != null}">
-                  <option value=""></option>
-                </select>-->
-              </div>
-              <div class="input-field col s8 without-margin-top">
-                <input id="identity_card" type="text" class="validate" ng-model="user.identity_card">
-                <label for="identity_card">Cédula de Identidad</label>
-              </div>
-            </div>
+          <div class="input-field col l4">
+            <i class="material-icons prefix">payment</i>
+            <select class="" ng-model="user.document_type_id" material-select watch required>
+              <option ng-repeat="document_type in document_types" ng-value="{{document_type.id}}">{{document_type.code}}</option>
+            </select>
+            <label>Documento</label>
+          </div>
+          <div class="input-field col l8">
+            <input class="validate" type="text" name="identity_card" ng-model="user.identity_card" required ng-focus="identity_card=true" ng-blur="identity_card=false" ng-class="{'tooltip-space-bottom': identity_card || (addUser.identity_card.$dirty && addUser.identity_card.$invalid), 'error-border-bottom-red': addUser.identity_card.$dirty && addUser.identity_card.$invalid}" pattern="[0-9]{1,}">
+            <p ng-show="addUser.identity_card.$dirty && addUser.identity_card.$error.required" class="error-message tooltip-space-left" ng-class="{'tooltip-space-left': addUser.identity_card.$dirty && addUser.identity_card.$invalid}">El nro de documento es requerido</p>
+            <p ng-show="addUser.identity_card.$dirty && addUser.identity_card.$error.pattern" class="error-message tooltip-space-left" ng-class="{'tooltip-space-left': addUser.identity_card.$dirty && addUser.identity_card.$invalid}">Se permiten solo números</p>
+            <p ng-show="identity_card && !(addUser.identity_card.$dirty && addUser.identity_card.$invalid)" class="tooltip tooltip-space-left">Ej.: 123456</p>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12 without-margin-top">
-            <input id="email" type="text" class="validate" ng-model="user.email">
-            <label for="email">Correo Electrónico</label>
+            <i class="material-icons prefix">email</i>
+            <input class="validate" type="email" name="email" id="email" ng-model="user.email" required ng-focus="email=true" ng-blur="email=false" ng-class="{'tooltip-space-bottom': email || (addUser.email.$dirty && addUser.email.$invalid), 'error-border-bottom-red' : addUser.email.$dirty && addUser.email.$invalid}" ng-disabled="edit">
+            <p ng-show="addUser.email.$dirty && addUser.email.$error.required && !email" class="error-message">El correo electrónico es requerido</p>
+            <p ng-show="addUser.email.$dirty && addUser.email.$error.email && !email" class="error-message">Ingrese un correo válido</p>
+            <p ng-show="email" class="tooltip">Ej.: nombre@ejemplo.com</p>
+            <label for="email" data-error="Correo invalido">Correo Electrónico:</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12 without-margin-top">
-            <input id="phone" type="text" class="validate" ng-model="user.phone">
+            <i class="material-icons prefix">phone</i>
+            <input id="phone" type="text" class="validate" ng-model="user.phone" name="phone" ng-focus="phone=true" ng-blur="phone=false" ng-class="{'tooltip-space-bottom': phone}">
+            <p ng-show="phone" class="tooltip">Ej. 0212-1234567</p>
             <label for="phone">Teléfono</label>
           </div>
         </div>
@@ -83,4 +89,21 @@
 
 <!--<div class="input-field col s4 without-margin-top">
               <upload-image></upload-image>
+            </div>
+
+
+            <div class="row">
+              <div class="input-field col s4 without-margin-top">
+                <select class="browser-default border-bottom" ng-model="user.document_type_id" ng-options="option.id as option.code for option in document_types">
+                  <option value=""></option>
+                </select>
+                
+                <select class="browser-default border-bottom" ng-model="teacher.document_type_id" ng-options="option.code for option in document_types track by option.id" ng-class="{'input-filled':user.document_type_id != null}">
+                  <option value=""></option>
+                </select>
+              </div>
+              <div class="input-field col s8 without-margin-top">
+                <input id="identity_card" type="text" class="validate" ng-model="user.identity_card">
+                <label for="identity_card">Cédula de Identidad</label>
+              </div>
             </div>-->

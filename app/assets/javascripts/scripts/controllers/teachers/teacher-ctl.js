@@ -1,5 +1,5 @@
 angular.module('evalEasy')
-  .controller('TeacherCtrl', ['Auth','$scope', '$state', 'ScaleFactory', 'TeacherFactory', 'localStorageService', function(auth, $scope, $state, ScaleFactory, Teacher, localStorageService){
+  .controller('TeacherCtrl', ['Auth','$scope', '$state', 'ScaleFactory', 'TeacherFactory', 'localStorageService', 'UserFactory', function(auth, $scope, $state, ScaleFactory, Teacher, localStorageService, User){
     $scope.document_types = ScaleFactory.query();
     Teacher.all(localStorageService.get('current_environment').id, 'Docente').then(function(response){
       $scope.teachers = response.data;
@@ -21,13 +21,28 @@ angular.module('evalEasy')
     };
     $scope.$on('UserEdited', function(event, data){
       $("#"+data.id+" .collapsible-header").addClass("teal lighten-4");
-        for(var i= 0; i< $scope.teachers.length; i++){
-          if($scope.teachers[i].id == data.id){
-            $scope.teachers[i] = data;
-            break;
+      for(var i= 0; i< $scope.teachers.length; i++){
+        if($scope.teachers[i].id == data.id){
+          $scope.teachers[i] = data;
+          break;
+        }
+      }
+    });
+    $scope.deleteTeacher = function(teacher){
+      User.delete(teacher).then(function(response){
+        var message= "Se ha eliminado el docente correctamente";
+        Materialize.toast(message, 4000);
+        for(var i=0; i< $scope.teachers.length; i++){
+          if($scope.teachers[i].id == teacher.id){
+            $scope.teachers.splice(i, 1);
           }
         }
+      }, function(response){
+        var message= "Ha ocurrido un error, intente nuevamente";
+        Materialize.toast(message, 4000);
       });
+    };
+
   }]);
   /*
     auth.currentUser().then(function(user){

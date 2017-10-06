@@ -1,20 +1,19 @@
 angular
   .module("evalEasy")
-    .controller("NavCtrl",['$state','$scope', 'Auth', 'EnvironmentFactory','localStorageService',function($state,$scope, Auth, Environment, localStorageService){
+    .controller("NavCtrl",['$state','$scope', 'Auth', 'EnvironmentFactory','localStorageService','SubjectFactory',function($state,$scope, Auth, Environment, localStorageService, Subject){
       var config = {
       	headers: {
       		'X-HTTP-Method-Override': 'DELETE'
       	}
       };
-      $scope.logout= Auth.logout;
+      $scope.logout = function(){
+        Auth.logout(); 
+      };
+      $scope.signedIn = Auth.isAuthenticated();
       /*Auth.currentUser().then(function (user){
       	$scope.user = user;
         $scope.signedIn = Auth.isAuthenticated();
       });*/
-
-    	$scope.$on('devise:new-registration', function (e, user){
-        $scope.user = user;
-      });
     	$scope.$on('devise:login', function (e, user){
         if(localStorageService.isSupported){
           if(!(jQuery.isEmptyObject(localStorageService.get('user')))){
@@ -23,21 +22,21 @@ angular
             localStorageService.set('user', user);
             $scope.user = user;
           }
-            Environment.all(user).then(function(response){
-              environments = response.data;
-              if(!(jQuery.isEmptyObject(localStorageService.get('current_environment')))){
-                $scope.institution = localStorageService.get('current_environment');
-              }else{
-                localStorageService.set('current_environment', environments[0]);
-                $scope.institution = localStorageService.get('current_environment');
-              }
+          Environment.all(user).then(function(response){
+            environments = response.data;
+            if(!(jQuery.isEmptyObject(localStorageService.get('current_environment')))){
+              $scope.institution = localStorageService.get('current_environment');
+            }else{
+              localStorageService.set('current_environment', environments[0]);
+              $scope.institution = localStorageService.get('current_environment');
+            }
 
-              if(!(jQuery.isEmptyObject(localStorageService.get('environments')))){
-                $scope.institutions = localStorageService.get('environments');
-              }else{
-                localStorageService.set('environments', environments);
-                $scope.institutions = localStorageService.get('environments');
-              }
+            if(!(jQuery.isEmptyObject(localStorageService.get('environments')))){
+              $scope.institutions = localStorageService.get('environments');
+            }else{
+              localStorageService.set('environments', environments);
+              $scope.institutions = localStorageService.get('environments');
+            }
           });
         }else{
           console.log('error in localStorageService');
@@ -54,7 +53,14 @@ angular
       	$scope.signedIn = Auth.isAuthenticated();
         $state.go('sign_in');
       });
+      
+      $scope.environmentSubject = function(){
+        Subject.all(localStorageService.get('current_environment').id).then(function(response){
+          $scope.subjects = response.data;
+        },function(response){
 
+        });
+      }
     }]);
     /*
             EnvironmentUser.all(user).then(function(response){

@@ -7085,8 +7085,8 @@ nav ul li a {
 
 /* line 47, /home/bunnygrey/eval-easy/app/assets/stylesheets/main.sass */
 .auth-box {
-  display: inline-block;
-  padding: 32px 48px 0px 48px;
+  /*display: inline-block;
+  padding: 32px 48px 0px 48px;*/
   border: 1px solid #EEE;
   border-radius: 12px;
 }

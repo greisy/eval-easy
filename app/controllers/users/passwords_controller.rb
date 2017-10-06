@@ -15,8 +15,12 @@ class Users::PasswordsController < Devise::PasswordsController
    end
 
   # PUT /resource/password
-   def update
-    debugger
+  def update
+    user = User.find(params["user"][:id])
+    unless user.confirmed_account
+      user.confirmed_account = true
+      user.save
+    end
      super
    end
 
@@ -28,7 +32,6 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # The path used after sending reset password instructions
    def after_sending_reset_password_instructions_path_for(resource_name)
-    debugger
     change_password_path(resource_name)
      #super(resource_name)
    #  change_password_path(resource_name)

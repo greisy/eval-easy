@@ -1,4 +1,5 @@
-<input class="validate" type="text" name="resource" id="resource" ng-model="query" ng-focus="showCollection()" required ng-blur="checkNewEnvironment()" ng-keypress="check()" autocomplete="off">
+<i class="material-icons prefix">account_balance</i>
+<input class="validate" type="text" name="resource" id="resource" ng-model="query" ng-focus="showCollection()" required ng-blur="checkNewEnvironment()" ng-keypress="check()" autocomplete="off">	
   <label for="resource">{{showInformation}}</label>
 <ul class="collection item-list" id ="collection">
   <li class="collection-item change-color" ng-click="setResource(resource)" id="{{resource.id}}" ng-repeat="resource in filteredItems = (resources | filter: {'name' : query} )" ng-mouseover="changeColor(resource.id)" >{{resource.name}}</li>

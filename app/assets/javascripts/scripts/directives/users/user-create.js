@@ -57,16 +57,14 @@ angular.module('evalEasy')
         scope.editUser = function(){
           scope.environment_user = {};
           scope.environment_user.user = scope.user;
-          User.update(scope.environment_user).success(function(data, status, headers, config){
+          User.update(scope.environment_user).then(function(response){
             var message= "Se ha editado el "+scope.kindUser+" correctamente";
             Materialize.toast(message, 4000);
             //scope.backupTeacher = data;
-            var id = "#"+ data.id;
+            var id = "#"+ response.data.id;
             scope.user = {};
-            scope.$emit('UserEdited', data);
-          })
-          .error(function(data, status, header, config){
-            debugger
+            scope.$emit('UserEdited', response.data);
+          },function(response){
             scope.errors = [];
               for(var key in data){
                 scope.errors.push(data[key][0]);
