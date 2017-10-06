@@ -20,18 +20,21 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
+              <i class="material-icons prefix">import_contacts</i>
               <input id="name" type="text" class="validate" ng-model="subject.name" required>
               <label for="name">Nombre</label>
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s6">
-              <input id="code" type="text" class="validate" ng-model="subject.code" min="0" max="200" step="1">
+            <div class="input-field col s6 margin-left-zero">
+              <i class="material-icons prefix">label_outline</i>
+              <input id="code" type="text" class="validate" ng-model="subject.code">
               <label for="code">Código</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
+              <i class="material-icons prefix">comment</i>
               <textarea id="description" class="materialize-textarea" ng-model="subject.description"></textarea>
               <label for="description">Descripción:</label>
             </div>

@@ -29,5 +29,8 @@
     "angular-materialize": "^0.2.2",
     "angular-recaptcha": "^4.1.0",
     "materialize": "^0.100.2"
+  },
+  "resolutions": {
+    "materialize": "~0.97.8"
   }
 }

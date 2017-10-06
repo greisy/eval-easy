@@ -6,7 +6,6 @@ angular.module("evalEasy")
       scope: {},
       link: function(scope, element, attrs){
         //scope.subjects = Subject.query({environment_id: localStorageService.get('current_environment').id});
-        debugger
         Subject.all(localStorageService.get('current_environment').id).then(function(response){
           scope.subjects = response.data;
         },function(response){

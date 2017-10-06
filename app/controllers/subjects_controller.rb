@@ -13,7 +13,7 @@ class SubjectsController < ApplicationController
 
   def create
     subject = @environment.subjects.create(subject_params)
-    subject.scale_id = scale_params[:id]
+    #subject.scale_id = scale_params[:id]
     if subject.save
       render json: subject, status: :created
     else
